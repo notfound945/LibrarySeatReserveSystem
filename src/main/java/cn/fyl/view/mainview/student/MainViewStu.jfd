@@ -1,0 +1,1532 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.7" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"$sizePolicy": 1
+			"title": "图书馆座位预定系统-学生端 V1.0"
+			"defaultCloseOperation": 3
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$layoutConstraints": "fillx,insets dialog,hidemode 3"
+					"$columnConstraints": "[fill]"
+					"$rowConstraints": "[]"
+				} ) {
+					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+						name: "tabbedPane1"
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+							"$layoutConstraints": "fillx,hidemode 3"
+							"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
+							"$rowConstraints": "[][][][][][][][][][][][][][][][]"
+						} ) {
+							name: "panel1"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label49"
+								"text": "本馆公示"
+								"font": new java.awt.Font( "Microsoft YaHei UI", 1, 30 )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 1 26 1,alignx center,growx 0"
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label50"
+								"text": "2020-06-11"
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 2 26 1,alignx center,growx 0"
+							} )
+							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+								name: "scrollPane3"
+								add( new FormComponent( "javax.swing.JTextArea" ) {
+									name: "textArea3"
+									"text": "     疫情就是命令，防控就是责任。张家界校区图书馆信息技术部全体工作人员坚决落实学校关于新型冠状病毒肺炎疫情防控工作部署，以及图书馆的具体工作安排，共克时艰，科学防控，同时遵从“停课不停学，闭馆不停工”的宗旨。在疫情期间，严抓落实，提前预防，在保障安全的同时尽最大可能为读者提供信息服务。\n\n     根据学校要求，在图书馆的统一部署下，张家界校区图书馆信息技术部全体工作人员做到了尽量少出门，尽量少聚会，并每天就自身身体状况实行0报告2次，对于暂居外地的工作人员，严格遵守学校相关规定，实行本人申请，图书馆及学校层层审批的制度。党员充分发挥先锋模范作用，不信谣，不传谣，令行禁止，在防疫工作中勇挑重担，积极传播正能量和科学防护措施。按照学校要求上班后，每天坚持自测体温并登记入馆，同时保持室内清洁和空气流通。\n\n     疫情期间，全体工作人员尽最大努力为读者提供信息服务，进行课题跟踪服务2项，为读者远程推送文献300余篇。通过QQ群，微信群及时向师生读者发送相关数据库免费服务通知、在线辅导通知等。同时，将个人知网漫游账户提供给急需的读者使用。完成本科毕业生论文查重490篇。积极筹备毕业生电子离校工作，保障网络通畅，将校区各个学院300余名读者的欠书情况进行了具体统计，并及时传递给校区各个学院。为了保障安全、避免拥挤、简化程序，提前对相关图书超期进行处理600余条。另外，根据学校安排，相关人员参与完成了图情专硕的线上复试、面试工作，按质按量完成了图情专业硕士的线上教学工作36课时，线上指导研究生查阅相关资料10余次。\n\n    同时利用疫情期间个人时间相对较多的机会，张家界校区图书馆信息技术部相关人员积极撰写并发表论文，申报国家级课题1项，以良好类等级结题省级课题1项。\n\n     同心协力战疫情，信息服务不停歇，我们将继续坚守岗位，牢记使命，不忘初心，充分发挥信息服务者的优势，传播正能量，传递新知识。（文：谭凯波）"
+									"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+									"editable": false
+									"lineWrap": true
+								} )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 4 26 12,dock center"
+							} )
+						}, new FormLayoutConstraints( null ) {
+							"title": "欢迎"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+							"$layoutConstraints": "fillx,hidemode 3"
+							"$columnConstraints": "[fill]"
+							"$rowConstraints": "[]"
+						} ) {
+							name: "panel2"
+							add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+								name: "tabbedPane3"
+								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "fill,hidemode 3"
+									"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
+									"$rowConstraints": "[][][][][][][][][][][][][][][][][][][][]"
+								} ) {
+									name: "viewSeat"
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton1"
+										"enabled": false
+										"text": "A1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton3"
+										"text": "C1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton2"
+										"text": "B1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton4"
+										"text": "D1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton5"
+										"text": "E1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton6"
+										"text": "F1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton7"
+										"text": "G1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton8"
+										"text": "H1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton9"
+										"text": "I1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton10"
+										"text": "J1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton11"
+										"text": "K1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton12"
+										"text": "L1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton13"
+										"text": "M1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton14"
+										"text": "N1"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 6,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton15"
+										"text": "A2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton16"
+										"text": "B2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton17"
+										"text": "C2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton18"
+										"text": "D2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton19"
+										"text": "E2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton20"
+										"text": "F2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton21"
+										"text": "G2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton22"
+										"text": "H2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton23"
+										"text": "I2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton24"
+										"text": "J2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton25"
+										"text": "K2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton26"
+										"text": "L2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton27"
+										"text": "M2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton28"
+										"text": "N2"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 7,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton29"
+										"text": "A3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton30"
+										"text": "B3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton31"
+										"text": "C3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton32"
+										"text": "D3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton33"
+										"text": "E3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton34"
+										"text": "F3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton35"
+										"text": "G3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton36"
+										"text": "H3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton37"
+										"text": "I3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton38"
+										"text": "J3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton39"
+										"text": "K3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton40"
+										"text": "L3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton41"
+										"text": "M3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton42"
+										"text": "N3"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 9,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton43"
+										"text": "A4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton44"
+										"text": "B4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton45"
+										"text": "C4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton46"
+										"text": "D4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton47"
+										"text": "E4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton48"
+										"text": "F4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton49"
+										"text": "G4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton50"
+										"text": "H4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton51"
+										"text": "I4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton52"
+										"text": "J4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton53"
+										"text": "K4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton54"
+										"text": "L4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton55"
+										"text": "M4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton56"
+										"text": "N4"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 10,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton57"
+										"text": "A5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton58"
+										"text": "B5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton59"
+										"text": "C5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton60"
+										"text": "D5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton61"
+										"text": "E5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton62"
+										"text": "F5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton63"
+										"text": "G5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton64"
+										"text": "H5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton65"
+										"text": "I5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton66"
+										"text": "J5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton67"
+										"text": "K5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton68"
+										"text": "L5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton69"
+										"text": "M5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton70"
+										"text": "N5"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 12,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton71"
+										"text": "A6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton72"
+										"text": "B6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton73"
+										"text": "C6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton74"
+										"text": "D6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton75"
+										"text": "E6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton76"
+										"text": "F6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton77"
+										"text": "G6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton78"
+										"text": "H6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton79"
+										"text": "I6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton80"
+										"text": "J6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton81"
+										"text": "K6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton82"
+										"text": "L6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton83"
+										"text": "M6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton84"
+										"text": "N6"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 13,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton85"
+										"text": "A7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton86"
+										"text": "B7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton87"
+										"text": "C7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton88"
+										"text": "D7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton89"
+										"text": "E7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton90"
+										"text": "F7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton91"
+										"text": "G7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton92"
+										"text": "H7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton93"
+										"text": "I7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton94"
+										"text": "J7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton95"
+										"text": "K7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton96"
+										"text": "L7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton97"
+										"text": "M7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton98"
+										"text": "N7"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 15,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton99"
+										"text": "A8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton100"
+										"text": "B8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton101"
+										"text": "C8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton102"
+										"text": "D8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton103"
+										"text": "E8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton104"
+										"text": "F8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton105"
+										"text": "G8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton106"
+										"text": "H8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton107"
+										"text": "I8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton108"
+										"text": "J8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton109"
+										"text": "K8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton110"
+										"text": "L8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton111"
+										"text": "M8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton112"
+										"text": "N8"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 16,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton113"
+										"text": "A9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton114"
+										"text": "B9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton115"
+										"text": "C9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton116"
+										"text": "D9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton117"
+										"text": "E9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton118"
+										"text": "F9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton119"
+										"text": "G9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton120"
+										"text": "H9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton121"
+										"text": "I9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton122"
+										"text": "J9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton123"
+										"text": "K9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton124"
+										"text": "L9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton125"
+										"text": "M9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton126"
+										"text": "N9"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 18,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton127"
+										"text": "A10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton128"
+										"text": "B10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton129"
+										"text": "C10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton130"
+										"text": "D10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton131"
+										"text": "E10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton132"
+										"text": "F10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton133"
+										"text": "G10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton134"
+										"text": "H10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton135"
+										"text": "I10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton136"
+										"text": "J10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton137"
+										"text": "K10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton138"
+										"text": "L10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton139"
+										"text": "M10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JRadioButton" ) {
+										name: "radioButton140"
+										"text": "N10"
+										"$buttonGroup": new FormReference( "buttonGroup1" )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 19,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label17"
+										"text": "楼层"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0 2 1"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "floorComboBox"
+										"model": new javax.swing.DefaultComboBoxModel {
+											selectedItem: "图书馆一楼"
+											addElement( "图书馆一楼" )
+											addElement( "图书馆二楼" )
+											addElement( "图书馆三楼" )
+											addElement( "图书馆四楼" )
+											addElement( "图书馆五楼" )
+										}
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										"maximumRowCount": 5
+										addEvent( new FormEvent( "java.awt.event.FocusListener", "focusGained", "floorComboBoxFocusGained", true ) )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0 2 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label18"
+										"text": "当前楼层有座位"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 1 2 1,alignx right,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label19"
+										"text": "40"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 1 2 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label20"
+										"text": "可预定"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 2 2 1,alignx right,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label21"
+										"text": "23"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 2 2 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label22"
+										"text": "A"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label23"
+										"text": "B"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 3 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label24"
+										"text": "C"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label25"
+										"text": "D"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label26"
+										"text": "E"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 7 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label27"
+										"text": "F"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 8 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label28"
+										"text": "G"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label29"
+										"text": "H"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 11 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label30"
+										"text": "I"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 12 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label41"
+										"text": "J"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 14 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label42"
+										"text": "K"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 15 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label43"
+										"text": "L"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 16 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label44"
+										"text": "M"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 18 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label45"
+										"text": "N"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 19 4,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label31"
+										"text": "1"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 6"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label32"
+										"text": "2"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 7"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label33"
+										"text": "3"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 9"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label34"
+										"text": "4"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 10"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label35"
+										"text": "5"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 12"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label36"
+										"text": "6"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 13"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label37"
+										"text": "7"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 15"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label38"
+										"text": "8"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 16"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label39"
+										"text": "9"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 18"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label40"
+										"text": "10"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 19"
+									} )
+								}, new FormLayoutConstraints( null ) {
+									"title": "查看座位"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "panel8"
+								}, new FormLayoutConstraints( null ) {
+									"title": "预定座位"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "panel9"
+								}, new FormLayoutConstraints( null ) {
+									"title": "预定消息"
+								} )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 0,dock center"
+							} )
+						}, new FormLayoutConstraints( null ) {
+							"title": "预定中心"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+							"$layoutConstraints": "hidemode 3"
+							"$columnConstraints": "[fill]"
+							"$rowConstraints": "[]"
+						} ) {
+							name: "panel3"
+							add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+								name: "tabbedPane4"
+								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "panel10"
+								}, new FormLayoutConstraints( null ) {
+									"title": "个人信息"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "panel12"
+								}, new FormLayoutConstraints( null ) {
+									"title": "修改个人信息"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "panel11"
+								}, new FormLayoutConstraints( null ) {
+									"title": "预约历史"
+								} )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 0,dock center"
+							} )
+						}, new FormLayoutConstraints( null ) {
+							"title": "个人中心"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+							"$layoutConstraints": "hidemode 3"
+							"$columnConstraints": "[fill]"
+							"$rowConstraints": "[]"
+						} ) {
+							name: "panel4"
+							add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+								name: "tabbedPane2"
+								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
+									"$rowConstraints": "[][][][][][][][][][][][][][]"
+								} ) {
+									name: "panel5"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label11"
+										"text": "程序版本："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label12"
+										"text": "学生端 V 1.0"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 2 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label13"
+										"text": "发布日期："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label14"
+										"text": "2020/06/25"
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 2 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label15"
+										"text": "本次更新："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 3"
+									} )
+									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+										name: "scrollPane2"
+										add( new FormComponent( "javax.swing.JTextArea" ) {
+											name: "textArea2"
+											"text": "release note - 2020.06.26 \n===================================== \n1.使用了基于Google Material风格的Material-ui-swing做窗体界面； \n2.使用了号称Java语言中最好的数据库连接池Durid，提供的强大的监控和扩展功能； \n3.使用构建工具Maven管理项目依赖与构建项目； \n4.使用了版本控制工具git，并上传源码至github；\n5.使用JFormDesigner设计程序界面；\n6.添加了依赖包工具mysql jdbc、log4j等。"
+											"wrapStyleWord": true
+											"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+											"lineWrap": true
+											"editable": false
+										} )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 5 30 9,dock center"
+									} )
+								}, new FormLayoutConstraints( null ) {
+									"title": "程序信息"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "fill,hidemode 3,align right bottom"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][][][]"
+								} ) {
+									name: "panel6"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label1"
+										"text": "开发者："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label3"
+										"text": "符玉涟"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 0"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label2"
+										"text": "联系方式："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label4"
+										"text": "7758258"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label6"
+										"text": "开发语言："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 2"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label9"
+										"text": "Java"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 2"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label5"
+										"text": "开发工具："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 3"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label8"
+										"text": "Intellij IDEA & JFormDesigner"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 3"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label7"
+										"text": "开发日期："
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 4"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label10"
+										"text": "2020/06/22"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 4"
+									} )
+								}, new FormLayoutConstraints( null ) {
+									"title": "维护者信息"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill]"
+									"$rowConstraints": "[fill]"
+								} ) {
+									name: "panel7"
+									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+										name: "scrollPane1"
+										add( new FormComponent( "javax.swing.JTextArea" ) {
+											name: "textArea1"
+											"text": "Copyright 2020 fyl      \n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+											"editable": false
+											"wrapStyleWord": true
+											"lineWrap": true
+										} )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0,dock center"
+									} )
+								}, new FormLayoutConstraints( null ) {
+									"title": "服务协议"
+								} )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 0,dock center"
+							} )
+						}, new FormLayoutConstraints( null ) {
+							"title": "关于"
+						} )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$layoutConstraints": "insets dialog,alignx right"
+					"$columnConstraints": "[fill][button,fill][button,fill]"
+					"$rowSpecs": "[fill]"
+				} ) {
+					name: "buttonBar"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "switchUserButton"
+						"text": "切换用户"
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "switchUserButtonMouseReleased", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "switchUserButtonMouseReleased", true ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 0"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "exitButton"
+						"text": "退出程序"
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "exitButtonMouseReleased", true ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 2 0"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1150, 750 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 716 )
+		} )
+	}
+}
