@@ -1072,6 +1072,23 @@ new FormModel {
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 0 0 2 1"
 									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "refreshButton"
+										"text": "刷新"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 2 0 2 1,alignx center,growx 0"
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "button2"
+										"text": "确认预定"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
+										"foreground": new java.awt.Color( 255, 102, 102, 255 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 4 0,alignx center,growx 0"
+									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label18"
 										"text": "当前楼层有座位"

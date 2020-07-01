@@ -93,6 +93,11 @@ public class MainViewStu extends JFrame {
         initSeat(1);
     }
 
+    private void refreshButtonMouseReleased(MouseEvent e) {
+        System.out.println("手动刷新 按钮");
+        initSeat(1);
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -250,6 +255,8 @@ public class MainViewStu extends JFrame {
         radioButton140 = new JRadioButton();
         label17 = new JLabel();
         floorComboBox = new JComboBox<>();
+        refreshButton = new JButton();
+        button2 = new JButton();
         label18 = new JLabel();
         label19 = new JLabel();
         label20 = new JLabel();
@@ -321,13 +328,12 @@ public class MainViewStu extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-            . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
-            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-            awt .Font .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) )
-            ; dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-            ;
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -1058,6 +1064,24 @@ public class MainViewStu extends JFrame {
                                     }
                                 });
                                 viewSeat.add(floorComboBox, "cell 0 0 2 1");
+
+                                //---- refreshButton ----
+                                refreshButton.setText("\u5237\u65b0");
+                                refreshButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                refreshButton.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent e) {
+                                        refreshButtonMouseReleased(e);
+                                        refreshButtonMouseReleased(e);
+                                    }
+                                });
+                                viewSeat.add(refreshButton, "cell 2 0 2 1,alignx center,growx 0");
+
+                                //---- button2 ----
+                                button2.setText("\u786e\u8ba4\u9884\u5b9a");
+                                button2.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+                                button2.setForeground(new Color(255, 102, 102));
+                                viewSeat.add(button2, "cell 4 0,alignx center,growx 0");
 
                                 //---- label18 ----
                                 label18.setText("\u5f53\u524d\u697c\u5c42\u6709\u5ea7\u4f4d");
@@ -1808,6 +1832,8 @@ public class MainViewStu extends JFrame {
     private JRadioButton radioButton140;
     private JLabel label17;
     private JComboBox<String> floorComboBox;
+    private JButton refreshButton;
+    private JButton button2;
     private JLabel label18;
     private JLabel label19;
     private JLabel label20;

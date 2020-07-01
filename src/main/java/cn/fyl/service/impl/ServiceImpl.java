@@ -28,11 +28,7 @@ public class ServiceImpl implements Service {
     public User verify(User user) {
         User tempUser = new User();
         UserDaoImpl userDaoImplement = new UserDaoImpl();
-        try {
-            tempUser = userDaoImplement.queryByUserNameAndPassword(user.getUserName(), user.getPasswd());
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        tempUser = userDaoImplement.queryByUserNameAndPassword(user.getUserName(), user.getPasswd());
         if (tempUser != null) {
             System.out.println("登录成功");
             return tempUser;
