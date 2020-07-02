@@ -4,9 +4,7 @@
 
 package cn.fyl.view.mainview.student;
 
-import java.awt.event.*;
 import cn.fyl.dao.impl.SeatDaoImpl;
-import cn.fyl.domain.Seat;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.login.LoginView;
@@ -15,11 +13,10 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.lang.reflect.Method;
+import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -28,7 +25,8 @@ import java.util.HashMap;
 public class MainViewStu extends JFrame {
     private ServiceImpl serviceImpl = new ServiceImpl();
     private SeatDaoImpl seatDaoImpl = new SeatDaoImpl();
-    private String bind = "Hello world";
+    private int floor = 1;
+    private Timer time;
     private User user;
 
     public MainViewStu(User user) {
@@ -40,33 +38,76 @@ public class MainViewStu extends JFrame {
         System.out.println("MainView user" + user);
     }
 
+    /**
+     * 初始化组件数据
+     */
     private void init() {
-        initSeat(1);
+        initSeat(this.floor);
+        loadTime();
+        loadUserInfo();
     }
 
     /**
      * 根据楼层加载座位
      */
-    private void initSeat(int floor) {
+    private void initSeat(int f) {
+        resetSelect();
         Component[] components = this.viewSeat.getComponents();
-        HashMap<Integer, ArrayList<Integer>> seat = seatDaoImpl.getSeat(floor);
-        for (int k = 0; k < 10; k++) {
-            ArrayList<Integer> integers = seat.get(k + 1);
-            if (integers != null) {
-                for (int i = k * 14, j = 0; j < integers.size(); i++, j++) {
-                    components[i].setEnabled(integers.get(j) == 0);
+        HashMap<Integer, ArrayList<Integer>> seat = seatDaoImpl.getSeat(f);
+        int total = seat.size() * 14;
+        int select = 0;
+        if (!seat.isEmpty()) {
+            for (int k = 0; k < 10; k++) {
+                ArrayList<Integer> integers = seat.get(k + 1);
+                if (integers != null) {
+                    for (int i = k * 14, j = 0; j < integers.size(); i++, j++) {
+                        components[i].setEnabled(integers.get(j) == 0);
+                        if (integers.get(j) == 0) {
+                            select++;
+                        }
+                    }
+                } else {
+                    for (int i = k * 14, j = 0; j < 14; i++, j++) {
+                        components[i].setEnabled(false);
+                    }
                 }
-            } else {
+            }
+        } else {
+            for (int k = 0; k < 10; k++) {
                 for (int i = k * 14, j = 0; j < 14; i++, j++) {
                     components[i].setEnabled(false);
                 }
             }
         }
+        seat.clear();
+        // 输出楼层座位数量信息
+        this.totalNumber.setText(String.valueOf(total));
+        this.selectNumber.setText(String.valueOf(select));
     }
 
-    private void exitButtonKeyReleased(KeyEvent e) {
-        // TODO add your code here
-        System.exit(0);
+    /**
+     * 渲染用户数据到组件
+     */
+    private void loadUserInfo() {
+        this.userName.setText(this.user.getUserName());
+        this.name.setText(this.user.getName());
+        this.sex.setText(this.user.getSex());
+        this.age.setText(String.valueOf(this.user.getAge()));
+        this.grade.setText(this.user.getGrade());
+        this.phone.setText(this.user.getPasswd());
+    }
+
+    /**
+     * 加载实时时间
+     */
+    private void loadTime() {
+        time = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeLabel.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss EEEE").format(new Date()));
+            }
+        });
+        time.start();
     }
 
     private void exitButtonMouseReleased(MouseEvent e) {
@@ -86,16 +127,47 @@ public class MainViewStu extends JFrame {
 
     /**
      * 楼层
+     *
      * @param e 事件
      */
     private void floorComboBoxFocusGained(FocusEvent e) {
         System.out.println("楼层获得焦点 刷新 ");
-        initSeat(1);
+        initSeat(this.floor);
     }
 
     private void refreshButtonMouseReleased(MouseEvent e) {
-        System.out.println("手动刷新 按钮");
-        initSeat(1);
+        initSeat(this.floor);
+    }
+
+    private void floorComboBoxItemStateChanged(ItemEvent e) {
+        switch (e.getStateChange()) {
+            case ItemEvent.SELECTED:
+                System.out.println("选中了 " + e.getItem());
+                String f = (String) e.getItem();
+                switch (f.substring(3, 4)) {
+                    case "一":
+                        this.floor = 1;
+                        initSeat(this.floor);
+                        break;
+                    case "二":
+                        this.floor = 2;
+                        initSeat(this.floor);
+                        break;
+                    case "三":
+                        this.floor = 3;
+                        initSeat(this.floor);
+                        break;
+                    case "四":
+                        this.floor = 4;
+                        initSeat(this.floor);
+                        break;
+                    case "五":
+                        this.floor = 5;
+                        initSeat(this.floor);
+                        break;
+                }
+                break;
+        }
     }
 
 
@@ -257,10 +329,12 @@ public class MainViewStu extends JFrame {
         floorComboBox = new JComboBox<>();
         refreshButton = new JButton();
         button2 = new JButton();
+        label46 = new JLabel();
+        timeLabel = new JLabel();
         label18 = new JLabel();
-        label19 = new JLabel();
+        totalNumber = new JLabel();
         label20 = new JLabel();
-        label21 = new JLabel();
+        selectNumber = new JLabel();
         label22 = new JLabel();
         label23 = new JLabel();
         label24 = new JLabel();
@@ -286,12 +360,50 @@ public class MainViewStu extends JFrame {
         label39 = new JLabel();
         label40 = new JLabel();
         panel8 = new JPanel();
-        panel9 = new JPanel();
+        label16 = new JLabel();
+        scrollPane4 = new JScrollPane();
+        list1 = new JList<>();
+        label19 = new JLabel();
+        scrollPane5 = new JScrollPane();
+        textArea4 = new JTextArea();
         panel3 = new JPanel();
         tabbedPane4 = new JTabbedPane();
         panel10 = new JPanel();
+        label21 = new JLabel();
+        userName = new JLabel();
+        label47 = new JLabel();
+        name = new JLabel();
+        label48 = new JLabel();
+        sex = new JLabel();
+        label51 = new JLabel();
+        age = new JLabel();
+        label53 = new JLabel();
+        grade = new JLabel();
+        label52 = new JLabel();
+        phone = new JLabel();
+        label54 = new JLabel();
+        description = new JLabel();
         panel12 = new JPanel();
-        panel11 = new JPanel();
+        label62 = new JLabel();
+        modifyUserName = new JTextField();
+        label63 = new JLabel();
+        modifyName = new JTextField();
+        label64 = new JLabel();
+        radioButton141 = new JRadioButton();
+        radioButton142 = new JRadioButton();
+        radioButton143 = new JRadioButton();
+        label65 = new JLabel();
+        comboBox1 = new JComboBox<>();
+        label68 = new JLabel();
+        modifyGrade = new JTextField();
+        label66 = new JLabel();
+        textField7 = new JTextField();
+        label67 = new JLabel();
+        textField8 = new JTextField();
+        button1 = new JButton();
+        label69 = new JLabel();
+        scrollPane6 = new JScrollPane();
+        textArea5 = new JTextArea();
         panel4 = new JPanel();
         tabbedPane2 = new JTabbedPane();
         panel5 = new JPanel();
@@ -328,12 +440,11 @@ public class MainViewStu extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-            ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-            propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
+            ,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+            ,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red),
+            dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -1063,6 +1174,7 @@ public class MainViewStu extends JFrame {
                                         floorComboBoxFocusGained(e);
                                     }
                                 });
+                                floorComboBox.addItemListener(e -> floorComboBoxItemStateChanged(e));
                                 viewSeat.add(floorComboBox, "cell 0 0 2 1");
 
                                 //---- refreshButton ----
@@ -1071,7 +1183,6 @@ public class MainViewStu extends JFrame {
                                 refreshButton.addMouseListener(new MouseAdapter() {
                                     @Override
                                     public void mouseReleased(MouseEvent e) {
-                                        refreshButtonMouseReleased(e);
                                         refreshButtonMouseReleased(e);
                                     }
                                 });
@@ -1083,25 +1194,35 @@ public class MainViewStu extends JFrame {
                                 button2.setForeground(new Color(255, 102, 102));
                                 viewSeat.add(button2, "cell 4 0,alignx center,growx 0");
 
+                                //---- label46 ----
+                                label46.setText("\u5f53\u524d\u65f6\u95f4\uff1a");
+                                label46.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                                viewSeat.add(label46, "cell 14 0 2 1,alignx right,growx 0");
+
+                                //---- timeLabel ----
+                                timeLabel.setText("yyyy-MM-dd hh:mm:ss EEEE");
+                                timeLabel.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                                viewSeat.add(timeLabel, "cell 16 0 4 1");
+
                                 //---- label18 ----
-                                label18.setText("\u5f53\u524d\u697c\u5c42\u6709\u5ea7\u4f4d");
+                                label18.setText("\u5ea7\u4f4d\u603b\u6570");
                                 label18.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 viewSeat.add(label18, "cell 0 1 2 1,alignx right,growx 0");
 
-                                //---- label19 ----
-                                label19.setText("40");
-                                label19.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-                                viewSeat.add(label19, "cell 0 1 2 1");
+                                //---- totalNumber ----
+                                totalNumber.setText("0");
+                                totalNumber.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                                viewSeat.add(totalNumber, "cell 0 1 2 1");
 
                                 //---- label20 ----
-                                label20.setText("\u53ef\u9884\u5b9a");
+                                label20.setText("\u53ef\u9884\u5b9a\u6570");
                                 label20.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 viewSeat.add(label20, "cell 0 2 2 1,alignx right,growx 0");
 
-                                //---- label21 ----
-                                label21.setText("23");
-                                label21.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-                                viewSeat.add(label21, "cell 0 2 2 1");
+                                //---- selectNumber ----
+                                selectNumber.setText("0");
+                                selectNumber.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                                viewSeat.add(selectNumber, "cell 0 2 2 1");
 
                                 //---- label22 ----
                                 label22.setText("A");
@@ -1204,30 +1325,61 @@ public class MainViewStu extends JFrame {
                             //======== panel8 ========
                             {
                                 panel8.setLayout(new MigLayout(
-                                    "hidemode 3",
+                                    "fill,hidemode 3",
                                     // columns
+                                    "[fill]" +
                                     "[fill]" +
                                     "[fill]",
                                     // rows
                                     "[]" +
                                     "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[]"));
-                            }
-                            tabbedPane3.addTab("\u9884\u5b9a\u5ea7\u4f4d", panel8);
 
-                            //======== panel9 ========
-                            {
-                                panel9.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                //---- label16 ----
+                                label16.setText("\u9884\u5b9a\u65e5\u5fd7\uff1a");
+                                label16.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                                panel8.add(label16, "cell 0 0");
+
+                                //======== scrollPane4 ========
+                                {
+
+                                    //---- list1 ----
+                                    list1.setModel(new AbstractListModel<String>() {
+                                        String[] values = {
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d"
+                                        };
+                                        @Override
+                                        public int getSize() { return values.length; }
+                                        @Override
+                                        public String getElementAt(int i) { return values[i]; }
+                                    });
+                                    list1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                    scrollPane4.setViewportView(list1);
+                                }
+                                panel8.add(scrollPane4, "cell 0 2 3 1,dock center");
+
+                                //---- label19 ----
+                                label19.setText("\u5185\u5bb9\u8be6\u60c5\uff1a");
+                                label19.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+                                panel8.add(label19, "cell 0 3");
+
+                                //======== scrollPane5 ========
+                                {
+
+                                    //---- textArea4 ----
+                                    textArea4.setText("\u8bf7\u5728\u4e0a\u65b9\u9009\u62e9\u65e5\u5fd7\uff0c\u6b64\u5904\u5c06\u4f1a\u5bf9\u5e94\u5c55\u793a\u3002");
+                                    textArea4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                    textArea4.setEditable(false);
+                                    scrollPane5.setViewportView(textArea4);
+                                }
+                                panel8.add(scrollPane5, "cell 0 4 3 1,dock center");
                             }
-                            tabbedPane3.addTab("\u9884\u5b9a\u6d88\u606f", panel9);
+                            tabbedPane3.addTab("\u9884\u5b9a\u6d88\u606f", panel8);
                         }
                         panel2.add(tabbedPane3, "cell 0 0,dock center");
                     }
@@ -1248,45 +1400,239 @@ public class MainViewStu extends JFrame {
 
                             //======== panel10 ========
                             {
+                                panel10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 panel10.setLayout(new MigLayout(
-                                    "hidemode 3",
+                                    "fill,hidemode 3,align center center",
                                     // columns
+                                    "[fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
                                     "[fill]" +
                                     "[fill]",
                                     // rows
                                     "[]" +
                                     "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[]"));
+
+                                //---- label21 ----
+                                label21.setText("\u7528\u6237\u540d\uff1a");
+                                label21.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label21, "cell 0 1,alignx center,growx 0");
+
+                                //---- userName ----
+                                userName.setText("Unknown");
+                                userName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(userName, "cell 1 1");
+
+                                //---- label47 ----
+                                label47.setText("\u59d3\u540d\uff1a");
+                                label47.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label47, "cell 0 2,alignx center,growx 0");
+
+                                //---- name ----
+                                name.setText("\u672a\u77e5");
+                                name.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(name, "cell 1 2");
+
+                                //---- label48 ----
+                                label48.setText("\u6027\u522b\uff1a");
+                                label48.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label48, "cell 0 3,alignx center,growx 0");
+
+                                //---- sex ----
+                                sex.setText("\u5973");
+                                sex.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(sex, "cell 1 3");
+
+                                //---- label51 ----
+                                label51.setText("\u5e74\u9f84\uff1a");
+                                label51.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label51, "cell 0 4,alignx center,growx 0");
+
+                                //---- age ----
+                                age.setText("18");
+                                age.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(age, "cell 1 4");
+
+                                //---- label53 ----
+                                label53.setText("\u5b66\u9662\u73ed\u7ea7\uff1a");
+                                label53.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label53, "cell 0 5,alignx center,growx 0");
+
+                                //---- grade ----
+                                grade.setText("\u9ed8\u8ba4\u73ed\u7ea7");
+                                grade.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(grade, "cell 1 5");
+
+                                //---- label52 ----
+                                label52.setText("\u8054\u7cfb\u624b\u673a\uff1a");
+                                label52.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label52, "cell 0 6,alignx center,growx 0");
+
+                                //---- phone ----
+                                phone.setText("15873321229");
+                                phone.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(phone, "cell 1 6");
+
+                                //---- label54 ----
+                                label54.setText("\u4e2a\u6027\u7b7e\u540d\uff1a");
+                                label54.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(label54, "cell 0 7,alignx center,growx 0");
+
+                                //---- description ----
+                                description.setText("\u5e38\u4e0e\u540c\u597d\u4e89\u5929\u4e0b\uff0c\n\u4e0d\u5171\u50bb\u74dc\u8bba\u957f\u77ed\u3002");
+                                description.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(description, "cell 1 7 6 2");
                             }
                             tabbedPane4.addTab("\u4e2a\u4eba\u4fe1\u606f", panel10);
 
                             //======== panel12 ========
                             {
                                 panel12.setLayout(new MigLayout(
-                                    "hidemode 3",
+                                    "fill,hidemode 3",
                                     // columns
+                                    "[fill]" +
+                                    "[fill]" +
+                                    "[207,fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
                                     "[fill]" +
                                     "[fill]",
                                     // rows
                                     "[]" +
                                     "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[]"));
-                            }
-                            tabbedPane4.addTab("\u4fee\u6539\u4e2a\u4eba\u4fe1\u606f", panel12);
 
-                            //======== panel11 ========
-                            {
-                                panel11.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                //---- label62 ----
+                                label62.setText("\u7528\u6237\u540d\uff1a");
+                                label62.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label62, "cell 0 1,alignx center,growx 0");
+
+                                //---- modifyUserName ----
+                                modifyUserName.setEnabled(false);
+                                modifyUserName.setEditable(false);
+                                modifyUserName.setText("Unknown");
+                                modifyUserName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(modifyUserName, "cell 1 1");
+
+                                //---- label63 ----
+                                label63.setText("\u59d3\u540d\uff1a");
+                                label63.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label63, "cell 0 2,alignx center,growx 0");
+
+                                //---- modifyName ----
+                                modifyName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                modifyName.setText("\u9ed8\u8ba4\u59d3\u540d");
+                                panel12.add(modifyName, "cell 1 2");
+
+                                //---- label64 ----
+                                label64.setText("\u6027\u522b\uff1a");
+                                label64.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label64, "cell 0 3,alignx center,growx 0");
+
+                                //---- radioButton141 ----
+                                radioButton141.setText("\u4fdd\u5bc6");
+                                radioButton141.setSelected(true);
+                                panel12.add(radioButton141, "cell 1 3");
+
+                                //---- radioButton142 ----
+                                radioButton142.setText("\u7537");
+                                radioButton142.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(radioButton142, "cell 1 3");
+
+                                //---- radioButton143 ----
+                                radioButton143.setText("\u5973");
+                                radioButton143.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(radioButton143, "cell 1 3");
+
+                                //---- label65 ----
+                                label65.setText("\u5e74\u9f84\uff1a");
+                                label65.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label65, "cell 0 4,alignx center,growx 0");
+
+                                //---- comboBox1 ----
+                                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                                    "16",
+                                    "17",
+                                    "18",
+                                    "19",
+                                    "20",
+                                    "21",
+                                    "22",
+                                    "23",
+                                    "24",
+                                    "25",
+                                    "26"
+                                }));
+                                comboBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                comboBox1.setSelectedIndex(4);
+                                panel12.add(comboBox1, "cell 1 4");
+
+                                //---- label68 ----
+                                label68.setText("\u73ed\u7ea7\uff1a");
+                                label68.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label68, "cell 0 5,alignx center,growx 0");
+
+                                //---- modifyGrade ----
+                                modifyGrade.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                modifyGrade.setText("18\u7ea7\u4e94\u73ed");
+                                panel12.add(modifyGrade, "cell 1 5");
+
+                                //---- label66 ----
+                                label66.setText("\u5bc6\u7801\u66f4\u6539\uff1a");
+                                label66.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label66, "cell 0 6,alignx center,growx 0");
+
+                                //---- textField7 ----
+                                textField7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(textField7, "cell 1 6");
+
+                                //---- label67 ----
+                                label67.setText("\u5bc6\u7801\u786e\u8ba4\uff1a");
+                                label67.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label67, "cell 0 7,alignx center,growx 0");
+
+                                //---- textField8 ----
+                                textField8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(textField8, "cell 1 7");
+
+                                //---- button1 ----
+                                button1.setText("\u68c0\u67e5\u5bc6\u7801");
+                                button1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(button1, "cell 2 7,alignx center,growx 0");
+
+                                //---- label69 ----
+                                label69.setText("\u4fee\u6539\u7b7e\u540d\uff1a");
+                                label69.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label69, "cell 0 8,alignx center,growx 0");
+
+                                //======== scrollPane6 ========
+                                {
+
+                                    //---- textArea5 ----
+                                    textArea5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                    scrollPane6.setViewportView(textArea5);
+                                }
+                                panel12.add(scrollPane6, "cell 1 8 3 3");
                             }
-                            tabbedPane4.addTab("\u9884\u7ea6\u5386\u53f2", panel11);
+                            tabbedPane4.addTab("\u4fee\u6539\u4fe1\u606f", panel12);
                         }
                         panel3.add(tabbedPane4, "cell 0 0,dock center");
                     }
@@ -1674,6 +2020,12 @@ public class MainViewStu extends JFrame {
         buttonGroup1.add(radioButton138);
         buttonGroup1.add(radioButton139);
         buttonGroup1.add(radioButton140);
+
+        //---- buttonGroup2 ----
+        ButtonGroup buttonGroup2 = new ButtonGroup();
+        buttonGroup2.add(radioButton141);
+        buttonGroup2.add(radioButton142);
+        buttonGroup2.add(radioButton143);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -1834,10 +2186,12 @@ public class MainViewStu extends JFrame {
     private JComboBox<String> floorComboBox;
     private JButton refreshButton;
     private JButton button2;
+    private JLabel label46;
+    private JLabel timeLabel;
     private JLabel label18;
-    private JLabel label19;
+    private JLabel totalNumber;
     private JLabel label20;
-    private JLabel label21;
+    private JLabel selectNumber;
     private JLabel label22;
     private JLabel label23;
     private JLabel label24;
@@ -1863,12 +2217,50 @@ public class MainViewStu extends JFrame {
     private JLabel label39;
     private JLabel label40;
     private JPanel panel8;
-    private JPanel panel9;
+    private JLabel label16;
+    private JScrollPane scrollPane4;
+    private JList<String> list1;
+    private JLabel label19;
+    private JScrollPane scrollPane5;
+    private JTextArea textArea4;
     private JPanel panel3;
     private JTabbedPane tabbedPane4;
     private JPanel panel10;
+    private JLabel label21;
+    private JLabel userName;
+    private JLabel label47;
+    private JLabel name;
+    private JLabel label48;
+    private JLabel sex;
+    private JLabel label51;
+    private JLabel age;
+    private JLabel label53;
+    private JLabel grade;
+    private JLabel label52;
+    private JLabel phone;
+    private JLabel label54;
+    private JLabel description;
     private JPanel panel12;
-    private JPanel panel11;
+    private JLabel label62;
+    private JTextField modifyUserName;
+    private JLabel label63;
+    private JTextField modifyName;
+    private JLabel label64;
+    private JRadioButton radioButton141;
+    private JRadioButton radioButton142;
+    private JRadioButton radioButton143;
+    private JLabel label65;
+    private JComboBox<String> comboBox1;
+    private JLabel label68;
+    private JTextField modifyGrade;
+    private JLabel label66;
+    private JTextField textField7;
+    private JLabel label67;
+    private JTextField textField8;
+    private JButton button1;
+    private JLabel label69;
+    private JScrollPane scrollPane6;
+    private JTextArea textArea5;
     private JPanel panel4;
     private JTabbedPane tabbedPane2;
     private JPanel panel5;
@@ -1897,4 +2289,150 @@ public class MainViewStu extends JFrame {
     private JButton switchUserButton;
     private JButton exitButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    /**
+     * 取消所有选择
+     */
+    private void resetSelect() {
+        this.radioButton1.setSelected(false);
+        radioButton2.setSelected(false);
+        radioButton3.setSelected(false);
+        radioButton4.setSelected(false);
+        radioButton5.setSelected(false);
+        radioButton6.setSelected(false);
+        radioButton7.setSelected(false);
+        radioButton8.setSelected(false);
+        radioButton9.setSelected(false);
+        radioButton10.setSelected(false);
+        radioButton11.setSelected(false);
+        radioButton12.setSelected(false);
+        radioButton13.setSelected(false);
+        radioButton14.setSelected(false);
+        radioButton15.setSelected(false);
+        radioButton16.setSelected(false);
+        radioButton17.setSelected(false);
+        radioButton18.setSelected(false);
+        radioButton19.setSelected(false);
+        radioButton20.setSelected(false);
+        radioButton21.setSelected(false);
+        radioButton22.setSelected(false);
+        radioButton23.setSelected(false);
+        radioButton24.setSelected(false);
+        radioButton25.setSelected(false);
+        radioButton26.setSelected(false);
+        radioButton27.setSelected(false);
+        radioButton28.setSelected(false);
+        radioButton29.setSelected(false);
+        radioButton30.setSelected(false);
+        radioButton31.setSelected(false);
+        radioButton32.setSelected(false);
+        radioButton33.setSelected(false);
+        radioButton34.setSelected(false);
+        radioButton35.setSelected(false);
+        radioButton36.setSelected(false);
+        radioButton37.setSelected(false);
+        radioButton38.setSelected(false);
+        radioButton39.setSelected(false);
+        radioButton40.setSelected(false);
+        radioButton41.setSelected(false);
+        radioButton42.setSelected(false);
+        radioButton43.setSelected(false);
+        radioButton44.setSelected(false);
+        radioButton45.setSelected(false);
+        radioButton46.setSelected(false);
+        radioButton47.setSelected(false);
+        radioButton48.setSelected(false);
+        radioButton49.setSelected(false);
+        radioButton50.setSelected(false);
+        radioButton51.setSelected(false);
+        radioButton52.setSelected(false);
+        radioButton53.setSelected(false);
+        radioButton54.setSelected(false);
+        radioButton55.setSelected(false);
+        radioButton56.setSelected(false);
+        radioButton57.setSelected(false);
+        radioButton58.setSelected(false);
+        radioButton59.setSelected(false);
+        radioButton60.setSelected(false);
+        radioButton61.setSelected(false);
+        radioButton62.setSelected(false);
+        radioButton63.setSelected(false);
+        radioButton64.setSelected(false);
+        radioButton65.setSelected(false);
+        radioButton66.setSelected(false);
+        radioButton67.setSelected(false);
+        radioButton68.setSelected(false);
+        radioButton69.setSelected(false);
+        radioButton70.setSelected(false);
+        radioButton71.setSelected(false);
+        radioButton72.setSelected(false);
+        radioButton73.setSelected(false);
+        radioButton74.setSelected(false);
+        radioButton75.setSelected(false);
+        radioButton76.setSelected(false);
+        radioButton77.setSelected(false);
+        radioButton78.setSelected(false);
+        radioButton79.setSelected(false);
+        radioButton80.setSelected(false);
+        radioButton81.setSelected(false);
+        radioButton82.setSelected(false);
+        radioButton83.setSelected(false);
+        radioButton84.setSelected(false);
+        radioButton85.setSelected(false);
+        radioButton86.setSelected(false);
+        radioButton87.setSelected(false);
+        radioButton88.setSelected(false);
+        radioButton89.setSelected(false);
+        radioButton90.setSelected(false);
+        radioButton91.setSelected(false);
+        radioButton92.setSelected(false);
+        radioButton93.setSelected(false);
+        radioButton94.setSelected(false);
+        radioButton95.setSelected(false);
+        radioButton96.setSelected(false);
+        radioButton97.setSelected(false);
+        radioButton98.setSelected(false);
+        radioButton99.setSelected(false);
+        radioButton100.setSelected(false);
+        radioButton101.setSelected(false);
+        radioButton102.setSelected(false);
+        radioButton103.setSelected(false);
+        radioButton104.setSelected(false);
+        radioButton105.setSelected(false);
+        radioButton106.setSelected(false);
+        radioButton107.setSelected(false);
+        radioButton108.setSelected(false);
+        radioButton109.setSelected(false);
+        radioButton110.setSelected(false);
+        radioButton111.setSelected(false);
+        radioButton112.setSelected(false);
+        radioButton113.setSelected(false);
+        radioButton114.setSelected(false);
+        radioButton115.setSelected(false);
+        radioButton116.setSelected(false);
+        radioButton117.setSelected(false);
+        radioButton118.setSelected(false);
+        radioButton119.setSelected(false);
+        radioButton120.setSelected(false);
+        radioButton121.setSelected(false);
+        radioButton122.setSelected(false);
+        radioButton123.setSelected(false);
+        radioButton124.setSelected(false);
+        radioButton125.setSelected(false);
+        radioButton126.setSelected(false);
+        radioButton127.setSelected(false);
+        radioButton128.setSelected(false);
+        radioButton129.setSelected(false);
+        radioButton130.setSelected(false);
+        radioButton131.setSelected(false);
+        radioButton132.setSelected(false);
+        radioButton133.setSelected(false);
+        radioButton134.setSelected(false);
+        radioButton135.setSelected(false);
+        radioButton136.setSelected(false);
+        radioButton137.setSelected(false);
+        radioButton138.setSelected(false);
+        radioButton139.setSelected(false);
+        radioButton140.setSelected(false);
+    }
 }

@@ -27,9 +27,9 @@ public class Main {
             e.printStackTrace ();
         }
         // 程序入口
-        ControllerImpl controllerImpl = new ControllerImpl();
-        controllerImpl.start();
-//        new MainViewStu(new User()).setVisible(true);
+//        ControllerImpl controllerImpl = new ControllerImpl();
+//        controllerImpl.start();
+        new MainViewStu(new User()).setVisible(true);
     }
 }
 
