@@ -4,6 +4,7 @@
 
 package cn.fyl.view.login;
 
+import java.awt.event.*;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.dialog.login.ProcessLoading;
@@ -94,7 +95,12 @@ public class LoginView extends JFrame {
     private void registerButtonMouseReleased(MouseEvent e) {
         this.dispose();
         new Register().setVisible(true);
-        // TODO add your code here
+    }
+
+    private void passwordFieldKeyReleased(KeyEvent e) {
+        if (e.getKeyCode() == 10) {
+            Login();
+        }
     }
 
     private void initComponents() {
@@ -185,6 +191,12 @@ public class LoginView extends JFrame {
 
         //---- passwordField ----
         passwordField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                passwordFieldKeyReleased(e);
+            }
+        });
         contentPane.add(passwordField, "cell 16 5 8 1");
 
         //---- loginButton ----

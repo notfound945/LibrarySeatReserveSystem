@@ -8,7 +8,6 @@ import cn.fyl.dao.impl.SeatDaoImpl;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.login.LoginView;
-import javafx.scene.control.RadioButton;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -89,12 +88,36 @@ public class MainViewStu extends JFrame {
      * 渲染用户数据到组件
      */
     private void loadUserInfo() {
+        // 个人信息展示
         this.userName.setText(this.user.getUserName());
         this.name.setText(this.user.getName());
         this.sex.setText(this.user.getSex());
         this.age.setText(String.valueOf(this.user.getAge()));
         this.grade.setText(this.user.getGrade());
-        this.phone.setText(this.user.getPasswd());
+        this.phone.setText(this.user.getPhone());
+
+        // 个人信息修改
+        this.modifyName.setText(this.user.getUserName());
+        this.modifyUserName.setText(this.user.getName());
+        String sex = this.user.getSex();
+        switch (sex) {
+            case "男":
+                this.modifySexMan.setSelected(true);
+                break;
+            case "女":
+                this.modifySexWoman.setSelected(true);
+                break;
+            default:
+                this.modifySexSerect.setSelected(true);
+                break;
+        }
+        int age = this.user.getAge();
+        if (age < 16) {
+            this.user.setAge(16);
+        }
+        age = 16;
+        this.modifyAge.setSelectedIndex(age - 16);
+        this.modifyPhone.setText(this.user.getPhone());
     }
 
     /**
@@ -111,12 +134,10 @@ public class MainViewStu extends JFrame {
     }
 
     private void exitButtonMouseReleased(MouseEvent e) {
-        // TODO add your code here
         System.exit(0);
     }
 
     private void createUIComponents() {
-        // TODO: add custom component creation code here
     }
 
     private void switchUserButtonMouseReleased(MouseEvent e) {
@@ -131,7 +152,6 @@ public class MainViewStu extends JFrame {
      * @param e 事件
      */
     private void floorComboBoxFocusGained(FocusEvent e) {
-        System.out.println("楼层获得焦点 刷新 ");
         initSeat(this.floor);
     }
 
@@ -139,6 +159,10 @@ public class MainViewStu extends JFrame {
         initSeat(this.floor);
     }
 
+    /**
+     * 楼层选择
+     * @param e
+     */
     private void floorComboBoxItemStateChanged(ItemEvent e) {
         switch (e.getStateChange()) {
             case ItemEvent.SELECTED:
@@ -167,6 +191,25 @@ public class MainViewStu extends JFrame {
                         break;
                 }
                 break;
+        }
+    }
+
+    /**
+     *
+     * 检查密码
+     * @param e
+     */
+    private void checkPasswordButtonMouseReleased(MouseEvent e) {
+        String password = this.modifyPassword.getText();
+        String confirmPassword = this.modifyConfirmPassword.getText();
+        if (password.equals("") || confirmPassword.equals("")) {
+            System.out.println("密码为空");
+        } else {
+            if (password.equals(confirmPassword)) {
+                System.out.println("密码一致");
+            } else {
+                System.out.println("两次输入的密码不一致 ");
+            }
         }
     }
 
@@ -386,24 +429,26 @@ public class MainViewStu extends JFrame {
         panel12 = new JPanel();
         label62 = new JLabel();
         modifyUserName = new JTextField();
+        label64 = new JLabel();
+        modifySexSerect = new JRadioButton();
+        modifySexMan = new JRadioButton();
+        modifySexWoman = new JRadioButton();
         label63 = new JLabel();
         modifyName = new JTextField();
-        label64 = new JLabel();
-        radioButton141 = new JRadioButton();
-        radioButton142 = new JRadioButton();
-        radioButton143 = new JRadioButton();
         label65 = new JLabel();
-        comboBox1 = new JComboBox<>();
+        modifyAge = new JComboBox<>();
         label68 = new JLabel();
         modifyGrade = new JTextField();
+        label55 = new JLabel();
+        modifyPhone = new JTextField();
         label66 = new JLabel();
-        textField7 = new JTextField();
+        modifyPassword = new JPasswordField();
         label67 = new JLabel();
-        textField8 = new JTextField();
-        button1 = new JButton();
+        modifyConfirmPassword = new JPasswordField();
+        checkPasswordButton = new JButton();
         label69 = new JLabel();
         scrollPane6 = new JScrollPane();
-        textArea5 = new JTextArea();
+        modifyDescription = new JTextPane();
         panel4 = new JPanel();
         tabbedPane2 = new JTabbedPane();
         panel5 = new JPanel();
@@ -426,6 +471,7 @@ public class MainViewStu extends JFrame {
         label7 = new JLabel();
         label10 = new JLabel();
         panel7 = new JPanel();
+        label56 = new JLabel();
         scrollPane1 = new JScrollPane();
         textArea1 = new JTextArea();
         buttonBar = new JPanel();
@@ -440,11 +486,13 @@ public class MainViewStu extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
-            ,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-            ,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red),
-            dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -1383,7 +1431,7 @@ public class MainViewStu extends JFrame {
                         }
                         panel2.add(tabbedPane3, "cell 0 0,dock center");
                     }
-                    tabbedPane1.addTab("\u9884\u5b9a\u4e2d\u5fc3", panel2);
+                    tabbedPane1.addTab("\u9884\u5b9a\u5927\u5385", panel2);
 
                     //======== panel3 ========
                     {
@@ -1502,12 +1550,14 @@ public class MainViewStu extends JFrame {
                                     // columns
                                     "[fill]" +
                                     "[fill]" +
-                                    "[207,fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
                                     "[fill]" +
                                     "[fill]" +
                                     "[fill]" +
                                     "[fill]",
                                     // rows
+                                    "[]" +
                                     "[]" +
                                     "[]" +
                                     "[]" +
@@ -1530,45 +1580,46 @@ public class MainViewStu extends JFrame {
                                 modifyUserName.setEditable(false);
                                 modifyUserName.setText("Unknown");
                                 modifyUserName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(modifyUserName, "cell 1 1");
-
-                                //---- label63 ----
-                                label63.setText("\u59d3\u540d\uff1a");
-                                label63.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label63, "cell 0 2,alignx center,growx 0");
-
-                                //---- modifyName ----
-                                modifyName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                modifyName.setText("\u9ed8\u8ba4\u59d3\u540d");
-                                panel12.add(modifyName, "cell 1 2");
+                                panel12.add(modifyUserName, "cell 1 1 2 1");
 
                                 //---- label64 ----
                                 label64.setText("\u6027\u522b\uff1a");
                                 label64.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label64, "cell 0 3,alignx center,growx 0");
+                                panel12.add(label64, "cell 4 1,alignx center,growx 0");
 
-                                //---- radioButton141 ----
-                                radioButton141.setText("\u4fdd\u5bc6");
-                                radioButton141.setSelected(true);
-                                panel12.add(radioButton141, "cell 1 3");
+                                //---- modifySexSerect ----
+                                modifySexSerect.setText("\u4fdd\u5bc6");
+                                modifySexSerect.setSelected(true);
+                                modifySexSerect.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(modifySexSerect, "cell 5 1");
 
-                                //---- radioButton142 ----
-                                radioButton142.setText("\u7537");
-                                radioButton142.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(radioButton142, "cell 1 3");
+                                //---- modifySexMan ----
+                                modifySexMan.setText("\u7537");
+                                modifySexMan.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(modifySexMan, "cell 5 1");
 
-                                //---- radioButton143 ----
-                                radioButton143.setText("\u5973");
-                                radioButton143.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(radioButton143, "cell 1 3");
+                                //---- modifySexWoman ----
+                                modifySexWoman.setText("\u5973");
+                                modifySexWoman.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(modifySexWoman, "cell 5 1");
+
+                                //---- label63 ----
+                                label63.setText("\u59d3\u540d\uff1a");
+                                label63.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label63, "cell 0 3,alignx center,growx 0");
+
+                                //---- modifyName ----
+                                modifyName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                modifyName.setText("\u9ed8\u8ba4\u59d3\u540d");
+                                panel12.add(modifyName, "cell 1 3 2 1");
 
                                 //---- label65 ----
                                 label65.setText("\u5e74\u9f84\uff1a");
                                 label65.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label65, "cell 0 4,alignx center,growx 0");
+                                panel12.add(label65, "cell 4 3,alignx center,growx 0");
 
-                                //---- comboBox1 ----
-                                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                                //---- modifyAge ----
+                                modifyAge.setModel(new DefaultComboBoxModel<>(new String[] {
                                     "16",
                                     "17",
                                     "18",
@@ -1581,9 +1632,9 @@ public class MainViewStu extends JFrame {
                                     "25",
                                     "26"
                                 }));
-                                comboBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                comboBox1.setSelectedIndex(4);
-                                panel12.add(comboBox1, "cell 1 4");
+                                modifyAge.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                modifyAge.setSelectedIndex(4);
+                                panel12.add(modifyAge, "cell 5 3");
 
                                 //---- label68 ----
                                 label68.setText("\u73ed\u7ea7\uff1a");
@@ -1593,44 +1644,56 @@ public class MainViewStu extends JFrame {
                                 //---- modifyGrade ----
                                 modifyGrade.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 modifyGrade.setText("18\u7ea7\u4e94\u73ed");
-                                panel12.add(modifyGrade, "cell 1 5");
+                                panel12.add(modifyGrade, "cell 1 5 2 1");
+
+                                //---- label55 ----
+                                label55.setText("\u8054\u7cfb\u624b\u673a\uff1a");
+                                label55.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel12.add(label55, "cell 4 5,alignx center,growx 0");
+
+                                //---- modifyPhone ----
+                                modifyPhone.setText("15874432398");
+                                panel12.add(modifyPhone, "cell 5 5");
 
                                 //---- label66 ----
-                                label66.setText("\u5bc6\u7801\u66f4\u6539\uff1a");
+                                label66.setText("\u65b0\u7684\u5bc6\u7801\uff1a");
                                 label66.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label66, "cell 0 6,alignx center,growx 0");
+                                panel12.add(label66, "cell 0 7,alignx center,growx 0");
 
-                                //---- textField7 ----
-                                textField7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(textField7, "cell 1 6");
+                                //---- modifyPassword ----
+                                modifyPassword.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                                panel12.add(modifyPassword, "cell 1 7 2 1");
 
                                 //---- label67 ----
                                 label67.setText("\u5bc6\u7801\u786e\u8ba4\uff1a");
                                 label67.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label67, "cell 0 7,alignx center,growx 0");
+                                panel12.add(label67, "cell 4 7,alignx center,growx 0");
 
-                                //---- textField8 ----
-                                textField8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(textField8, "cell 1 7");
+                                //---- modifyConfirmPassword ----
+                                modifyConfirmPassword.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 14));
+                                panel12.add(modifyConfirmPassword, "cell 5 7");
 
-                                //---- button1 ----
-                                button1.setText("\u68c0\u67e5\u5bc6\u7801");
-                                button1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(button1, "cell 2 7,alignx center,growx 0");
+                                //---- checkPasswordButton ----
+                                checkPasswordButton.setText("\u68c0\u67e5\u5bc6\u7801");
+                                checkPasswordButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                checkPasswordButton.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent e) {
+                                        checkPasswordButtonMouseReleased(e);
+                                    }
+                                });
+                                panel12.add(checkPasswordButton, "cell 6 7,alignx center,growx 0");
 
                                 //---- label69 ----
                                 label69.setText("\u4fee\u6539\u7b7e\u540d\uff1a");
                                 label69.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label69, "cell 0 8,alignx center,growx 0");
+                                panel12.add(label69, "cell 0 9,alignx center,growx 0");
 
                                 //======== scrollPane6 ========
                                 {
-
-                                    //---- textArea5 ----
-                                    textArea5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                    scrollPane6.setViewportView(textArea5);
+                                    scrollPane6.setViewportView(modifyDescription);
                                 }
-                                panel12.add(scrollPane6, "cell 1 8 3 3");
+                                panel12.add(scrollPane6, "cell 1 9 6 3,hmin 100");
                             }
                             tabbedPane4.addTab("\u4fee\u6539\u4fe1\u606f", panel12);
                         }
@@ -1700,31 +1763,34 @@ public class MainViewStu extends JFrame {
                                     "[]" +
                                     "[]" +
                                     "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[]"));
 
                                 //---- label11 ----
                                 label11.setText("\u7a0b\u5e8f\u7248\u672c\uff1a");
                                 label11.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel5.add(label11, "cell 0 0");
+                                panel5.add(label11, "cell 0 1");
 
                                 //---- label12 ----
                                 label12.setText("\u5b66\u751f\u7aef V 1.0");
                                 label12.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel5.add(label12, "cell 2 0");
+                                panel5.add(label12, "cell 2 1");
 
                                 //---- label13 ----
                                 label13.setText("\u53d1\u5e03\u65e5\u671f\uff1a");
                                 label13.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel5.add(label13, "cell 0 1");
+                                panel5.add(label13, "cell 0 3");
 
                                 //---- label14 ----
                                 label14.setText("2020/06/25");
-                                panel5.add(label14, "cell 2 1");
+                                label14.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel5.add(label14, "cell 2 3");
 
                                 //---- label15 ----
                                 label15.setText("\u672c\u6b21\u66f4\u65b0\uff1a");
                                 label15.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel5.add(label15, "cell 0 3");
+                                panel5.add(label15, "cell 0 5");
 
                                 //======== scrollPane2 ========
                                 {
@@ -1737,7 +1803,7 @@ public class MainViewStu extends JFrame {
                                     textArea2.setEditable(false);
                                     scrollPane2.setViewportView(textArea2);
                                 }
-                                panel5.add(scrollPane2, "cell 0 5 30 9,dock center");
+                                panel5.add(scrollPane2, "cell 0 7 30 9,dock center");
                             }
                             tabbedPane2.addTab("\u7a0b\u5e8f\u4fe1\u606f", panel5);
 
@@ -1747,8 +1813,12 @@ public class MainViewStu extends JFrame {
                                     "fill,hidemode 3,align right bottom",
                                     // columns
                                     "[fill]" +
+                                    "[fill]" +
+                                    "[fill]" +
                                     "[fill]",
                                     // rows
+                                    "[]" +
+                                    "[]" +
                                     "[]" +
                                     "[]" +
                                     "[]" +
@@ -1758,52 +1828,52 @@ public class MainViewStu extends JFrame {
                                 //---- label1 ----
                                 label1.setText("\u5f00\u53d1\u8005\uff1a");
                                 label1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label1, "cell 0 0");
+                                panel6.add(label1, "cell 1 1");
 
                                 //---- label3 ----
                                 label3.setText("\u7b26\u7389\u6d9f");
                                 label3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label3, "cell 1 0");
+                                panel6.add(label3, "cell 2 1");
 
                                 //---- label2 ----
                                 label2.setText("\u8054\u7cfb\u65b9\u5f0f\uff1a");
                                 label2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label2, "cell 0 1");
+                                panel6.add(label2, "cell 1 2");
 
                                 //---- label4 ----
-                                label4.setText("7758258");
+                                label4.setText("7758258@qq.com");
                                 label4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label4, "cell 1 1");
+                                panel6.add(label4, "cell 2 2");
 
                                 //---- label6 ----
                                 label6.setText("\u5f00\u53d1\u8bed\u8a00\uff1a");
                                 label6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label6, "cell 0 2");
+                                panel6.add(label6, "cell 1 3");
 
                                 //---- label9 ----
                                 label9.setText("Java");
                                 label9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label9, "cell 1 2");
+                                panel6.add(label9, "cell 2 3");
 
                                 //---- label5 ----
                                 label5.setText("\u5f00\u53d1\u5de5\u5177\uff1a");
                                 label5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label5, "cell 0 3");
+                                panel6.add(label5, "cell 1 4");
 
                                 //---- label8 ----
                                 label8.setText("Intellij IDEA & JFormDesigner");
                                 label8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label8, "cell 1 3");
+                                panel6.add(label8, "cell 2 4");
 
                                 //---- label7 ----
                                 label7.setText("\u5f00\u53d1\u65e5\u671f\uff1a");
                                 label7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label7, "cell 0 4");
+                                panel6.add(label7, "cell 1 5");
 
                                 //---- label10 ----
                                 label10.setText("2020/06/22");
                                 label10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel6.add(label10, "cell 1 4");
+                                panel6.add(label10, "cell 2 5");
                             }
                             tabbedPane2.addTab("\u7ef4\u62a4\u8005\u4fe1\u606f", panel6);
 
@@ -1814,7 +1884,15 @@ public class MainViewStu extends JFrame {
                                     // columns
                                     "[fill]",
                                     // rows
+                                    "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[fill]"));
+
+                                //---- label56 ----
+                                label56.setText("MIT License");
+                                label56.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                                panel7.add(label56, "cell 0 1");
 
                                 //======== scrollPane1 ========
                                 {
@@ -1826,7 +1904,7 @@ public class MainViewStu extends JFrame {
                                     textArea1.setLineWrap(true);
                                     scrollPane1.setViewportView(textArea1);
                                 }
-                                panel7.add(scrollPane1, "cell 0 0,dock center");
+                                panel7.add(scrollPane1, "cell 0 3,dock center");
                             }
                             tabbedPane2.addTab("\u670d\u52a1\u534f\u8bae", panel7);
                         }
@@ -1844,7 +1922,9 @@ public class MainViewStu extends JFrame {
                     "insets dialog,alignx right",
                     // columns
                     "[fill]" +
-                    "[button,fill]" +
+                    "[61,fill]" +
+                    "[fill]" +
+                    "[fill]" +
                     "[button,fill]",
                     // rows
                     null));
@@ -1870,162 +1950,162 @@ public class MainViewStu extends JFrame {
                         exitButtonMouseReleased(e);
                     }
                 });
-                buttonBar.add(exitButton, "cell 2 0");
+                buttonBar.add(exitButton, "cell 4 0");
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(1150, 750);
+        setSize(1240, 800);
         setLocationRelativeTo(getOwner());
 
-        //---- buttonGroup1 ----
-        ButtonGroup buttonGroup1 = new ButtonGroup();
-        buttonGroup1.add(radioButton1);
-        buttonGroup1.add(radioButton3);
-        buttonGroup1.add(radioButton2);
-        buttonGroup1.add(radioButton4);
-        buttonGroup1.add(radioButton5);
-        buttonGroup1.add(radioButton6);
-        buttonGroup1.add(radioButton7);
-        buttonGroup1.add(radioButton8);
-        buttonGroup1.add(radioButton9);
-        buttonGroup1.add(radioButton10);
-        buttonGroup1.add(radioButton11);
-        buttonGroup1.add(radioButton12);
-        buttonGroup1.add(radioButton13);
-        buttonGroup1.add(radioButton14);
-        buttonGroup1.add(radioButton15);
-        buttonGroup1.add(radioButton16);
-        buttonGroup1.add(radioButton17);
-        buttonGroup1.add(radioButton18);
-        buttonGroup1.add(radioButton19);
-        buttonGroup1.add(radioButton20);
-        buttonGroup1.add(radioButton21);
-        buttonGroup1.add(radioButton22);
-        buttonGroup1.add(radioButton23);
-        buttonGroup1.add(radioButton24);
-        buttonGroup1.add(radioButton25);
-        buttonGroup1.add(radioButton26);
-        buttonGroup1.add(radioButton27);
-        buttonGroup1.add(radioButton28);
-        buttonGroup1.add(radioButton29);
-        buttonGroup1.add(radioButton30);
-        buttonGroup1.add(radioButton31);
-        buttonGroup1.add(radioButton32);
-        buttonGroup1.add(radioButton33);
-        buttonGroup1.add(radioButton34);
-        buttonGroup1.add(radioButton35);
-        buttonGroup1.add(radioButton36);
-        buttonGroup1.add(radioButton37);
-        buttonGroup1.add(radioButton38);
-        buttonGroup1.add(radioButton39);
-        buttonGroup1.add(radioButton40);
-        buttonGroup1.add(radioButton41);
-        buttonGroup1.add(radioButton42);
-        buttonGroup1.add(radioButton43);
-        buttonGroup1.add(radioButton44);
-        buttonGroup1.add(radioButton45);
-        buttonGroup1.add(radioButton46);
-        buttonGroup1.add(radioButton47);
-        buttonGroup1.add(radioButton48);
-        buttonGroup1.add(radioButton49);
-        buttonGroup1.add(radioButton50);
-        buttonGroup1.add(radioButton51);
-        buttonGroup1.add(radioButton52);
-        buttonGroup1.add(radioButton53);
-        buttonGroup1.add(radioButton54);
-        buttonGroup1.add(radioButton55);
-        buttonGroup1.add(radioButton56);
-        buttonGroup1.add(radioButton57);
-        buttonGroup1.add(radioButton58);
-        buttonGroup1.add(radioButton59);
-        buttonGroup1.add(radioButton60);
-        buttonGroup1.add(radioButton61);
-        buttonGroup1.add(radioButton62);
-        buttonGroup1.add(radioButton63);
-        buttonGroup1.add(radioButton64);
-        buttonGroup1.add(radioButton65);
-        buttonGroup1.add(radioButton66);
-        buttonGroup1.add(radioButton67);
-        buttonGroup1.add(radioButton68);
-        buttonGroup1.add(radioButton69);
-        buttonGroup1.add(radioButton70);
-        buttonGroup1.add(radioButton71);
-        buttonGroup1.add(radioButton72);
-        buttonGroup1.add(radioButton73);
-        buttonGroup1.add(radioButton74);
-        buttonGroup1.add(radioButton75);
-        buttonGroup1.add(radioButton76);
-        buttonGroup1.add(radioButton77);
-        buttonGroup1.add(radioButton78);
-        buttonGroup1.add(radioButton79);
-        buttonGroup1.add(radioButton80);
-        buttonGroup1.add(radioButton81);
-        buttonGroup1.add(radioButton82);
-        buttonGroup1.add(radioButton83);
-        buttonGroup1.add(radioButton84);
-        buttonGroup1.add(radioButton85);
-        buttonGroup1.add(radioButton86);
-        buttonGroup1.add(radioButton87);
-        buttonGroup1.add(radioButton88);
-        buttonGroup1.add(radioButton89);
-        buttonGroup1.add(radioButton90);
-        buttonGroup1.add(radioButton91);
-        buttonGroup1.add(radioButton92);
-        buttonGroup1.add(radioButton93);
-        buttonGroup1.add(radioButton94);
-        buttonGroup1.add(radioButton95);
-        buttonGroup1.add(radioButton96);
-        buttonGroup1.add(radioButton97);
-        buttonGroup1.add(radioButton98);
-        buttonGroup1.add(radioButton99);
-        buttonGroup1.add(radioButton100);
-        buttonGroup1.add(radioButton101);
-        buttonGroup1.add(radioButton102);
-        buttonGroup1.add(radioButton103);
-        buttonGroup1.add(radioButton104);
-        buttonGroup1.add(radioButton105);
-        buttonGroup1.add(radioButton106);
-        buttonGroup1.add(radioButton107);
-        buttonGroup1.add(radioButton108);
-        buttonGroup1.add(radioButton109);
-        buttonGroup1.add(radioButton110);
-        buttonGroup1.add(radioButton111);
-        buttonGroup1.add(radioButton112);
-        buttonGroup1.add(radioButton113);
-        buttonGroup1.add(radioButton114);
-        buttonGroup1.add(radioButton115);
-        buttonGroup1.add(radioButton116);
-        buttonGroup1.add(radioButton117);
-        buttonGroup1.add(radioButton118);
-        buttonGroup1.add(radioButton119);
-        buttonGroup1.add(radioButton120);
-        buttonGroup1.add(radioButton121);
-        buttonGroup1.add(radioButton122);
-        buttonGroup1.add(radioButton123);
-        buttonGroup1.add(radioButton124);
-        buttonGroup1.add(radioButton125);
-        buttonGroup1.add(radioButton126);
-        buttonGroup1.add(radioButton127);
-        buttonGroup1.add(radioButton128);
-        buttonGroup1.add(radioButton129);
-        buttonGroup1.add(radioButton130);
-        buttonGroup1.add(radioButton131);
-        buttonGroup1.add(radioButton132);
-        buttonGroup1.add(radioButton133);
-        buttonGroup1.add(radioButton134);
-        buttonGroup1.add(radioButton135);
-        buttonGroup1.add(radioButton136);
-        buttonGroup1.add(radioButton137);
-        buttonGroup1.add(radioButton138);
-        buttonGroup1.add(radioButton139);
-        buttonGroup1.add(radioButton140);
+        //---- seatButtonGroup ----
+        ButtonGroup seatButtonGroup = new ButtonGroup();
+        seatButtonGroup.add(radioButton1);
+        seatButtonGroup.add(radioButton3);
+        seatButtonGroup.add(radioButton2);
+        seatButtonGroup.add(radioButton4);
+        seatButtonGroup.add(radioButton5);
+        seatButtonGroup.add(radioButton6);
+        seatButtonGroup.add(radioButton7);
+        seatButtonGroup.add(radioButton8);
+        seatButtonGroup.add(radioButton9);
+        seatButtonGroup.add(radioButton10);
+        seatButtonGroup.add(radioButton11);
+        seatButtonGroup.add(radioButton12);
+        seatButtonGroup.add(radioButton13);
+        seatButtonGroup.add(radioButton14);
+        seatButtonGroup.add(radioButton15);
+        seatButtonGroup.add(radioButton16);
+        seatButtonGroup.add(radioButton17);
+        seatButtonGroup.add(radioButton18);
+        seatButtonGroup.add(radioButton19);
+        seatButtonGroup.add(radioButton20);
+        seatButtonGroup.add(radioButton21);
+        seatButtonGroup.add(radioButton22);
+        seatButtonGroup.add(radioButton23);
+        seatButtonGroup.add(radioButton24);
+        seatButtonGroup.add(radioButton25);
+        seatButtonGroup.add(radioButton26);
+        seatButtonGroup.add(radioButton27);
+        seatButtonGroup.add(radioButton28);
+        seatButtonGroup.add(radioButton29);
+        seatButtonGroup.add(radioButton30);
+        seatButtonGroup.add(radioButton31);
+        seatButtonGroup.add(radioButton32);
+        seatButtonGroup.add(radioButton33);
+        seatButtonGroup.add(radioButton34);
+        seatButtonGroup.add(radioButton35);
+        seatButtonGroup.add(radioButton36);
+        seatButtonGroup.add(radioButton37);
+        seatButtonGroup.add(radioButton38);
+        seatButtonGroup.add(radioButton39);
+        seatButtonGroup.add(radioButton40);
+        seatButtonGroup.add(radioButton41);
+        seatButtonGroup.add(radioButton42);
+        seatButtonGroup.add(radioButton43);
+        seatButtonGroup.add(radioButton44);
+        seatButtonGroup.add(radioButton45);
+        seatButtonGroup.add(radioButton46);
+        seatButtonGroup.add(radioButton47);
+        seatButtonGroup.add(radioButton48);
+        seatButtonGroup.add(radioButton49);
+        seatButtonGroup.add(radioButton50);
+        seatButtonGroup.add(radioButton51);
+        seatButtonGroup.add(radioButton52);
+        seatButtonGroup.add(radioButton53);
+        seatButtonGroup.add(radioButton54);
+        seatButtonGroup.add(radioButton55);
+        seatButtonGroup.add(radioButton56);
+        seatButtonGroup.add(radioButton57);
+        seatButtonGroup.add(radioButton58);
+        seatButtonGroup.add(radioButton59);
+        seatButtonGroup.add(radioButton60);
+        seatButtonGroup.add(radioButton61);
+        seatButtonGroup.add(radioButton62);
+        seatButtonGroup.add(radioButton63);
+        seatButtonGroup.add(radioButton64);
+        seatButtonGroup.add(radioButton65);
+        seatButtonGroup.add(radioButton66);
+        seatButtonGroup.add(radioButton67);
+        seatButtonGroup.add(radioButton68);
+        seatButtonGroup.add(radioButton69);
+        seatButtonGroup.add(radioButton70);
+        seatButtonGroup.add(radioButton71);
+        seatButtonGroup.add(radioButton72);
+        seatButtonGroup.add(radioButton73);
+        seatButtonGroup.add(radioButton74);
+        seatButtonGroup.add(radioButton75);
+        seatButtonGroup.add(radioButton76);
+        seatButtonGroup.add(radioButton77);
+        seatButtonGroup.add(radioButton78);
+        seatButtonGroup.add(radioButton79);
+        seatButtonGroup.add(radioButton80);
+        seatButtonGroup.add(radioButton81);
+        seatButtonGroup.add(radioButton82);
+        seatButtonGroup.add(radioButton83);
+        seatButtonGroup.add(radioButton84);
+        seatButtonGroup.add(radioButton85);
+        seatButtonGroup.add(radioButton86);
+        seatButtonGroup.add(radioButton87);
+        seatButtonGroup.add(radioButton88);
+        seatButtonGroup.add(radioButton89);
+        seatButtonGroup.add(radioButton90);
+        seatButtonGroup.add(radioButton91);
+        seatButtonGroup.add(radioButton92);
+        seatButtonGroup.add(radioButton93);
+        seatButtonGroup.add(radioButton94);
+        seatButtonGroup.add(radioButton95);
+        seatButtonGroup.add(radioButton96);
+        seatButtonGroup.add(radioButton97);
+        seatButtonGroup.add(radioButton98);
+        seatButtonGroup.add(radioButton99);
+        seatButtonGroup.add(radioButton100);
+        seatButtonGroup.add(radioButton101);
+        seatButtonGroup.add(radioButton102);
+        seatButtonGroup.add(radioButton103);
+        seatButtonGroup.add(radioButton104);
+        seatButtonGroup.add(radioButton105);
+        seatButtonGroup.add(radioButton106);
+        seatButtonGroup.add(radioButton107);
+        seatButtonGroup.add(radioButton108);
+        seatButtonGroup.add(radioButton109);
+        seatButtonGroup.add(radioButton110);
+        seatButtonGroup.add(radioButton111);
+        seatButtonGroup.add(radioButton112);
+        seatButtonGroup.add(radioButton113);
+        seatButtonGroup.add(radioButton114);
+        seatButtonGroup.add(radioButton115);
+        seatButtonGroup.add(radioButton116);
+        seatButtonGroup.add(radioButton117);
+        seatButtonGroup.add(radioButton118);
+        seatButtonGroup.add(radioButton119);
+        seatButtonGroup.add(radioButton120);
+        seatButtonGroup.add(radioButton121);
+        seatButtonGroup.add(radioButton122);
+        seatButtonGroup.add(radioButton123);
+        seatButtonGroup.add(radioButton124);
+        seatButtonGroup.add(radioButton125);
+        seatButtonGroup.add(radioButton126);
+        seatButtonGroup.add(radioButton127);
+        seatButtonGroup.add(radioButton128);
+        seatButtonGroup.add(radioButton129);
+        seatButtonGroup.add(radioButton130);
+        seatButtonGroup.add(radioButton131);
+        seatButtonGroup.add(radioButton132);
+        seatButtonGroup.add(radioButton133);
+        seatButtonGroup.add(radioButton134);
+        seatButtonGroup.add(radioButton135);
+        seatButtonGroup.add(radioButton136);
+        seatButtonGroup.add(radioButton137);
+        seatButtonGroup.add(radioButton138);
+        seatButtonGroup.add(radioButton139);
+        seatButtonGroup.add(radioButton140);
 
-        //---- buttonGroup2 ----
-        ButtonGroup buttonGroup2 = new ButtonGroup();
-        buttonGroup2.add(radioButton141);
-        buttonGroup2.add(radioButton142);
-        buttonGroup2.add(radioButton143);
+        //---- sexButtonGroup ----
+        ButtonGroup sexButtonGroup = new ButtonGroup();
+        sexButtonGroup.add(modifySexSerect);
+        sexButtonGroup.add(modifySexMan);
+        sexButtonGroup.add(modifySexWoman);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -2243,24 +2323,26 @@ public class MainViewStu extends JFrame {
     private JPanel panel12;
     private JLabel label62;
     private JTextField modifyUserName;
+    private JLabel label64;
+    private JRadioButton modifySexSerect;
+    private JRadioButton modifySexMan;
+    private JRadioButton modifySexWoman;
     private JLabel label63;
     private JTextField modifyName;
-    private JLabel label64;
-    private JRadioButton radioButton141;
-    private JRadioButton radioButton142;
-    private JRadioButton radioButton143;
     private JLabel label65;
-    private JComboBox<String> comboBox1;
+    private JComboBox<String> modifyAge;
     private JLabel label68;
     private JTextField modifyGrade;
+    private JLabel label55;
+    private JTextField modifyPhone;
     private JLabel label66;
-    private JTextField textField7;
+    private JPasswordField modifyPassword;
     private JLabel label67;
-    private JTextField textField8;
-    private JButton button1;
+    private JPasswordField modifyConfirmPassword;
+    private JButton checkPasswordButton;
     private JLabel label69;
     private JScrollPane scrollPane6;
-    private JTextArea textArea5;
+    private JTextPane modifyDescription;
     private JPanel panel4;
     private JTabbedPane tabbedPane2;
     private JPanel panel5;
@@ -2283,6 +2365,7 @@ public class MainViewStu extends JFrame {
     private JLabel label7;
     private JLabel label10;
     private JPanel panel7;
+    private JLabel label56;
     private JScrollPane scrollPane1;
     private JTextArea textArea1;
     private JPanel buttonBar;
@@ -2294,7 +2377,8 @@ public class MainViewStu extends JFrame {
      * 取消所有选择
      */
     private void resetSelect() {
-        this.radioButton1.setSelected(false);
+        System.out.println("取消所有选择");
+        radioButton1.setSelected(false);
         radioButton2.setSelected(false);
         radioButton3.setSelected(false);
         radioButton4.setSelected(false);
