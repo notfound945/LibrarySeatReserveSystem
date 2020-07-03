@@ -8,6 +8,8 @@ import javax.swing.event.*;
 import cn.fyl.dao.impl.SeatDaoImpl;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
+import cn.fyl.view.dialog.ProxyOkCancelDialog;
+import cn.fyl.view.dialog.ProxyOkDialog;
 import cn.fyl.view.login.LoginView;
 import net.miginfocom.swing.MigLayout;
 
@@ -26,6 +28,8 @@ public class MainViewStu extends JFrame {
     private ServiceImpl serviceImpl = new ServiceImpl();
     private SeatDaoImpl seatDaoImpl = new SeatDaoImpl();
     private ButtonGroup seatButtonGroup = new ButtonGroup();
+    private String selectSeat;
+    private long selectTime;
     private int floor = 1;
     private Timer time;
     private User user;
@@ -247,8 +251,8 @@ public class MainViewStu extends JFrame {
         this.phone.setText(this.user.getPhone());
 
         // 个人信息修改
-        this.modifyName.setText(this.user.getUserName());
-        this.modifyUserName.setText(this.user.getName());
+        this.modifyName.setText(this.user.getName());
+        this.modifyUserName.setText(this.user.getUserName());
         String sex = this.user.getSex();
         switch (sex) {
             case "男":
@@ -308,36 +312,36 @@ public class MainViewStu extends JFrame {
 
     /**
      * 楼层选择
-     * @param e
+     * @param e 鼠标事件
      */
     private void floorComboBoxItemStateChanged(ItemEvent e) {
-        switch (e.getStateChange()) {
-            case ItemEvent.SELECTED:
-                System.out.println("选中了 " + e.getItem());
-                String f = (String) e.getItem();
-                switch (f.substring(3, 4)) {
-                    case "一":
-                        this.floor = 1;
-                        initSeat(this.floor);
-                        break;
-                    case "二":
-                        this.floor = 2;
-                        initSeat(this.floor);
-                        break;
-                    case "三":
-                        this.floor = 3;
-                        initSeat(this.floor);
-                        break;
-                    case "四":
-                        this.floor = 4;
-                        initSeat(this.floor);
-                        break;
-                    case "五":
-                        this.floor = 5;
-                        initSeat(this.floor);
-                        break;
-                }
-                break;
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            System.out.println("选中了 " + e.getItem());
+            String f = (String) e.getItem();
+            switch (f.substring(3, 4)) {
+                case "一":
+                    this.floor = 1;
+                    initSeat(this.floor);
+                    break;
+                case "二":
+                    this.floor = 2;
+                    initSeat(this.floor);
+                    break;
+                case "三":
+                    this.floor = 3;
+                    initSeat(this.floor);
+                    break;
+                case "四":
+                    this.floor = 4;
+                    initSeat(this.floor);
+                    break;
+                case "五":
+                    this.floor = 5;
+                    initSeat(this.floor);
+                    break;
+                default:
+                    this.floor = 1;
+            }
         }
     }
 
@@ -365,13 +369,37 @@ public class MainViewStu extends JFrame {
      * @param e
      */
     private void seatButtonActionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
-        System.out.println(e.getWhen());
+        this.selectSeat = e.getActionCommand();
+        this.selectTime = e.getWhen();
+    }
+
+    /**
+     * 监听日志列表
+     * @param e
+     */
+    private void list1ValueChanged(ListSelectionEvent e) {
+        int index = logList.getSelectedIndex();
+        System.out.println("选择了 " + index);
+    }
+
+    private void reserveButtonMouseReleased(MouseEvent e) {
+        if (this.seatButtonGroup.getSelection() != null) {
+            ProxyOkCancelDialog confirm = new ProxyOkCancelDialog(this, "确认预定", "确认操作", "你正在预定 " + this.floor + " 楼 " + this.selectSeat + " 号座位", "是否确认预定");
+            confirm.setVisible(true);
+            boolean result = confirm.getResult();
+            if (result) {
+                System.out.println("确认");
+            } else {
+                System.out.println("取消");
+            }
+        } else {
+            new ProxyOkDialog(null, "提示", "请选择座位", "你还没有选择座位", "请选择座位再确认。").setVisible(true);
+        }
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - notfound
+        // Generated using JFormDesigner Evaluation license - phl
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         tabbedPane1 = new JTabbedPane();
@@ -526,9 +554,11 @@ public class MainViewStu extends JFrame {
         label17 = new JLabel();
         floorComboBox = new JComboBox<>();
         refreshButton = new JButton();
-        button2 = new JButton();
+        reserveButton = new JButton();
         label46 = new JLabel();
         timeLabel = new JLabel();
+        label57 = new JLabel();
+        comboBox1 = new JComboBox<>();
         label18 = new JLabel();
         totalNumber = new JLabel();
         label20 = new JLabel();
@@ -560,7 +590,7 @@ public class MainViewStu extends JFrame {
         panel8 = new JPanel();
         label16 = new JLabel();
         scrollPane4 = new JScrollPane();
-        list1 = new JList<>();
+        logList = new JList<>();
         label19 = new JLabel();
         scrollPane5 = new JScrollPane();
         textArea4 = new JTextArea();
@@ -641,12 +671,11 @@ public class MainViewStu extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-            border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER
-            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font
-            .BOLD,12),java.awt.Color.red),dialogPane. getBorder()));dialogPane. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er"
-            .equals(e.getPropertyName()))throw new RuntimeException();}});
+            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+            0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+            . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+            red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+            beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -792,708 +821,709 @@ public class MainViewStu extends JFrame {
                                     "[]" +
                                     "[]" +
                                     "[]" +
+                                    "[]" +
                                     "[]"));
 
                                 //---- radioButton1 ----
                                 radioButton1.setEnabled(false);
                                 radioButton1.setText("A1");
                                 radioButton1.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton1, "cell 1 6,alignx center,growx 0");
+                                viewSeat.add(radioButton1, "cell 1 7,alignx center,growx 0");
 
                                 //---- radioButton3 ----
                                 radioButton3.setText("C1");
                                 radioButton3.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton3, "cell 4 6,alignx center,growx 0");
+                                viewSeat.add(radioButton3, "cell 4 7,alignx center,growx 0");
 
                                 //---- radioButton2 ----
                                 radioButton2.setText("B1");
                                 radioButton2.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton2, "cell 3 6,alignx center,growx 0");
+                                viewSeat.add(radioButton2, "cell 3 7,alignx center,growx 0");
 
                                 //---- radioButton4 ----
                                 radioButton4.setText("D1");
                                 radioButton4.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton4, "cell 6 6,alignx center,growx 0");
+                                viewSeat.add(radioButton4, "cell 6 7,alignx center,growx 0");
 
                                 //---- radioButton5 ----
                                 radioButton5.setText("E1");
                                 radioButton5.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton5, "cell 7 6,alignx center,growx 0");
+                                viewSeat.add(radioButton5, "cell 7 7,alignx center,growx 0");
 
                                 //---- radioButton6 ----
                                 radioButton6.setText("F1");
                                 radioButton6.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton6, "cell 8 6,alignx center,growx 0");
+                                viewSeat.add(radioButton6, "cell 8 7,alignx center,growx 0");
 
                                 //---- radioButton7 ----
                                 radioButton7.setText("G1");
                                 radioButton7.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton7, "cell 10 6,alignx center,growx 0");
+                                viewSeat.add(radioButton7, "cell 10 7,alignx center,growx 0");
 
                                 //---- radioButton8 ----
                                 radioButton8.setText("H1");
                                 radioButton8.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton8, "cell 11 6,alignx center,growx 0");
+                                viewSeat.add(radioButton8, "cell 11 7,alignx center,growx 0");
 
                                 //---- radioButton9 ----
                                 radioButton9.setText("I1");
                                 radioButton9.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton9, "cell 12 6,alignx center,growx 0");
+                                viewSeat.add(radioButton9, "cell 12 7,alignx center,growx 0");
 
                                 //---- radioButton10 ----
                                 radioButton10.setText("J1");
                                 radioButton10.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton10, "cell 14 6,alignx center,growx 0");
+                                viewSeat.add(radioButton10, "cell 14 7,alignx center,growx 0");
 
                                 //---- radioButton11 ----
                                 radioButton11.setText("K1");
                                 radioButton11.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton11, "cell 15 6,alignx center,growx 0");
+                                viewSeat.add(radioButton11, "cell 15 7,alignx center,growx 0");
 
                                 //---- radioButton12 ----
                                 radioButton12.setText("L1");
                                 radioButton12.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton12, "cell 16 6,alignx center,growx 0");
+                                viewSeat.add(radioButton12, "cell 16 7,alignx center,growx 0");
 
                                 //---- radioButton13 ----
                                 radioButton13.setText("M1");
                                 radioButton13.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton13, "cell 18 6,alignx center,growx 0");
+                                viewSeat.add(radioButton13, "cell 18 7,alignx center,growx 0");
 
                                 //---- radioButton14 ----
                                 radioButton14.setText("N1");
                                 radioButton14.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton14, "cell 19 6,alignx center,growx 0");
+                                viewSeat.add(radioButton14, "cell 19 7,alignx center,growx 0");
 
                                 //---- radioButton15 ----
                                 radioButton15.setText("A2");
                                 radioButton15.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton15, "cell 1 7,alignx center,growx 0");
+                                viewSeat.add(radioButton15, "cell 1 8,alignx center,growx 0");
 
                                 //---- radioButton16 ----
                                 radioButton16.setText("B2");
                                 radioButton16.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton16, "cell 3 7,alignx center,growx 0");
+                                viewSeat.add(radioButton16, "cell 3 8,alignx center,growx 0");
 
                                 //---- radioButton17 ----
                                 radioButton17.setText("C2");
                                 radioButton17.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton17, "cell 4 7,alignx center,growx 0");
+                                viewSeat.add(radioButton17, "cell 4 8,alignx center,growx 0");
 
                                 //---- radioButton18 ----
                                 radioButton18.setText("D2");
                                 radioButton18.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton18, "cell 6 7,alignx center,growx 0");
+                                viewSeat.add(radioButton18, "cell 6 8,alignx center,growx 0");
 
                                 //---- radioButton19 ----
                                 radioButton19.setText("E2");
                                 radioButton19.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton19, "cell 7 7,alignx center,growx 0");
+                                viewSeat.add(radioButton19, "cell 7 8,alignx center,growx 0");
 
                                 //---- radioButton20 ----
                                 radioButton20.setText("F2");
                                 radioButton20.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton20, "cell 8 7,alignx center,growx 0");
+                                viewSeat.add(radioButton20, "cell 8 8,alignx center,growx 0");
 
                                 //---- radioButton21 ----
                                 radioButton21.setText("G2");
                                 radioButton21.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton21, "cell 10 7,alignx center,growx 0");
+                                viewSeat.add(radioButton21, "cell 10 8,alignx center,growx 0");
 
                                 //---- radioButton22 ----
                                 radioButton22.setText("H2");
                                 radioButton22.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton22, "cell 11 7,alignx center,growx 0");
+                                viewSeat.add(radioButton22, "cell 11 8,alignx center,growx 0");
 
                                 //---- radioButton23 ----
                                 radioButton23.setText("I2");
                                 radioButton23.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton23, "cell 12 7,alignx center,growx 0");
+                                viewSeat.add(radioButton23, "cell 12 8,alignx center,growx 0");
 
                                 //---- radioButton24 ----
                                 radioButton24.setText("J2");
                                 radioButton24.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton24, "cell 14 7,alignx center,growx 0");
+                                viewSeat.add(radioButton24, "cell 14 8,alignx center,growx 0");
 
                                 //---- radioButton25 ----
                                 radioButton25.setText("K2");
                                 radioButton25.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton25, "cell 15 7,alignx center,growx 0");
+                                viewSeat.add(radioButton25, "cell 15 8,alignx center,growx 0");
 
                                 //---- radioButton26 ----
                                 radioButton26.setText("L2");
                                 radioButton26.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton26, "cell 16 7,alignx center,growx 0");
+                                viewSeat.add(radioButton26, "cell 16 8,alignx center,growx 0");
 
                                 //---- radioButton27 ----
                                 radioButton27.setText("M2");
                                 radioButton27.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton27, "cell 18 7,alignx center,growx 0");
+                                viewSeat.add(radioButton27, "cell 18 8,alignx center,growx 0");
 
                                 //---- radioButton28 ----
                                 radioButton28.setText("N2");
                                 radioButton28.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton28, "cell 19 7,alignx center,growx 0");
+                                viewSeat.add(radioButton28, "cell 19 8,alignx center,growx 0");
 
                                 //---- radioButton29 ----
                                 radioButton29.setText("A3");
                                 radioButton29.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton29, "cell 1 9,alignx center,growx 0");
+                                viewSeat.add(radioButton29, "cell 1 10,alignx center,growx 0");
 
                                 //---- radioButton30 ----
                                 radioButton30.setText("B3");
                                 radioButton30.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton30, "cell 3 9,alignx center,growx 0");
+                                viewSeat.add(radioButton30, "cell 3 10,alignx center,growx 0");
 
                                 //---- radioButton31 ----
                                 radioButton31.setText("C3");
                                 radioButton31.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton31, "cell 4 9,alignx center,growx 0");
+                                viewSeat.add(radioButton31, "cell 4 10,alignx center,growx 0");
 
                                 //---- radioButton32 ----
                                 radioButton32.setText("D3");
                                 radioButton32.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton32, "cell 6 9,alignx center,growx 0");
+                                viewSeat.add(radioButton32, "cell 6 10,alignx center,growx 0");
 
                                 //---- radioButton33 ----
                                 radioButton33.setText("E3");
                                 radioButton33.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton33, "cell 7 9,alignx center,growx 0");
+                                viewSeat.add(radioButton33, "cell 7 10,alignx center,growx 0");
 
                                 //---- radioButton34 ----
                                 radioButton34.setText("F3");
                                 radioButton34.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton34, "cell 8 9,alignx center,growx 0");
+                                viewSeat.add(radioButton34, "cell 8 10,alignx center,growx 0");
 
                                 //---- radioButton35 ----
                                 radioButton35.setText("G3");
                                 radioButton35.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton35, "cell 10 9,alignx center,growx 0");
+                                viewSeat.add(radioButton35, "cell 10 10,alignx center,growx 0");
 
                                 //---- radioButton36 ----
                                 radioButton36.setText("H3");
                                 radioButton36.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton36, "cell 11 9,alignx center,growx 0");
+                                viewSeat.add(radioButton36, "cell 11 10,alignx center,growx 0");
 
                                 //---- radioButton37 ----
                                 radioButton37.setText("I3");
                                 radioButton37.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton37, "cell 12 9,alignx center,growx 0");
+                                viewSeat.add(radioButton37, "cell 12 10,alignx center,growx 0");
 
                                 //---- radioButton38 ----
                                 radioButton38.setText("J3");
                                 radioButton38.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton38, "cell 14 9,alignx center,growx 0");
+                                viewSeat.add(radioButton38, "cell 14 10,alignx center,growx 0");
 
                                 //---- radioButton39 ----
                                 radioButton39.setText("K3");
                                 radioButton39.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton39, "cell 15 9,alignx center,growx 0");
+                                viewSeat.add(radioButton39, "cell 15 10,alignx center,growx 0");
 
                                 //---- radioButton40 ----
                                 radioButton40.setText("L3");
                                 radioButton40.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton40, "cell 16 9,alignx center,growx 0");
+                                viewSeat.add(radioButton40, "cell 16 10,alignx center,growx 0");
 
                                 //---- radioButton41 ----
                                 radioButton41.setText("M3");
                                 radioButton41.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton41, "cell 18 9,alignx center,growx 0");
+                                viewSeat.add(radioButton41, "cell 18 10,alignx center,growx 0");
 
                                 //---- radioButton42 ----
                                 radioButton42.setText("N3");
                                 radioButton42.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton42, "cell 19 9,alignx center,growx 0");
+                                viewSeat.add(radioButton42, "cell 19 10,alignx center,growx 0");
 
                                 //---- radioButton43 ----
                                 radioButton43.setText("A4");
                                 radioButton43.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton43, "cell 1 10,alignx center,growx 0");
+                                viewSeat.add(radioButton43, "cell 1 11,alignx center,growx 0");
 
                                 //---- radioButton44 ----
                                 radioButton44.setText("B4");
                                 radioButton44.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton44, "cell 3 10,alignx center,growx 0");
+                                viewSeat.add(radioButton44, "cell 3 11,alignx center,growx 0");
 
                                 //---- radioButton45 ----
                                 radioButton45.setText("C4");
                                 radioButton45.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton45, "cell 4 10,alignx center,growx 0");
+                                viewSeat.add(radioButton45, "cell 4 11,alignx center,growx 0");
 
                                 //---- radioButton46 ----
                                 radioButton46.setText("D4");
                                 radioButton46.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton46, "cell 6 10,alignx center,growx 0");
+                                viewSeat.add(radioButton46, "cell 6 11,alignx center,growx 0");
 
                                 //---- radioButton47 ----
                                 radioButton47.setText("E4");
                                 radioButton47.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton47, "cell 7 10,alignx center,growx 0");
+                                viewSeat.add(radioButton47, "cell 7 11,alignx center,growx 0");
 
                                 //---- radioButton48 ----
                                 radioButton48.setText("F4");
                                 radioButton48.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton48, "cell 8 10,alignx center,growx 0");
+                                viewSeat.add(radioButton48, "cell 8 11,alignx center,growx 0");
 
                                 //---- radioButton49 ----
                                 radioButton49.setText("G4");
                                 radioButton49.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton49, "cell 10 10,alignx center,growx 0");
+                                viewSeat.add(radioButton49, "cell 10 11,alignx center,growx 0");
 
                                 //---- radioButton50 ----
                                 radioButton50.setText("H4");
                                 radioButton50.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton50, "cell 11 10,alignx center,growx 0");
+                                viewSeat.add(radioButton50, "cell 11 11,alignx center,growx 0");
 
                                 //---- radioButton51 ----
                                 radioButton51.setText("I4");
                                 radioButton51.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton51, "cell 12 10,alignx center,growx 0");
+                                viewSeat.add(radioButton51, "cell 12 11,alignx center,growx 0");
 
                                 //---- radioButton52 ----
                                 radioButton52.setText("J4");
                                 radioButton52.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton52, "cell 14 10,alignx center,growx 0");
+                                viewSeat.add(radioButton52, "cell 14 11,alignx center,growx 0");
 
                                 //---- radioButton53 ----
                                 radioButton53.setText("K4");
                                 radioButton53.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton53, "cell 15 10,alignx center,growx 0");
+                                viewSeat.add(radioButton53, "cell 15 11,alignx center,growx 0");
 
                                 //---- radioButton54 ----
                                 radioButton54.setText("L4");
                                 radioButton54.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton54, "cell 16 10,alignx center,growx 0");
+                                viewSeat.add(radioButton54, "cell 16 11,alignx center,growx 0");
 
                                 //---- radioButton55 ----
                                 radioButton55.setText("M4");
                                 radioButton55.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton55, "cell 18 10,alignx center,growx 0");
+                                viewSeat.add(radioButton55, "cell 18 11,alignx center,growx 0");
 
                                 //---- radioButton56 ----
                                 radioButton56.setText("N4");
                                 radioButton56.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton56, "cell 19 10,alignx center,growx 0");
+                                viewSeat.add(radioButton56, "cell 19 11,alignx center,growx 0");
 
                                 //---- radioButton57 ----
                                 radioButton57.setText("A5");
                                 radioButton57.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton57, "cell 1 12,alignx center,growx 0");
+                                viewSeat.add(radioButton57, "cell 1 13,alignx center,growx 0");
 
                                 //---- radioButton58 ----
                                 radioButton58.setText("B5");
                                 radioButton58.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton58, "cell 3 12,alignx center,growx 0");
+                                viewSeat.add(radioButton58, "cell 3 13,alignx center,growx 0");
 
                                 //---- radioButton59 ----
                                 radioButton59.setText("C5");
                                 radioButton59.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton59, "cell 4 12,alignx center,growx 0");
+                                viewSeat.add(radioButton59, "cell 4 13,alignx center,growx 0");
 
                                 //---- radioButton60 ----
                                 radioButton60.setText("D5");
                                 radioButton60.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton60, "cell 6 12,alignx center,growx 0");
+                                viewSeat.add(radioButton60, "cell 6 13,alignx center,growx 0");
 
                                 //---- radioButton61 ----
                                 radioButton61.setText("E5");
                                 radioButton61.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton61, "cell 7 12,alignx center,growx 0");
+                                viewSeat.add(radioButton61, "cell 7 13,alignx center,growx 0");
 
                                 //---- radioButton62 ----
                                 radioButton62.setText("F5");
                                 radioButton62.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton62, "cell 8 12,alignx center,growx 0");
+                                viewSeat.add(radioButton62, "cell 8 13,alignx center,growx 0");
 
                                 //---- radioButton63 ----
                                 radioButton63.setText("G5");
                                 radioButton63.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton63, "cell 10 12,alignx center,growx 0");
+                                viewSeat.add(radioButton63, "cell 10 13,alignx center,growx 0");
 
                                 //---- radioButton64 ----
                                 radioButton64.setText("H5");
                                 radioButton64.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton64, "cell 11 12,alignx center,growx 0");
+                                viewSeat.add(radioButton64, "cell 11 13,alignx center,growx 0");
 
                                 //---- radioButton65 ----
                                 radioButton65.setText("I5");
                                 radioButton65.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton65, "cell 12 12,alignx center,growx 0");
+                                viewSeat.add(radioButton65, "cell 12 13,alignx center,growx 0");
 
                                 //---- radioButton66 ----
                                 radioButton66.setText("J5");
                                 radioButton66.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton66, "cell 14 12,alignx center,growx 0");
+                                viewSeat.add(radioButton66, "cell 14 13,alignx center,growx 0");
 
                                 //---- radioButton67 ----
                                 radioButton67.setText("K5");
                                 radioButton67.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton67, "cell 15 12,alignx center,growx 0");
+                                viewSeat.add(radioButton67, "cell 15 13,alignx center,growx 0");
 
                                 //---- radioButton68 ----
                                 radioButton68.setText("L5");
                                 radioButton68.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton68, "cell 16 12,alignx center,growx 0");
+                                viewSeat.add(radioButton68, "cell 16 13,alignx center,growx 0");
 
                                 //---- radioButton69 ----
                                 radioButton69.setText("M5");
                                 radioButton69.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton69, "cell 18 12,alignx center,growx 0");
+                                viewSeat.add(radioButton69, "cell 18 13,alignx center,growx 0");
 
                                 //---- radioButton70 ----
                                 radioButton70.setText("N5");
                                 radioButton70.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton70, "cell 19 12,alignx center,growx 0");
+                                viewSeat.add(radioButton70, "cell 19 13,alignx center,growx 0");
 
                                 //---- radioButton71 ----
                                 radioButton71.setText("A6");
                                 radioButton71.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton71, "cell 1 13,alignx center,growx 0");
+                                viewSeat.add(radioButton71, "cell 1 14,alignx center,growx 0");
 
                                 //---- radioButton72 ----
                                 radioButton72.setText("B6");
                                 radioButton72.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton72, "cell 3 13,alignx center,growx 0");
+                                viewSeat.add(radioButton72, "cell 3 14,alignx center,growx 0");
 
                                 //---- radioButton73 ----
                                 radioButton73.setText("C6");
                                 radioButton73.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton73, "cell 4 13,alignx center,growx 0");
+                                viewSeat.add(radioButton73, "cell 4 14,alignx center,growx 0");
 
                                 //---- radioButton74 ----
                                 radioButton74.setText("D6");
                                 radioButton74.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton74, "cell 6 13,alignx center,growx 0");
+                                viewSeat.add(radioButton74, "cell 6 14,alignx center,growx 0");
 
                                 //---- radioButton75 ----
                                 radioButton75.setText("E6");
                                 radioButton75.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton75, "cell 7 13,alignx center,growx 0");
+                                viewSeat.add(radioButton75, "cell 7 14,alignx center,growx 0");
 
                                 //---- radioButton76 ----
                                 radioButton76.setText("F6");
                                 radioButton76.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton76, "cell 8 13,alignx center,growx 0");
+                                viewSeat.add(radioButton76, "cell 8 14,alignx center,growx 0");
 
                                 //---- radioButton77 ----
                                 radioButton77.setText("G6");
                                 radioButton77.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton77, "cell 10 13,alignx center,growx 0");
+                                viewSeat.add(radioButton77, "cell 10 14,alignx center,growx 0");
 
                                 //---- radioButton78 ----
                                 radioButton78.setText("H6");
                                 radioButton78.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton78, "cell 11 13,alignx center,growx 0");
+                                viewSeat.add(radioButton78, "cell 11 14,alignx center,growx 0");
 
                                 //---- radioButton79 ----
                                 radioButton79.setText("I6");
                                 radioButton79.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton79, "cell 12 13,alignx center,growx 0");
+                                viewSeat.add(radioButton79, "cell 12 14,alignx center,growx 0");
 
                                 //---- radioButton80 ----
                                 radioButton80.setText("J6");
                                 radioButton80.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton80, "cell 14 13,alignx center,growx 0");
+                                viewSeat.add(radioButton80, "cell 14 14,alignx center,growx 0");
 
                                 //---- radioButton81 ----
                                 radioButton81.setText("K6");
                                 radioButton81.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton81, "cell 15 13,alignx center,growx 0");
+                                viewSeat.add(radioButton81, "cell 15 14,alignx center,growx 0");
 
                                 //---- radioButton82 ----
                                 radioButton82.setText("L6");
                                 radioButton82.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton82, "cell 16 13,alignx center,growx 0");
+                                viewSeat.add(radioButton82, "cell 16 14,alignx center,growx 0");
 
                                 //---- radioButton83 ----
                                 radioButton83.setText("M6");
                                 radioButton83.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton83, "cell 18 13,alignx center,growx 0");
+                                viewSeat.add(radioButton83, "cell 18 14,alignx center,growx 0");
 
                                 //---- radioButton84 ----
                                 radioButton84.setText("N6");
                                 radioButton84.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton84, "cell 19 13,alignx center,growx 0");
+                                viewSeat.add(radioButton84, "cell 19 14,alignx center,growx 0");
 
                                 //---- radioButton85 ----
                                 radioButton85.setText("A7");
                                 radioButton85.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton85, "cell 1 15,alignx center,growx 0");
+                                viewSeat.add(radioButton85, "cell 1 16,alignx center,growx 0");
 
                                 //---- radioButton86 ----
                                 radioButton86.setText("B7");
                                 radioButton86.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton86, "cell 3 15,alignx center,growx 0");
+                                viewSeat.add(radioButton86, "cell 3 16,alignx center,growx 0");
 
                                 //---- radioButton87 ----
                                 radioButton87.setText("C7");
                                 radioButton87.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton87, "cell 4 15,alignx center,growx 0");
+                                viewSeat.add(radioButton87, "cell 4 16,alignx center,growx 0");
 
                                 //---- radioButton88 ----
                                 radioButton88.setText("D7");
                                 radioButton88.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton88, "cell 6 15,alignx center,growx 0");
+                                viewSeat.add(radioButton88, "cell 6 16,alignx center,growx 0");
 
                                 //---- radioButton89 ----
                                 radioButton89.setText("E7");
                                 radioButton89.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton89, "cell 7 15,alignx center,growx 0");
+                                viewSeat.add(radioButton89, "cell 7 16,alignx center,growx 0");
 
                                 //---- radioButton90 ----
                                 radioButton90.setText("F7");
                                 radioButton90.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton90, "cell 8 15,alignx center,growx 0");
+                                viewSeat.add(radioButton90, "cell 8 16,alignx center,growx 0");
 
                                 //---- radioButton91 ----
                                 radioButton91.setText("G7");
                                 radioButton91.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton91, "cell 10 15,alignx center,growx 0");
+                                viewSeat.add(radioButton91, "cell 10 16,alignx center,growx 0");
 
                                 //---- radioButton92 ----
                                 radioButton92.setText("H7");
                                 radioButton92.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton92, "cell 11 15,alignx center,growx 0");
+                                viewSeat.add(radioButton92, "cell 11 16,alignx center,growx 0");
 
                                 //---- radioButton93 ----
                                 radioButton93.setText("I7");
                                 radioButton93.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton93, "cell 12 15,alignx center,growx 0");
+                                viewSeat.add(radioButton93, "cell 12 16,alignx center,growx 0");
 
                                 //---- radioButton94 ----
                                 radioButton94.setText("J7");
                                 radioButton94.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton94, "cell 14 15,alignx center,growx 0");
+                                viewSeat.add(radioButton94, "cell 14 16,alignx center,growx 0");
 
                                 //---- radioButton95 ----
                                 radioButton95.setText("K7");
                                 radioButton95.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton95, "cell 15 15,alignx center,growx 0");
+                                viewSeat.add(radioButton95, "cell 15 16,alignx center,growx 0");
 
                                 //---- radioButton96 ----
                                 radioButton96.setText("L7");
                                 radioButton96.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton96, "cell 16 15,alignx center,growx 0");
+                                viewSeat.add(radioButton96, "cell 16 16,alignx center,growx 0");
 
                                 //---- radioButton97 ----
                                 radioButton97.setText("M7");
                                 radioButton97.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton97, "cell 18 15,alignx center,growx 0");
+                                viewSeat.add(radioButton97, "cell 18 16,alignx center,growx 0");
 
                                 //---- radioButton98 ----
                                 radioButton98.setText("N7");
                                 radioButton98.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton98, "cell 19 15,alignx center,growx 0");
+                                viewSeat.add(radioButton98, "cell 19 16,alignx center,growx 0");
 
                                 //---- radioButton99 ----
                                 radioButton99.setText("A8");
                                 radioButton99.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton99, "cell 1 16,alignx center,growx 0");
+                                viewSeat.add(radioButton99, "cell 1 17,alignx center,growx 0");
 
                                 //---- radioButton100 ----
                                 radioButton100.setText("B8");
                                 radioButton100.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton100, "cell 3 16,alignx center,growx 0");
+                                viewSeat.add(radioButton100, "cell 3 17,alignx center,growx 0");
 
                                 //---- radioButton101 ----
                                 radioButton101.setText("C8");
                                 radioButton101.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton101, "cell 4 16,alignx center,growx 0");
+                                viewSeat.add(radioButton101, "cell 4 17,alignx center,growx 0");
 
                                 //---- radioButton102 ----
                                 radioButton102.setText("D8");
                                 radioButton102.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton102, "cell 6 16,alignx center,growx 0");
+                                viewSeat.add(radioButton102, "cell 6 17,alignx center,growx 0");
 
                                 //---- radioButton103 ----
                                 radioButton103.setText("E8");
                                 radioButton103.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton103, "cell 7 16,alignx center,growx 0");
+                                viewSeat.add(radioButton103, "cell 7 17,alignx center,growx 0");
 
                                 //---- radioButton104 ----
                                 radioButton104.setText("F8");
                                 radioButton104.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton104, "cell 8 16,alignx center,growx 0");
+                                viewSeat.add(radioButton104, "cell 8 17,alignx center,growx 0");
 
                                 //---- radioButton105 ----
                                 radioButton105.setText("G8");
                                 radioButton105.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton105, "cell 10 16,alignx center,growx 0");
+                                viewSeat.add(radioButton105, "cell 10 17,alignx center,growx 0");
 
                                 //---- radioButton106 ----
                                 radioButton106.setText("H8");
                                 radioButton106.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton106, "cell 11 16,alignx center,growx 0");
+                                viewSeat.add(radioButton106, "cell 11 17,alignx center,growx 0");
 
                                 //---- radioButton107 ----
                                 radioButton107.setText("I8");
                                 radioButton107.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton107, "cell 12 16,alignx center,growx 0");
+                                viewSeat.add(radioButton107, "cell 12 17,alignx center,growx 0");
 
                                 //---- radioButton108 ----
                                 radioButton108.setText("J8");
                                 radioButton108.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton108, "cell 14 16,alignx center,growx 0");
+                                viewSeat.add(radioButton108, "cell 14 17,alignx center,growx 0");
 
                                 //---- radioButton109 ----
                                 radioButton109.setText("K8");
                                 radioButton109.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton109, "cell 15 16,alignx center,growx 0");
+                                viewSeat.add(radioButton109, "cell 15 17,alignx center,growx 0");
 
                                 //---- radioButton110 ----
                                 radioButton110.setText("L8");
                                 radioButton110.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton110, "cell 16 16,alignx center,growx 0");
+                                viewSeat.add(radioButton110, "cell 16 17,alignx center,growx 0");
 
                                 //---- radioButton111 ----
                                 radioButton111.setText("M8");
                                 radioButton111.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton111, "cell 18 16,alignx center,growx 0");
+                                viewSeat.add(radioButton111, "cell 18 17,alignx center,growx 0");
 
                                 //---- radioButton112 ----
                                 radioButton112.setText("N8");
                                 radioButton112.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton112, "cell 19 16,alignx center,growx 0");
+                                viewSeat.add(radioButton112, "cell 19 17,alignx center,growx 0");
 
                                 //---- radioButton113 ----
                                 radioButton113.setText("A9");
                                 radioButton113.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton113, "cell 1 18,alignx center,growx 0");
+                                viewSeat.add(radioButton113, "cell 1 19,alignx center,growx 0");
 
                                 //---- radioButton114 ----
                                 radioButton114.setText("B9");
                                 radioButton114.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton114, "cell 3 18,alignx center,growx 0");
+                                viewSeat.add(radioButton114, "cell 3 19,alignx center,growx 0");
 
                                 //---- radioButton115 ----
                                 radioButton115.setText("C9");
                                 radioButton115.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton115, "cell 4 18,alignx center,growx 0");
+                                viewSeat.add(radioButton115, "cell 4 19,alignx center,growx 0");
 
                                 //---- radioButton116 ----
                                 radioButton116.setText("D9");
                                 radioButton116.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton116, "cell 6 18,alignx center,growx 0");
+                                viewSeat.add(radioButton116, "cell 6 19,alignx center,growx 0");
 
                                 //---- radioButton117 ----
                                 radioButton117.setText("E9");
                                 radioButton117.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton117, "cell 7 18,alignx center,growx 0");
+                                viewSeat.add(radioButton117, "cell 7 19,alignx center,growx 0");
 
                                 //---- radioButton118 ----
                                 radioButton118.setText("F9");
                                 radioButton118.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton118, "cell 8 18,alignx center,growx 0");
+                                viewSeat.add(radioButton118, "cell 8 19,alignx center,growx 0");
 
                                 //---- radioButton119 ----
                                 radioButton119.setText("G9");
                                 radioButton119.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton119, "cell 10 18,alignx center,growx 0");
+                                viewSeat.add(radioButton119, "cell 10 19,alignx center,growx 0");
 
                                 //---- radioButton120 ----
                                 radioButton120.setText("H9");
                                 radioButton120.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton120, "cell 11 18,alignx center,growx 0");
+                                viewSeat.add(radioButton120, "cell 11 19,alignx center,growx 0");
 
                                 //---- radioButton121 ----
                                 radioButton121.setText("I9");
                                 radioButton121.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton121, "cell 12 18,alignx center,growx 0");
+                                viewSeat.add(radioButton121, "cell 12 19,alignx center,growx 0");
 
                                 //---- radioButton122 ----
                                 radioButton122.setText("J9");
                                 radioButton122.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton122, "cell 14 18,alignx center,growx 0");
+                                viewSeat.add(radioButton122, "cell 14 19,alignx center,growx 0");
 
                                 //---- radioButton123 ----
                                 radioButton123.setText("K9");
                                 radioButton123.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton123, "cell 15 18,alignx center,growx 0");
+                                viewSeat.add(radioButton123, "cell 15 19,alignx center,growx 0");
 
                                 //---- radioButton124 ----
                                 radioButton124.setText("L9");
                                 radioButton124.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton124, "cell 16 18,alignx center,growx 0");
+                                viewSeat.add(radioButton124, "cell 16 19,alignx center,growx 0");
 
                                 //---- radioButton125 ----
                                 radioButton125.setText("M9");
                                 radioButton125.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton125, "cell 18 18,alignx center,growx 0");
+                                viewSeat.add(radioButton125, "cell 18 19,alignx center,growx 0");
 
                                 //---- radioButton126 ----
                                 radioButton126.setText("N9");
                                 radioButton126.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton126, "cell 19 18,alignx center,growx 0");
+                                viewSeat.add(radioButton126, "cell 19 19,alignx center,growx 0");
 
                                 //---- radioButton127 ----
                                 radioButton127.setText("A10");
                                 radioButton127.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton127, "cell 1 19,alignx center,growx 0");
+                                viewSeat.add(radioButton127, "cell 1 20,alignx center,growx 0");
 
                                 //---- radioButton128 ----
                                 radioButton128.setText("B10");
                                 radioButton128.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton128, "cell 3 19,alignx center,growx 0");
+                                viewSeat.add(radioButton128, "cell 3 20,alignx center,growx 0");
 
                                 //---- radioButton129 ----
                                 radioButton129.setText("C10");
                                 radioButton129.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton129, "cell 4 19,alignx center,growx 0");
+                                viewSeat.add(radioButton129, "cell 4 20,alignx center,growx 0");
 
                                 //---- radioButton130 ----
                                 radioButton130.setText("D10");
                                 radioButton130.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton130, "cell 6 19,alignx center,growx 0");
+                                viewSeat.add(radioButton130, "cell 6 20,alignx center,growx 0");
 
                                 //---- radioButton131 ----
                                 radioButton131.setText("E10");
                                 radioButton131.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton131, "cell 7 19,alignx center,growx 0");
+                                viewSeat.add(radioButton131, "cell 7 20,alignx center,growx 0");
 
                                 //---- radioButton132 ----
                                 radioButton132.setText("F10");
                                 radioButton132.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton132, "cell 8 19,alignx center,growx 0");
+                                viewSeat.add(radioButton132, "cell 8 20,alignx center,growx 0");
 
                                 //---- radioButton133 ----
                                 radioButton133.setText("G10");
                                 radioButton133.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton133, "cell 10 19,alignx center,growx 0");
+                                viewSeat.add(radioButton133, "cell 10 20,alignx center,growx 0");
 
                                 //---- radioButton134 ----
                                 radioButton134.setText("H10");
                                 radioButton134.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton134, "cell 11 19,alignx center,growx 0");
+                                viewSeat.add(radioButton134, "cell 11 20,alignx center,growx 0");
 
                                 //---- radioButton135 ----
                                 radioButton135.setText("I10");
                                 radioButton135.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton135, "cell 12 19,alignx center,growx 0");
+                                viewSeat.add(radioButton135, "cell 12 20,alignx center,growx 0");
 
                                 //---- radioButton136 ----
                                 radioButton136.setText("J10");
                                 radioButton136.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton136, "cell 14 19,alignx center,growx 0");
+                                viewSeat.add(radioButton136, "cell 14 20,alignx center,growx 0");
 
                                 //---- radioButton137 ----
                                 radioButton137.setText("K10");
                                 radioButton137.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton137, "cell 15 19,alignx center,growx 0");
+                                viewSeat.add(radioButton137, "cell 15 20,alignx center,growx 0");
 
                                 //---- radioButton138 ----
                                 radioButton138.setText("L10");
                                 radioButton138.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton138, "cell 16 19,alignx center,growx 0");
+                                viewSeat.add(radioButton138, "cell 16 20,alignx center,growx 0");
 
                                 //---- radioButton139 ----
                                 radioButton139.setText("M10");
                                 radioButton139.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton139, "cell 18 19,alignx center,growx 0");
+                                viewSeat.add(radioButton139, "cell 18 20,alignx center,growx 0");
 
                                 //---- radioButton140 ----
                                 radioButton140.setText("N10");
                                 radioButton140.addActionListener(e -> seatButtonActionPerformed(e));
-                                viewSeat.add(radioButton140, "cell 19 19,alignx center,growx 0");
+                                viewSeat.add(radioButton140, "cell 19 20,alignx center,growx 0");
 
                                 //---- label17 ----
                                 label17.setText("\u697c\u5c42");
@@ -1524,11 +1554,17 @@ public class MainViewStu extends JFrame {
                                 });
                                 viewSeat.add(refreshButton, "cell 2 0 2 1,alignx center,growx 0");
 
-                                //---- button2 ----
-                                button2.setText("\u786e\u8ba4\u9884\u5b9a");
-                                button2.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
-                                button2.setForeground(Color.white);
-                                viewSeat.add(button2, "cell 4 0,alignx center,growx 0");
+                                //---- reserveButton ----
+                                reserveButton.setText("\u786e\u8ba4\u9884\u5b9a");
+                                reserveButton.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+                                reserveButton.setForeground(Color.white);
+                                reserveButton.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent e) {
+                                        reserveButtonMouseReleased(e);
+                                    }
+                                });
+                                viewSeat.add(reserveButton, "cell 4 0,alignx center,growx 0");
 
                                 //---- label46 ----
                                 label46.setText("\u5f53\u524d\u65f6\u95f4\uff1a");
@@ -1540,121 +1576,135 @@ public class MainViewStu extends JFrame {
                                 timeLabel.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
                                 viewSeat.add(timeLabel, "cell 16 0 4 1");
 
+                                //---- label57 ----
+                                label57.setText("\u9884\u5b9a\u65e5\u671f");
+                                label57.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                viewSeat.add(label57, "cell 0 1");
+
+                                //---- comboBox1 ----
+                                comboBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                                    "\u660e\u5929",
+                                    "\u540e\u4e00\u5929",
+                                    "\u540e\u4e8c\u5929"
+                                }));
+                                viewSeat.add(comboBox1, "cell 1 1");
+
                                 //---- label18 ----
                                 label18.setText("\u5ea7\u4f4d\u603b\u6570");
                                 label18.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                viewSeat.add(label18, "cell 0 1 2 1,alignx right,growx 0");
+                                viewSeat.add(label18, "cell 0 2 2 1,alignx right,growx 0");
 
                                 //---- totalNumber ----
                                 totalNumber.setText("0");
                                 totalNumber.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-                                viewSeat.add(totalNumber, "cell 0 1 2 1");
+                                viewSeat.add(totalNumber, "cell 0 2 2 1");
 
                                 //---- label20 ----
                                 label20.setText("\u53ef\u9884\u5b9a\u6570");
                                 label20.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                viewSeat.add(label20, "cell 0 2 2 1,alignx right,growx 0");
+                                viewSeat.add(label20, "cell 0 3 2 1,alignx right,growx 0");
 
                                 //---- selectNumber ----
                                 selectNumber.setText("0");
                                 selectNumber.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-                                viewSeat.add(selectNumber, "cell 0 2 2 1");
+                                viewSeat.add(selectNumber, "cell 0 3 2 1");
 
                                 //---- label22 ----
                                 label22.setText("A");
-                                viewSeat.add(label22, "cell 1 4,alignx center,growx 0");
+                                viewSeat.add(label22, "cell 1 5,alignx center,growx 0");
 
                                 //---- label23 ----
                                 label23.setText("B");
-                                viewSeat.add(label23, "cell 3 4,alignx center,growx 0");
+                                viewSeat.add(label23, "cell 3 5,alignx center,growx 0");
 
                                 //---- label24 ----
                                 label24.setText("C");
-                                viewSeat.add(label24, "cell 4 4,alignx center,growx 0");
+                                viewSeat.add(label24, "cell 4 5,alignx center,growx 0");
 
                                 //---- label25 ----
                                 label25.setText("D");
-                                viewSeat.add(label25, "cell 6 4,alignx center,growx 0");
+                                viewSeat.add(label25, "cell 6 5,alignx center,growx 0");
 
                                 //---- label26 ----
                                 label26.setText("E");
-                                viewSeat.add(label26, "cell 7 4,alignx center,growx 0");
+                                viewSeat.add(label26, "cell 7 5,alignx center,growx 0");
 
                                 //---- label27 ----
                                 label27.setText("F");
-                                viewSeat.add(label27, "cell 8 4,alignx center,growx 0");
+                                viewSeat.add(label27, "cell 8 5,alignx center,growx 0");
 
                                 //---- label28 ----
                                 label28.setText("G");
-                                viewSeat.add(label28, "cell 10 4,alignx center,growx 0");
+                                viewSeat.add(label28, "cell 10 5,alignx center,growx 0");
 
                                 //---- label29 ----
                                 label29.setText("H");
-                                viewSeat.add(label29, "cell 11 4,alignx center,growx 0");
+                                viewSeat.add(label29, "cell 11 5,alignx center,growx 0");
 
                                 //---- label30 ----
                                 label30.setText("I");
-                                viewSeat.add(label30, "cell 12 4,alignx center,growx 0");
+                                viewSeat.add(label30, "cell 12 5,alignx center,growx 0");
 
                                 //---- label41 ----
                                 label41.setText("J");
-                                viewSeat.add(label41, "cell 14 4,alignx center,growx 0");
+                                viewSeat.add(label41, "cell 14 5,alignx center,growx 0");
 
                                 //---- label42 ----
                                 label42.setText("K");
-                                viewSeat.add(label42, "cell 15 4,alignx center,growx 0");
+                                viewSeat.add(label42, "cell 15 5,alignx center,growx 0");
 
                                 //---- label43 ----
                                 label43.setText("L");
-                                viewSeat.add(label43, "cell 16 4,alignx center,growx 0");
+                                viewSeat.add(label43, "cell 16 5,alignx center,growx 0");
 
                                 //---- label44 ----
                                 label44.setText("M");
-                                viewSeat.add(label44, "cell 18 4,alignx center,growx 0");
+                                viewSeat.add(label44, "cell 18 5,alignx center,growx 0");
 
                                 //---- label45 ----
                                 label45.setText("N");
-                                viewSeat.add(label45, "cell 19 4,alignx center,growx 0");
+                                viewSeat.add(label45, "cell 19 5,alignx center,growx 0");
 
                                 //---- label31 ----
                                 label31.setText("1");
-                                viewSeat.add(label31, "cell 0 6");
+                                viewSeat.add(label31, "cell 0 7");
 
                                 //---- label32 ----
                                 label32.setText("2");
-                                viewSeat.add(label32, "cell 0 7");
+                                viewSeat.add(label32, "cell 0 8");
 
                                 //---- label33 ----
                                 label33.setText("3");
-                                viewSeat.add(label33, "cell 0 9");
+                                viewSeat.add(label33, "cell 0 10");
 
                                 //---- label34 ----
                                 label34.setText("4");
-                                viewSeat.add(label34, "cell 0 10");
+                                viewSeat.add(label34, "cell 0 11");
 
                                 //---- label35 ----
                                 label35.setText("5");
-                                viewSeat.add(label35, "cell 0 12");
+                                viewSeat.add(label35, "cell 0 13");
 
                                 //---- label36 ----
                                 label36.setText("6");
-                                viewSeat.add(label36, "cell 0 13");
+                                viewSeat.add(label36, "cell 0 14");
 
                                 //---- label37 ----
                                 label37.setText("7");
-                                viewSeat.add(label37, "cell 0 15");
+                                viewSeat.add(label37, "cell 0 16");
 
                                 //---- label38 ----
                                 label38.setText("8");
-                                viewSeat.add(label38, "cell 0 16");
+                                viewSeat.add(label38, "cell 0 17");
 
                                 //---- label39 ----
                                 label39.setText("9");
-                                viewSeat.add(label39, "cell 0 18");
+                                viewSeat.add(label39, "cell 0 19");
 
                                 //---- label40 ----
                                 label40.setText("10");
-                                viewSeat.add(label40, "cell 0 19");
+                                viewSeat.add(label40, "cell 0 20");
                             }
                             tabbedPane3.addTab("\u67e5\u770b\u5ea7\u4f4d", viewSeat);
 
@@ -1682,9 +1732,18 @@ public class MainViewStu extends JFrame {
                                 //======== scrollPane4 ========
                                 {
 
-                                    //---- list1 ----
-                                    list1.setModel(new AbstractListModel<String>() {
+                                    //---- logList ----
+                                    logList.setModel(new AbstractListModel<String>() {
                                         String[] values = {
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
                                             "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
                                             "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
                                             "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d"
@@ -1694,8 +1753,9 @@ public class MainViewStu extends JFrame {
                                         @Override
                                         public String getElementAt(int i) { return values[i]; }
                                     });
-                                    list1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                    scrollPane4.setViewportView(list1);
+                                    logList.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                    logList.addListSelectionListener(e -> list1ValueChanged(e));
+                                    scrollPane4.setViewportView(logList);
                                 }
                                 panel8.add(scrollPane4, "cell 0 2 3 1,dock center");
 
@@ -2257,7 +2317,7 @@ public class MainViewStu extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - notfound
+    // Generated using JFormDesigner Evaluation license - phl
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JTabbedPane tabbedPane1;
@@ -2412,9 +2472,11 @@ public class MainViewStu extends JFrame {
     private JLabel label17;
     private JComboBox<String> floorComboBox;
     private JButton refreshButton;
-    private JButton button2;
+    private JButton reserveButton;
     private JLabel label46;
     private JLabel timeLabel;
+    private JLabel label57;
+    private JComboBox<String> comboBox1;
     private JLabel label18;
     private JLabel totalNumber;
     private JLabel label20;
@@ -2446,7 +2508,7 @@ public class MainViewStu extends JFrame {
     private JPanel panel8;
     private JLabel label16;
     private JScrollPane scrollPane4;
-    private JList<String> list1;
+    private JList<String> logList;
     private JLabel label19;
     private JScrollPane scrollPane5;
     private JTextArea textArea4;

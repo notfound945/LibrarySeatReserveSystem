@@ -4,12 +4,10 @@
 
 package cn.fyl.view.login;
 
-import java.awt.event.*;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
-import cn.fyl.view.dialog.login.ProcessLoading;
-import cn.fyl.view.dialog.login.IsSuccess;
-import cn.fyl.view.dialog.login.usernameandpassword.*;
+import cn.fyl.view.dialog.ProcessLoading;
+import cn.fyl.view.dialog.ProxyOkDialog;
 import cn.fyl.view.mainview.student.MainViewStu;
 import cn.fyl.view.register.Register;
 import net.miginfocom.swing.MigLayout;
@@ -17,6 +15,8 @@ import org.jdesktop.beansbinding.BindingGroup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -47,7 +47,7 @@ public class LoginView extends JFrame {
         String userName = userNameTextField.getText();
         String password = passwordField.getText();
         if ("".equals(userName) || "".equals(password)) {
-            new IsEmpty().setVisible(true);
+            new ProxyOkDialog(this, "检验不通过", "表单信息不完整", "用户名或密码未填写", "请检查后重试。").setVisible(true);
             return false;
         } else {
             processLoading.setVisible(true);
@@ -68,7 +68,7 @@ public class LoginView extends JFrame {
                 user = user1;
                 return true;
             } else {
-                new IsError().setVisible(true);
+                new ProxyOkDialog(this, "认证失败", "登录失败", "用户名或密码错误", "请核对后重试。").setVisible(true);
                 return false;
             }
         }
@@ -85,7 +85,7 @@ public class LoginView extends JFrame {
      */
     private void Login() {
         if (verify()) {
-            new IsSuccess(user.getName()).setVisible(true);
+            new ProxyOkDialog(this, "认证通过", "登录成功", "欢迎 " + this.user.getName(), "").setVisible(true);
             this.dispose();
             new MainViewStu(user).setVisible(true);
         }

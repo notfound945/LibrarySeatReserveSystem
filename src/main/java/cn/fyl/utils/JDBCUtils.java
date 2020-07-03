@@ -1,6 +1,6 @@
 package cn.fyl.utils;
 
-import cn.fyl.view.dialog.login.connectiondatabase.IsError;
+import cn.fyl.view.dialog.ProxyOkDialog;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
@@ -39,7 +39,7 @@ public class JDBCUtils {
             return dataSource.getConnection();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            new IsError().setVisible(true);
+            new ProxyOkDialog(null, "出现异常", "连接失败", "连接数据库时，出现异常", "请检查服务是否正常及配置是否正确后重启此应用").setVisible(true);
         }
         return null;
 

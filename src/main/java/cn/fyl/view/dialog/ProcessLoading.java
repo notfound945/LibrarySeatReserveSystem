@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sat Jun 27 12:22:29 CST 2020
  */
 
-package cn.fyl.view.dialog.login;
+package cn.fyl.view.dialog;
 
 import java.awt.*;
 import javax.swing.*;

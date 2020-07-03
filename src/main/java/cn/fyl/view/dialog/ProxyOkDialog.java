@@ -1,23 +1,29 @@
 /*
- * Created by JFormDesigner on Sat Jun 27 09:58:50 CST 2020
+ * Created by JFormDesigner on Fri Jul 03 22:55:07 CST 2020
  */
 
-package cn.fyl.view.dialog.login.usernameandpassword;
+package cn.fyl.view.dialog;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
 /**
- * @author notfound
+ * @author phl
  */
-public class IsEmpty extends JDialog {
-    private String title = "测试标题";
-    public IsEmpty() {
+public class ProxyOkDialog extends JDialog {
+    public ProxyOkDialog(Window owner, String title, String contentTitle, String content1, String content2) {
         super((Dialog) null, true);
         initComponents();
+        init(title, contentTitle, content1, content2);
+    }
+
+    private void init(String title, String contentTitle, String content1, String content2) {
+       this.setTitle(title);
+       this.contentTitle.setText(contentTitle);
+       this.content1.setText(content1);
+       this.content2.setText(content2);
     }
 
     private void okButtonMouseReleased(MouseEvent e) {
@@ -32,28 +38,28 @@ public class IsEmpty extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - notfound
+        // Generated using JFormDesigner Evaluation license - phl
         dialogPane = new JPanel();
         contentPanel = new JPanel();
-        centerContent = new JLabel();
+        contentTitle = new JLabel();
+        content1 = new JLabel();
+        content2 = new JLabel();
         buttonBar = new JPanel();
         okButton = new JButton();
 
         //======== this ========
-        setTitle("\u6821\u9a8c\u8868\u5355");
+        setTitle("\u4ee3\u7406\u5bf9\u8bdd\u6846");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-            javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax
-            .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-            .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-            .Color.red),dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.
-            PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".
-            equals(e.getPropertyName()))throw new RuntimeException();}});
+            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+            0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+            . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+            red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+            beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -63,16 +69,34 @@ public class IsEmpty extends JDialog {
                     // columns
                     "[fill]" +
                     "[fill]" +
+                    "[fill]" +
+                    "[fill]" +
+                    "[fill]" +
+                    "[fill]" +
                     "[fill]",
                     // rows
                     "[]" +
                     "[]" +
+                    "[]" +
+                    "[]" +
+                    "[]" +
+                    "[]" +
                     "[]"));
 
-                //---- centerContent ----
-                centerContent.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
-                centerContent.setText("\u7528\u6237\u540d\u6216\u5bc6\u7801\u4e3a\u7a7a\uff0c\u6821\u9a8c\u5931\u8d25");
-                contentPanel.add(centerContent, "cell 1 1,alignx center,growx 0");
+                //---- contentTitle ----
+                contentTitle.setText("\u6807\u9898");
+                contentTitle.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+                contentPanel.add(contentTitle, "cell 1 1 5 1,alignx center,growx 0");
+
+                //---- content1 ----
+                content1.setText("\u4e3b\u4f53\u5185\u5bb91");
+                content1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+                contentPanel.add(content1, "cell 1 3 5 1,alignx center,growx 0");
+
+                //---- content2 ----
+                content2.setText("\u4e3b\u4f53\u5185\u5bb92");
+                content2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+                contentPanel.add(content2, "cell 1 5 5 1,alignx center,growx 0");
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
@@ -86,8 +110,8 @@ public class IsEmpty extends JDialog {
                     null));
 
                 //---- okButton ----
-                okButton.setText("\u786e \u8ba4");
-                okButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                okButton.setText("\u786e\u8ba4");
+                okButton.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
                 okButton.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -105,16 +129,18 @@ public class IsEmpty extends JDialog {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(400, 200);
+        setSize(500, 250);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - notfound
+    // Generated using JFormDesigner Evaluation license - phl
     private JPanel dialogPane;
     private JPanel contentPanel;
-    private JLabel centerContent;
+    private JLabel contentTitle;
+    private JLabel content1;
+    private JLabel content2;
     private JPanel buttonBar;
     private JButton okButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

@@ -65,7 +65,7 @@ new FormModel {
 								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 									"$layoutConstraints": "fill,hidemode 3"
 									"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-									"$rowConstraints": "[][][][][][][][][][][][][][][][][][][][]"
+									"$rowConstraints": "[][][][][][][][][][][][][][][][][][][][][]"
 								} ) {
 									name: "viewSeat"
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
@@ -74,980 +74,980 @@ new FormModel {
 										"text": "A1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 6,alignx center,growx 0"
+										"value": "cell 1 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton3"
 										"text": "C1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 6,alignx center,growx 0"
+										"value": "cell 4 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton2"
 										"text": "B1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 6,alignx center,growx 0"
+										"value": "cell 3 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton4"
 										"text": "D1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 6,alignx center,growx 0"
+										"value": "cell 6 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton5"
 										"text": "E1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 6,alignx center,growx 0"
+										"value": "cell 7 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton6"
 										"text": "F1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 6,alignx center,growx 0"
+										"value": "cell 8 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton7"
 										"text": "G1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 6,alignx center,growx 0"
+										"value": "cell 10 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton8"
 										"text": "H1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 6,alignx center,growx 0"
+										"value": "cell 11 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton9"
 										"text": "I1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 6,alignx center,growx 0"
+										"value": "cell 12 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton10"
 										"text": "J1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 6,alignx center,growx 0"
+										"value": "cell 14 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton11"
 										"text": "K1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 6,alignx center,growx 0"
+										"value": "cell 15 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton12"
 										"text": "L1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 6,alignx center,growx 0"
+										"value": "cell 16 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton13"
 										"text": "M1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 6,alignx center,growx 0"
+										"value": "cell 18 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton14"
 										"text": "N1"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 6,alignx center,growx 0"
+										"value": "cell 19 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton15"
 										"text": "A2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 7,alignx center,growx 0"
+										"value": "cell 1 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton16"
 										"text": "B2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 7,alignx center,growx 0"
+										"value": "cell 3 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton17"
 										"text": "C2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 7,alignx center,growx 0"
+										"value": "cell 4 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton18"
 										"text": "D2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 7,alignx center,growx 0"
+										"value": "cell 6 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton19"
 										"text": "E2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 7,alignx center,growx 0"
+										"value": "cell 7 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton20"
 										"text": "F2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 7,alignx center,growx 0"
+										"value": "cell 8 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton21"
 										"text": "G2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 7,alignx center,growx 0"
+										"value": "cell 10 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton22"
 										"text": "H2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 7,alignx center,growx 0"
+										"value": "cell 11 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton23"
 										"text": "I2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 7,alignx center,growx 0"
+										"value": "cell 12 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton24"
 										"text": "J2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 7,alignx center,growx 0"
+										"value": "cell 14 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton25"
 										"text": "K2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 7,alignx center,growx 0"
+										"value": "cell 15 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton26"
 										"text": "L2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 7,alignx center,growx 0"
+										"value": "cell 16 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton27"
 										"text": "M2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 7,alignx center,growx 0"
+										"value": "cell 18 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton28"
 										"text": "N2"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 7,alignx center,growx 0"
+										"value": "cell 19 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton29"
 										"text": "A3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 9,alignx center,growx 0"
+										"value": "cell 1 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton30"
 										"text": "B3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 9,alignx center,growx 0"
+										"value": "cell 3 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton31"
 										"text": "C3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 9,alignx center,growx 0"
+										"value": "cell 4 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton32"
 										"text": "D3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 9,alignx center,growx 0"
+										"value": "cell 6 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton33"
 										"text": "E3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 9,alignx center,growx 0"
+										"value": "cell 7 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton34"
 										"text": "F3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 9,alignx center,growx 0"
+										"value": "cell 8 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton35"
 										"text": "G3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 9,alignx center,growx 0"
+										"value": "cell 10 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton36"
 										"text": "H3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 9,alignx center,growx 0"
+										"value": "cell 11 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton37"
 										"text": "I3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 9,alignx center,growx 0"
+										"value": "cell 12 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton38"
 										"text": "J3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 9,alignx center,growx 0"
+										"value": "cell 14 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton39"
 										"text": "K3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 9,alignx center,growx 0"
+										"value": "cell 15 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton40"
 										"text": "L3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 9,alignx center,growx 0"
+										"value": "cell 16 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton41"
 										"text": "M3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 9,alignx center,growx 0"
+										"value": "cell 18 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton42"
 										"text": "N3"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 9,alignx center,growx 0"
+										"value": "cell 19 10,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton43"
 										"text": "A4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 10,alignx center,growx 0"
+										"value": "cell 1 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton44"
 										"text": "B4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 10,alignx center,growx 0"
+										"value": "cell 3 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton45"
 										"text": "C4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 10,alignx center,growx 0"
+										"value": "cell 4 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton46"
 										"text": "D4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 10,alignx center,growx 0"
+										"value": "cell 6 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton47"
 										"text": "E4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 10,alignx center,growx 0"
+										"value": "cell 7 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton48"
 										"text": "F4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 10,alignx center,growx 0"
+										"value": "cell 8 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton49"
 										"text": "G4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 10,alignx center,growx 0"
+										"value": "cell 10 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton50"
 										"text": "H4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 10,alignx center,growx 0"
+										"value": "cell 11 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton51"
 										"text": "I4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 10,alignx center,growx 0"
+										"value": "cell 12 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton52"
 										"text": "J4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 10,alignx center,growx 0"
+										"value": "cell 14 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton53"
 										"text": "K4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 10,alignx center,growx 0"
+										"value": "cell 15 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton54"
 										"text": "L4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 10,alignx center,growx 0"
+										"value": "cell 16 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton55"
 										"text": "M4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 10,alignx center,growx 0"
+										"value": "cell 18 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton56"
 										"text": "N4"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 10,alignx center,growx 0"
+										"value": "cell 19 11,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton57"
 										"text": "A5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 12,alignx center,growx 0"
+										"value": "cell 1 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton58"
 										"text": "B5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 12,alignx center,growx 0"
+										"value": "cell 3 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton59"
 										"text": "C5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 12,alignx center,growx 0"
+										"value": "cell 4 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton60"
 										"text": "D5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 12,alignx center,growx 0"
+										"value": "cell 6 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton61"
 										"text": "E5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 12,alignx center,growx 0"
+										"value": "cell 7 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton62"
 										"text": "F5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 12,alignx center,growx 0"
+										"value": "cell 8 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton63"
 										"text": "G5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 12,alignx center,growx 0"
+										"value": "cell 10 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton64"
 										"text": "H5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 12,alignx center,growx 0"
+										"value": "cell 11 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton65"
 										"text": "I5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 12,alignx center,growx 0"
+										"value": "cell 12 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton66"
 										"text": "J5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 12,alignx center,growx 0"
+										"value": "cell 14 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton67"
 										"text": "K5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 12,alignx center,growx 0"
+										"value": "cell 15 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton68"
 										"text": "L5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 12,alignx center,growx 0"
+										"value": "cell 16 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton69"
 										"text": "M5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 12,alignx center,growx 0"
+										"value": "cell 18 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton70"
 										"text": "N5"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 12,alignx center,growx 0"
+										"value": "cell 19 13,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton71"
 										"text": "A6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 13,alignx center,growx 0"
+										"value": "cell 1 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton72"
 										"text": "B6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 13,alignx center,growx 0"
+										"value": "cell 3 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton73"
 										"text": "C6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 13,alignx center,growx 0"
+										"value": "cell 4 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton74"
 										"text": "D6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 13,alignx center,growx 0"
+										"value": "cell 6 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton75"
 										"text": "E6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 13,alignx center,growx 0"
+										"value": "cell 7 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton76"
 										"text": "F6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 13,alignx center,growx 0"
+										"value": "cell 8 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton77"
 										"text": "G6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 13,alignx center,growx 0"
+										"value": "cell 10 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton78"
 										"text": "H6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 13,alignx center,growx 0"
+										"value": "cell 11 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton79"
 										"text": "I6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 13,alignx center,growx 0"
+										"value": "cell 12 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton80"
 										"text": "J6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 13,alignx center,growx 0"
+										"value": "cell 14 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton81"
 										"text": "K6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 13,alignx center,growx 0"
+										"value": "cell 15 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton82"
 										"text": "L6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 13,alignx center,growx 0"
+										"value": "cell 16 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton83"
 										"text": "M6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 13,alignx center,growx 0"
+										"value": "cell 18 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton84"
 										"text": "N6"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 13,alignx center,growx 0"
+										"value": "cell 19 14,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton85"
 										"text": "A7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 15,alignx center,growx 0"
+										"value": "cell 1 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton86"
 										"text": "B7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 15,alignx center,growx 0"
+										"value": "cell 3 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton87"
 										"text": "C7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 15,alignx center,growx 0"
+										"value": "cell 4 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton88"
 										"text": "D7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 15,alignx center,growx 0"
+										"value": "cell 6 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton89"
 										"text": "E7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 15,alignx center,growx 0"
+										"value": "cell 7 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton90"
 										"text": "F7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 15,alignx center,growx 0"
+										"value": "cell 8 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton91"
 										"text": "G7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 15,alignx center,growx 0"
+										"value": "cell 10 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton92"
 										"text": "H7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 15,alignx center,growx 0"
+										"value": "cell 11 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton93"
 										"text": "I7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 15,alignx center,growx 0"
+										"value": "cell 12 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton94"
 										"text": "J7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 15,alignx center,growx 0"
+										"value": "cell 14 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton95"
 										"text": "K7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 15,alignx center,growx 0"
+										"value": "cell 15 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton96"
 										"text": "L7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 15,alignx center,growx 0"
+										"value": "cell 16 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton97"
 										"text": "M7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 15,alignx center,growx 0"
+										"value": "cell 18 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton98"
 										"text": "N7"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 15,alignx center,growx 0"
+										"value": "cell 19 16,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton99"
 										"text": "A8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 16,alignx center,growx 0"
+										"value": "cell 1 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton100"
 										"text": "B8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 16,alignx center,growx 0"
+										"value": "cell 3 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton101"
 										"text": "C8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 16,alignx center,growx 0"
+										"value": "cell 4 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton102"
 										"text": "D8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 16,alignx center,growx 0"
+										"value": "cell 6 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton103"
 										"text": "E8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 16,alignx center,growx 0"
+										"value": "cell 7 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton104"
 										"text": "F8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 16,alignx center,growx 0"
+										"value": "cell 8 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton105"
 										"text": "G8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 16,alignx center,growx 0"
+										"value": "cell 10 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton106"
 										"text": "H8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 16,alignx center,growx 0"
+										"value": "cell 11 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton107"
 										"text": "I8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 16,alignx center,growx 0"
+										"value": "cell 12 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton108"
 										"text": "J8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 16,alignx center,growx 0"
+										"value": "cell 14 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton109"
 										"text": "K8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 16,alignx center,growx 0"
+										"value": "cell 15 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton110"
 										"text": "L8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 16,alignx center,growx 0"
+										"value": "cell 16 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton111"
 										"text": "M8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 16,alignx center,growx 0"
+										"value": "cell 18 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton112"
 										"text": "N8"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 16,alignx center,growx 0"
+										"value": "cell 19 17,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton113"
 										"text": "A9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 18,alignx center,growx 0"
+										"value": "cell 1 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton114"
 										"text": "B9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 18,alignx center,growx 0"
+										"value": "cell 3 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton115"
 										"text": "C9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 18,alignx center,growx 0"
+										"value": "cell 4 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton116"
 										"text": "D9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 18,alignx center,growx 0"
+										"value": "cell 6 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton117"
 										"text": "E9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 18,alignx center,growx 0"
+										"value": "cell 7 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton118"
 										"text": "F9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 18,alignx center,growx 0"
+										"value": "cell 8 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton119"
 										"text": "G9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 18,alignx center,growx 0"
+										"value": "cell 10 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton120"
 										"text": "H9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 18,alignx center,growx 0"
+										"value": "cell 11 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton121"
 										"text": "I9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 18,alignx center,growx 0"
+										"value": "cell 12 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton122"
 										"text": "J9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 18,alignx center,growx 0"
+										"value": "cell 14 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton123"
 										"text": "K9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 18,alignx center,growx 0"
+										"value": "cell 15 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton124"
 										"text": "L9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 18,alignx center,growx 0"
+										"value": "cell 16 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton125"
 										"text": "M9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 18,alignx center,growx 0"
+										"value": "cell 18 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton126"
 										"text": "N9"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 18,alignx center,growx 0"
+										"value": "cell 19 19,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton127"
 										"text": "A10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 19,alignx center,growx 0"
+										"value": "cell 1 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton128"
 										"text": "B10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 19,alignx center,growx 0"
+										"value": "cell 3 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton129"
 										"text": "C10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 19,alignx center,growx 0"
+										"value": "cell 4 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton130"
 										"text": "D10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 19,alignx center,growx 0"
+										"value": "cell 6 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton131"
 										"text": "E10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 19,alignx center,growx 0"
+										"value": "cell 7 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton132"
 										"text": "F10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 19,alignx center,growx 0"
+										"value": "cell 8 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton133"
 										"text": "G10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 19,alignx center,growx 0"
+										"value": "cell 10 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton134"
 										"text": "H10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 19,alignx center,growx 0"
+										"value": "cell 11 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton135"
 										"text": "I10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 19,alignx center,growx 0"
+										"value": "cell 12 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton136"
 										"text": "J10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 19,alignx center,growx 0"
+										"value": "cell 14 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton137"
 										"text": "K10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 19,alignx center,growx 0"
+										"value": "cell 15 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton138"
 										"text": "L10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 19,alignx center,growx 0"
+										"value": "cell 16 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton139"
 										"text": "M10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 19,alignx center,growx 0"
+										"value": "cell 18 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "radioButton140"
 										"text": "N10"
 										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "seatButtonActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 19,alignx center,growx 0"
+										"value": "cell 19 20,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label17"
@@ -1081,10 +1081,11 @@ new FormModel {
 										"value": "cell 2 0 2 1,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JButton" ) {
-										name: "button2"
+										name: "reserveButton"
 										"text": "确认预定"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
 										"foreground": new java.awt.Color( 255, 255, 255, 255 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "reserveButtonMouseReleased", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 4 0,alignx center,growx 0"
 									} )
@@ -1103,176 +1104,195 @@ new FormModel {
 										"value": "cell 16 0 4 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label57"
+										"text": "预定日期"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 1"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "comboBox1"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										"model": new javax.swing.DefaultComboBoxModel {
+											selectedItem: "明天"
+											addElement( "明天" )
+											addElement( "后一天" )
+											addElement( "后二天" )
+										}
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label18"
 										"text": "座位总数"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 1 2 1,alignx right,growx 0"
+										"value": "cell 0 2 2 1,alignx right,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "totalNumber"
 										"text": "0"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 1 2 1"
+										"value": "cell 0 2 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label20"
 										"text": "可预定数"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 2 2 1,alignx right,growx 0"
+										"value": "cell 0 3 2 1,alignx right,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "selectNumber"
 										"text": "0"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 2 2 1"
+										"value": "cell 0 3 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label22"
 										"text": "A"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 4,alignx center,growx 0"
+										"value": "cell 1 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label23"
 										"text": "B"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 3 4,alignx center,growx 0"
+										"value": "cell 3 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label24"
 										"text": "C"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 4,alignx center,growx 0"
+										"value": "cell 4 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label25"
 										"text": "D"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 4,alignx center,growx 0"
+										"value": "cell 6 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label26"
 										"text": "E"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 7 4,alignx center,growx 0"
+										"value": "cell 7 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label27"
 										"text": "F"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 8 4,alignx center,growx 0"
+										"value": "cell 8 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label28"
 										"text": "G"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 10 4,alignx center,growx 0"
+										"value": "cell 10 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label29"
 										"text": "H"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 11 4,alignx center,growx 0"
+										"value": "cell 11 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label30"
 										"text": "I"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 12 4,alignx center,growx 0"
+										"value": "cell 12 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label41"
 										"text": "J"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 14 4,alignx center,growx 0"
+										"value": "cell 14 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label42"
 										"text": "K"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 15 4,alignx center,growx 0"
+										"value": "cell 15 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label43"
 										"text": "L"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 16 4,alignx center,growx 0"
+										"value": "cell 16 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label44"
 										"text": "M"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 18 4,alignx center,growx 0"
+										"value": "cell 18 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label45"
 										"text": "N"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 19 4,alignx center,growx 0"
+										"value": "cell 19 5,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label31"
 										"text": "1"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 6"
+										"value": "cell 0 7"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label32"
 										"text": "2"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 7"
+										"value": "cell 0 8"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label33"
 										"text": "3"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 9"
+										"value": "cell 0 10"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label34"
 										"text": "4"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 10"
+										"value": "cell 0 11"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label35"
 										"text": "5"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 12"
+										"value": "cell 0 13"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label36"
 										"text": "6"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 13"
+										"value": "cell 0 14"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label37"
 										"text": "7"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 15"
+										"value": "cell 0 16"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label38"
 										"text": "8"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 16"
+										"value": "cell 0 17"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label39"
 										"text": "9"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 18"
+										"value": "cell 0 19"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label40"
 										"text": "10"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 19"
+										"value": "cell 0 20"
 									} )
 								}, new FormLayoutConstraints( null ) {
 									"title": "查看座位"
@@ -1293,13 +1313,23 @@ new FormModel {
 									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 										name: "scrollPane4"
 										add( new FormComponent( "javax.swing.JList" ) {
-											name: "list1"
+											name: "logList"
 											"model": new javax.swing.DefaultListModel {
+												addElement( "你已成功预定了 图书馆一楼 A2 号座位" )
+												addElement( "你已取消预定 图书馆二楼 D9 号座位！" )
+												addElement( "你已成功预定了 图书馆二楼 D9 号座位" )
+												addElement( "你已成功预定了 图书馆一楼 A2 号座位" )
+												addElement( "你已取消预定 图书馆二楼 D9 号座位！" )
+												addElement( "你已成功预定了 图书馆二楼 D9 号座位" )
+												addElement( "你已成功预定了 图书馆一楼 A2 号座位" )
+												addElement( "你已取消预定 图书馆二楼 D9 号座位！" )
+												addElement( "你已成功预定了 图书馆二楼 D9 号座位" )
 												addElement( "你已成功预定了 图书馆一楼 A2 号座位" )
 												addElement( "你已取消预定 图书馆二楼 D9 号座位！" )
 												addElement( "你已成功预定了 图书馆二楼 D9 号座位" )
 											}
 											"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+											addEvent( new FormEvent( "javax.swing.event.ListSelectionListener", "valueChanged", "list1ValueChanged", true ) )
 										} )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 0 2 3 1,dock center"
