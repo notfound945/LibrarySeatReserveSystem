@@ -1,5 +1,6 @@
 package cn.fyl.service;
 
+import cn.fyl.domain.Admin;
 import cn.fyl.domain.User;
 
 import java.util.List;
@@ -11,11 +12,13 @@ import java.util.List;
 public abstract interface Service {
 
     /**
-     * 用户验证业务
+     * 普通用户验证业务
      * @return User User实体
      * @param user User实体
      */
     User verify(User user);
+
+    Admin verify(Admin admin);
 
     /**
      * 读入文件操作
@@ -23,4 +26,10 @@ public abstract interface Service {
      * @return List 数据
      */
     List<String[]> readFile(String path);
+
+    /**
+     * 读入文件
+     * @param path
+     */
+    void readFileByRandomAccess(String path, String userName);
 }

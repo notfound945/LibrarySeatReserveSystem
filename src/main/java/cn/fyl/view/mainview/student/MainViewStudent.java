@@ -2,12 +2,11 @@
  * Created by JFormDesigner on Thu Jun 25 12:47:12 CST 2020
  */
 
-package cn.fyl.view.mainview;
-
-import javax.swing.event.*;
+package cn.fyl.view.mainview.student;
 
 import cn.fyl.dao.impl.LogDaoImpl;
 import cn.fyl.dao.impl.SeatDaoImpl;
+import cn.fyl.dao.impl.UserDaoImpl;
 import cn.fyl.domain.Log;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
@@ -17,6 +16,7 @@ import cn.fyl.view.login.LoginView;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
@@ -28,18 +28,19 @@ import java.util.Iterator;
 /**
  * @author fyl
  */
-public class MainView extends JFrame {
-    private ServiceImpl serviceImpl = new ServiceImpl();
+public class MainViewStudent extends JFrame {
     private SeatDaoImpl seatDaoImpl = new SeatDaoImpl();
+    private UserDaoImpl userDaoImpl = new UserDaoImpl();
     private LogDaoImpl logDaoImpl = new LogDaoImpl();
     private ButtonGroup seatButtonGroup = new ButtonGroup();
+    private ServiceImpl serviceImpl = new ServiceImpl();
     private String selectSeat;
-    private long selectTime;
     private int floor = 1;
     private Timer time;
     private User user;
+    private String modifySex = "保密";
 
-    public MainView(User user) {
+    public MainViewStudent(User user) {
         initComponents();
         // 获取当前登录用户
         getButtonGroup();
@@ -57,6 +58,7 @@ public class MainView extends JFrame {
         loadTime();
         loadUserInfo();
         getLogList();
+        serviceImpl.readFileByRandomAccess("src/main/resources/loginLog.txt", this.user.getUserName());
     }
 
     /**
@@ -266,6 +268,7 @@ public class MainView extends JFrame {
         this.age.setText(String.valueOf(this.user.getAge()));
         this.grade.setText(this.user.getGrade());
         this.phone.setText(this.user.getPhone());
+        this.descriptionText.setText(this.user.getDescription());
 
         // 个人信息修改
         this.modifyName.setText(this.user.getName());
@@ -284,11 +287,13 @@ public class MainView extends JFrame {
         }
         int age = this.user.getAge();
         if (age < 16) {
+            age = 16;
             this.user.setAge(16);
         }
-        age = 16;
+        this.modifyGrade.setText(this.user.getGrade());
         this.modifyAge.setSelectedIndex(age - 16);
         this.modifyPhone.setText(this.user.getPhone());
+        this.modifyDescription.setText(this.user.getDescription());
     }
 
     /**
@@ -304,6 +309,10 @@ public class MainView extends JFrame {
         time.start();
     }
 
+    /**
+     * 退出按钮
+     * @param e
+     */
     private void exitButtonMouseReleased(MouseEvent e) {
         System.exit(0);
     }
@@ -311,6 +320,10 @@ public class MainView extends JFrame {
     private void createUIComponents() {
     }
 
+    /**
+     * 切换用户按钮
+     * @param e
+     */
     private void switchUserButtonMouseReleased(MouseEvent e) {
         this.dispose();
         this.user = null;
@@ -370,12 +383,12 @@ public class MainView extends JFrame {
         String password = this.modifyPassword.getText();
         String confirmPassword = this.modifyConfirmPassword.getText();
         if (password.equals("") || confirmPassword.equals("")) {
-            System.out.println("密码为空");
+            new ProxyOkDialog(this, "检验不通过", "密码信息不完整", "你没有填写完整的密码信息", "请填写完整再继续。").setVisible(true);
         } else {
             if (password.equals(confirmPassword)) {
-                System.out.println("密码一致");
+                new ProxyOkDialog(this, "检验通过", "校验通过", "你输入的密码通过校验", "").setVisible(true);
             } else {
-                System.out.println("两次输入的密码不一致 ");
+                new ProxyOkDialog(this, "检验不通过", "校验不通过", "你两次输入的密码不一致", "请核对后重试。").setVisible(true);
             }
         }
     }
@@ -442,6 +455,47 @@ public class MainView extends JFrame {
         } else {
             new ProxyOkDialog(null, "提示", "请选择座位", "你还没有选择座位", "请选择座位再确认。").setVisible(true);
         }
+    }
+
+    /**
+     * 确认修改信息
+     * @param e
+     */
+    private void confirmModifyButtonMouseReleased(MouseEvent e) {
+        String name = this.modifyName.getText();
+        String userName =this.modifyUserName.getText();
+        String phone = this.modifyPhone.getText();
+        String sex = this.modifySex;
+        String password = this.modifyPassword.getText();
+        String grade = this.modifyGrade.getText();
+        int age = this.modifyAge.getSelectedIndex() + 16;
+        String description = this.modifyDescription.getText();
+        User user = new User(this.user.getId(), userName, name, age, sex, password, phone, grade, description);
+        System.out.println(user);
+        if (name.equals("") || phone.equals("") || sex.equals("") || grade.equals("")) {
+            new ProxyOkDialog(this, "检验不通过", "用户信息不完整", "你没有填写完整的用户信息", "请填写完整再继续。").setVisible(true);
+        } else {
+            boolean isSuccess = userDaoImpl.modifyUserInfo(user);
+            if (isSuccess) {
+                new ProxyOkDialog(this, "修改成功", "修改信息成功", this.user.getName() + " 的用户信息修改成功", "信息将于下次启动应用时刷新。").setVisible(true);
+            } else {
+                new ProxyOkDialog(this, "修改失败", "修改信息失败", "用户信息修改失败", "请重试。").setVisible(true);
+            }
+        }
+
+    }
+
+    /**
+     * 监听选择性别
+     * @param e
+     */
+    private void modifySexManActionPerformed(ActionEvent e) {
+        this.modifySex = e.getActionCommand();
+    }
+
+    private void importUserButtonMouseReleased(MouseEvent e) {
+        JFileChooser fc=new JFileChooser("C:\\");
+        int val=fc.showOpenDialog(null);
     }
 
     private void initComponents() {
@@ -657,7 +711,7 @@ public class MainView extends JFrame {
         label52 = new JLabel();
         phone = new JLabel();
         label54 = new JLabel();
-        description = new JLabel();
+        descriptionText = new JLabel();
         panel12 = new JPanel();
         label62 = new JLabel();
         modifyUserName = new JTextField();
@@ -681,7 +735,7 @@ public class MainView extends JFrame {
         label69 = new JLabel();
         scrollPane6 = new JScrollPane();
         modifyDescription = new JTextPane();
-        adminPanel = new JPanel();
+        confirmModifyButton = new JButton();
         panel4 = new JPanel();
         tabbedPane2 = new JTabbedPane();
         panel5 = new JPanel();
@@ -719,11 +773,13 @@ public class MainView extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-            0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-            . BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-            red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-            beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+            swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border
+            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog"
+            ,java.awt.Font.BOLD,12),java.awt.Color.red),dialogPane. getBorder
+            ()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+            .beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException
+            ();}});
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -1932,10 +1988,10 @@ public class MainView extends JFrame {
                                 label54.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 panel10.add(label54, "cell 0 7,alignx center,growx 0");
 
-                                //---- description ----
-                                description.setText("\u5e38\u4e0e\u540c\u597d\u4e89\u5929\u4e0b\uff0c\n\u4e0d\u5171\u50bb\u74dc\u8bba\u957f\u77ed\u3002");
-                                description.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel10.add(description, "cell 1 7 6 2");
+                                //---- descriptionText ----
+                                descriptionText.setText("\u5e38\u4e0e\u540c\u597d\u4e89\u5929\u4e0b\uff0c\n\u4e0d\u5171\u50bb\u74dc\u8bba\u957f\u77ed\u3002");
+                                descriptionText.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                panel10.add(descriptionText, "cell 1 7 6 2");
                             }
                             panel9.addTab("\u4e2a\u4eba\u4fe1\u606f", panel10);
 
@@ -1964,55 +2020,60 @@ public class MainView extends JFrame {
                                     "[]" +
                                     "[]" +
                                     "[]" +
+                                    "[]" +
+                                    "[]" +
                                     "[]"));
 
                                 //---- label62 ----
                                 label62.setText("\u7528\u6237\u540d\uff1a");
                                 label62.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label62, "cell 0 1,alignx center,growx 0");
+                                panel12.add(label62, "cell 0 2,alignx center,growx 0");
 
                                 //---- modifyUserName ----
                                 modifyUserName.setEnabled(false);
                                 modifyUserName.setEditable(false);
                                 modifyUserName.setText("Unknown");
                                 modifyUserName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(modifyUserName, "cell 1 1 2 1");
+                                panel12.add(modifyUserName, "cell 1 2 2 1");
 
                                 //---- label64 ----
                                 label64.setText("\u6027\u522b\uff1a");
                                 label64.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label64, "cell 4 1,alignx center,growx 0");
+                                panel12.add(label64, "cell 4 2,alignx center,growx 0");
 
                                 //---- modifySexSerect ----
                                 modifySexSerect.setText("\u4fdd\u5bc6");
                                 modifySexSerect.setSelected(true);
                                 modifySexSerect.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(modifySexSerect, "cell 5 1");
+                                modifySexSerect.addActionListener(e -> modifySexManActionPerformed(e));
+                                panel12.add(modifySexSerect, "cell 5 2");
 
                                 //---- modifySexMan ----
                                 modifySexMan.setText("\u7537");
                                 modifySexMan.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(modifySexMan, "cell 5 1");
+                                modifySexMan.addActionListener(e -> modifySexManActionPerformed(e));
+                                panel12.add(modifySexMan, "cell 5 2");
 
                                 //---- modifySexWoman ----
                                 modifySexWoman.setText("\u5973");
                                 modifySexWoman.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(modifySexWoman, "cell 5 1");
+                                modifySexWoman.addActionListener(e -> modifySexManActionPerformed(e));
+                                panel12.add(modifySexWoman, "cell 5 2");
 
                                 //---- label63 ----
                                 label63.setText("\u59d3\u540d\uff1a");
                                 label63.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label63, "cell 0 3,alignx center,growx 0");
+                                panel12.add(label63, "cell 0 4,alignx center,growx 0");
 
                                 //---- modifyName ----
                                 modifyName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 modifyName.setText("\u9ed8\u8ba4\u59d3\u540d");
-                                panel12.add(modifyName, "cell 1 3 2 1");
+                                panel12.add(modifyName, "cell 1 4 2 1");
 
                                 //---- label65 ----
                                 label65.setText("\u5e74\u9f84\uff1a");
                                 label65.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label65, "cell 4 3,alignx center,growx 0");
+                                panel12.add(label65, "cell 4 4,alignx center,growx 0");
 
                                 //---- modifyAge ----
                                 modifyAge.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -2030,44 +2091,44 @@ public class MainView extends JFrame {
                                 }));
                                 modifyAge.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 modifyAge.setSelectedIndex(4);
-                                panel12.add(modifyAge, "cell 5 3");
+                                panel12.add(modifyAge, "cell 5 4");
 
                                 //---- label68 ----
                                 label68.setText("\u73ed\u7ea7\uff1a");
                                 label68.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label68, "cell 0 5,alignx center,growx 0");
+                                panel12.add(label68, "cell 0 6,alignx center,growx 0");
 
                                 //---- modifyGrade ----
                                 modifyGrade.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 modifyGrade.setText("18\u7ea7\u4e94\u73ed");
-                                panel12.add(modifyGrade, "cell 1 5 2 1");
+                                panel12.add(modifyGrade, "cell 1 6 2 1");
 
                                 //---- label55 ----
                                 label55.setText("\u8054\u7cfb\u624b\u673a\uff1a");
                                 label55.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label55, "cell 4 5,alignx center,growx 0");
+                                panel12.add(label55, "cell 4 6,alignx center,growx 0");
 
                                 //---- modifyPhone ----
                                 modifyPhone.setText("15874432398");
-                                panel12.add(modifyPhone, "cell 5 5");
+                                panel12.add(modifyPhone, "cell 5 6");
 
                                 //---- label66 ----
                                 label66.setText("\u65b0\u7684\u5bc6\u7801\uff1a");
                                 label66.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label66, "cell 0 7,alignx center,growx 0");
+                                panel12.add(label66, "cell 0 8,alignx center,growx 0");
 
                                 //---- modifyPassword ----
                                 modifyPassword.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
-                                panel12.add(modifyPassword, "cell 1 7 2 1");
+                                panel12.add(modifyPassword, "cell 1 8 2 1");
 
                                 //---- label67 ----
                                 label67.setText("\u5bc6\u7801\u786e\u8ba4\uff1a");
                                 label67.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label67, "cell 4 7,alignx center,growx 0");
+                                panel12.add(label67, "cell 4 8,alignx center,growx 0");
 
                                 //---- modifyConfirmPassword ----
                                 modifyConfirmPassword.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 14));
-                                panel12.add(modifyConfirmPassword, "cell 5 7");
+                                panel12.add(modifyConfirmPassword, "cell 5 8");
 
                                 //---- checkPasswordButton ----
                                 checkPasswordButton.setText("\u68c0\u67e5\u5bc6\u7801");
@@ -2078,34 +2139,31 @@ public class MainView extends JFrame {
                                         checkPasswordButtonMouseReleased(e);
                                     }
                                 });
-                                panel12.add(checkPasswordButton, "cell 6 7,alignx center,growx 0");
+                                panel12.add(checkPasswordButton, "cell 6 8,alignx center,growx 0");
 
                                 //---- label69 ----
                                 label69.setText("\u4fee\u6539\u7b7e\u540d\uff1a");
                                 label69.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                panel12.add(label69, "cell 0 9,alignx center,growx 0");
+                                panel12.add(label69, "cell 0 10,alignx center,growx 0");
 
                                 //======== scrollPane6 ========
                                 {
                                     scrollPane6.setViewportView(modifyDescription);
                                 }
-                                panel12.add(scrollPane6, "cell 1 9 6 3,hmin 100");
+                                panel12.add(scrollPane6, "cell 1 10 6 3,hmin 100");
+
+                                //---- confirmModifyButton ----
+                                confirmModifyButton.setText("\u4fee\u6539\u4fe1\u606f");
+                                confirmModifyButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                confirmModifyButton.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent e) {
+                                        confirmModifyButtonMouseReleased(e);
+                                    }
+                                });
+                                panel12.add(confirmModifyButton, "cell 6 13");
                             }
                             panel9.addTab("\u4fee\u6539\u4fe1\u606f", panel12);
-
-                            //======== adminPanel ========
-                            {
-                                adminPanel.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
-                            }
-                            panel9.addTab("\u67e5\u770b\u7528\u6237\uff08\u7ba1\u7406\u5458\uff09", adminPanel);
                         }
                         panel3.add(panel9, "cell 0 0,dock center");
                     }
@@ -2348,7 +2406,6 @@ public class MainView extends JFrame {
                     @Override
                     public void mouseReleased(MouseEvent e) {
                         switchUserButtonMouseReleased(e);
-                        switchUserButtonMouseReleased(e);
                     }
                 });
                 buttonBar.add(switchUserButton, "cell 3 0");
@@ -2590,7 +2647,7 @@ public class MainView extends JFrame {
     private JLabel label52;
     private JLabel phone;
     private JLabel label54;
-    private JLabel description;
+    private JLabel descriptionText;
     private JPanel panel12;
     private JLabel label62;
     private JTextField modifyUserName;
@@ -2614,7 +2671,7 @@ public class MainView extends JFrame {
     private JLabel label69;
     private JScrollPane scrollPane6;
     private JTextPane modifyDescription;
-    private JPanel adminPanel;
+    private JButton confirmModifyButton;
     private JPanel panel4;
     private JTabbedPane tabbedPane2;
     private JPanel panel5;

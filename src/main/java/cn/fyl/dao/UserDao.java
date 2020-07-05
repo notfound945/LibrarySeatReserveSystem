@@ -15,16 +15,16 @@ import java.util.Map;
 public interface UserDao {
     /**
      * 查询所有 User
-     * @return 键值对List对象
+     * @return 键值对HashMap对象
      */
-    HashMap<Integer, User> getAll();
+    HashMap<Integer, ? extends User> getAll();
 
     /**
      * 根据 id 查找用户
      * @param id 用户ID
      * @return User用户对象
      */
-    User queryByID(int id);
+    User queryByUserName(String userName);
 
     /**
      * 添加用户
@@ -60,5 +60,5 @@ public interface UserDao {
      * @param id 用户id
      * @return boolean 布尔值
      */
-    boolean deleteUser(int id);
+    boolean deleteUser(String userName);
 }

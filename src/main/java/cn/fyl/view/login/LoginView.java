@@ -4,11 +4,13 @@
 
 package cn.fyl.view.login;
 
+import cn.fyl.domain.Admin;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.dialog.ProcessLoading;
 import cn.fyl.view.dialog.ProxyOkDialog;
-import cn.fyl.view.mainview.MainView;
+import cn.fyl.view.mainview.admin.MainViewAdmin;
+import cn.fyl.view.mainview.student.MainViewStudent;
 import cn.fyl.view.register.Register;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.beansbinding.BindingGroup;
@@ -25,9 +27,11 @@ import java.awt.event.MouseEvent;
  * @author notfound
  */
 public class LoginView extends JFrame {
+    private Admin admin = new Admin();
     private User user = new User();
     private ServiceImpl serviceImpl = new ServiceImpl();
     private ProcessLoading processLoading = new ProcessLoading(this);
+    private boolean isAdmin = false;
 
     public LoginView() {
         initComponents();
@@ -41,6 +45,7 @@ public class LoginView extends JFrame {
 
     /**
      * 表单检查
+     *
      * @return
      */
     private boolean check() {
@@ -50,22 +55,34 @@ public class LoginView extends JFrame {
             new ProxyOkDialog(this, "检验不通过", "表单信息不完整", "用户名或密码未填写", "请检查后重试。").setVisible(true);
             return false;
         } else {
+            // 判断是否为管理员登录
+            if (userName.substring(0, 1).equals("#")) {
+                this.isAdmin = true;
+            }
             processLoading.setVisible(true);
-            user.setUserName(userName);
-            user.setPasswd(password);
+            if (isAdmin) {
+                admin.setUserName(userName);
+                admin.setPassword(password);
+            } else {
+                user.setUserName(userName);
+                user.setPasswd(password);
+            }
             return true;
         }
     }
 
     /**
      * 用户验证
+     *
      * @return
      */
     private boolean verify() {
         if (check()) {
             User user1 = serviceImpl.verify(user);
-            if (user1 != null) {
+            Admin admin1 = serviceImpl.verify(admin);
+            if (user1 != null || admin1 != null) {
                 user = user1;
+                admin = admin1;
                 return true;
             } else {
                 new ProxyOkDialog(this, "认证失败", "登录失败", "用户名或密码错误", "请核对后重试。").setVisible(true);
@@ -85,9 +102,15 @@ public class LoginView extends JFrame {
      */
     private void Login() {
         if (verify()) {
-            new ProxyOkDialog(this, "认证通过", "登录成功", "欢迎 " + this.user.getName(), "").setVisible(true);
-            this.dispose();
-            new MainView(user).setVisible(true);
+            if (isAdmin) {
+                new ProxyOkDialog(this, "认证通过", "登录成功", "欢迎管理员 " + this.admin.getName(), "").setVisible(true);
+                this.dispose();
+                new MainViewAdmin(admin).setVisible(true);
+            } else {
+                new ProxyOkDialog(this, "认证通过", "登录成功", "欢迎 " + this.user.getName(), "").setVisible(true);
+                this.dispose();
+                new MainViewStudent(user).setVisible(true);
+            }
         }
         processLoading.dispose();
     }

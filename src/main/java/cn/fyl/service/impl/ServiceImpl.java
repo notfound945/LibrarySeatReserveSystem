@@ -1,15 +1,16 @@
 package cn.fyl.service.impl;
 
+import cn.fyl.dao.impl.AdminDaoImpl;
 import cn.fyl.dao.impl.UserDaoImpl;
+import cn.fyl.domain.Admin;
 import cn.fyl.domain.User;
 import cn.fyl.service.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class ServiceImpl implements Service {
     }
 
     /**
-     * 用户验证业务
+     * 普通用户验证业务
      */
     @Override
     public User verify(User user) {
@@ -35,6 +36,47 @@ public class ServiceImpl implements Service {
         } else {
             System.out.println("登录失败");
             return null;
+        }
+    }
+
+    /**
+     *
+     */
+    public Admin verify(Admin admin) {
+        Admin tempAdmin = new Admin();
+        AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
+        tempAdmin = adminDaoImpl.queryByUserNameAndPassword(admin.getUserName(), admin.getPassword());
+        if (tempAdmin != null) {
+            return tempAdmin;
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * 读入文件数据
+     * @param path
+     */
+    public void readFileByRandomAccess(String path, String userName) {
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        String week = new SimpleDateFormat("EEEE").format(new Date());
+        try {
+            File file = new File(path);
+            String line;
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+            System.out.println("登录日志：");
+            while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
+                line = randomAccessFile.readLine();
+                System.out.println(line);
+            }
+            randomAccessFile.writeBytes(System.lineSeparator());
+            String newLine = date + " - " + time  + " - " + week + " - " + userName;
+            randomAccessFile.writeUTF(newLine);
+            randomAccessFile.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -56,7 +98,7 @@ public class ServiceImpl implements Service {
                 String lineTxt = null;
 
                 while ((lineTxt = bufferedReader.readLine()) != null) {
-                    String[] temp = lineTxt.split(",");
+                    String[] temp = lineTxt.split("/t");
                     list.add(temp);
                 }
                 bufferedReader.close();

@@ -16,6 +16,7 @@ import cn.fyl.view.login.LoginView;
 import net.miginfocom.swing.*;
 
 /**
+ * 注册用户窗口
  * @author notfound
  */
 public class Register extends JFrame {
@@ -38,6 +39,10 @@ public class Register extends JFrame {
         new LoginView().setVisible(true);
     }
 
+    /**
+     * 确认注册
+     * @param e
+     */
     private void okButtonMouseReleased(MouseEvent e) {
         String userName = this.userNameTextField.getText();
         String name = this.nameTextField.getText();
@@ -46,20 +51,21 @@ public class Register extends JFrame {
         String grade = this.gradeTextField.getText();
         String phone = this.phoneTextField.getText();
         String password = this.passwordField.getText();
+        String description = this.descriptionTextArea.getText();
 
-        if (verify(userName, name, age, sex, password, phone, grade)) {
-            User user = new User(userName, name, age, sex, password, phone, grade);
+        if (verify(userName, name, age, sex, password, phone, grade, description)) {
+            User user = new User(userName, name, age, sex, password, phone, grade, description);
             boolean isSuccess = this.userDaoImpl.addUser(user);
             if (isSuccess) {
                 new ProxyOkDialog(this, "添加用户成功", "注册成功", "注册用户 " + userName + " 成功", "你现在可以用你新注册的用户进行登录了。").setVisible(true);
             } else {
-                new ProxyOkDialog(this, "添加用户失败", "注册用户失败", "注册用户 " + userName + " 时失败", "可能用户名已被注册").setVisible(true);
+                new ProxyOkDialog(this, "添加用户失败", "注册用户失败", "注册用户 " + userName + " 时失败", "可能用户名已被注册，请更换用户名。").setVisible(true);
             }
         }
     }
 
-    private boolean verify(String userName, String name, int age, String sex, String password, String phone, String grade) {
-        if (userName.equals("") || name.equals("") || age == 0 || sex.equals("") || password.equals("") || phone.equals("") || grade.equals("")) {
+    private boolean verify(String userName, String name, int age, String sex, String password, String phone, String grade, String description) {
+        if (userName.equals("") || name.equals("") || age == 0 || sex.equals("") || password.equals("") || phone.equals("") || grade.equals("") || description.equals("")) {
             new ProxyOkDialog(this, "检验失败", "提交表单不完整", "你提交的注册信息不完整", "请检查后再提交。").setVisible(true);
             return false;
         } else if (phone.length() != 11) {
@@ -107,6 +113,9 @@ public class Register extends JFrame {
         passwordField = new JPasswordField();
         label5 = new JLabel();
         confirmPasswordField = new JPasswordField();
+        label10 = new JLabel();
+        scrollPane1 = new JScrollPane();
+        descriptionTextArea = new JTextArea();
         buttonBar = new JPanel();
         okButton = new JButton();
         returnButton = new JButton();
@@ -119,13 +128,12 @@ public class Register extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-            javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax
-            .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-            .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-            .Color.red),dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.
-            PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".
-            equals(e.getPropertyName()))throw new RuntimeException();}});
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+            .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -151,68 +159,72 @@ public class Register extends JFrame {
                     "[]" +
                     "[]" +
                     "[]" +
-                    "[]"));
+                    "[]" +
+                    "[]" +
+                    "[]" +
+                    "[]" +
+                    "[39]"));
 
                 //---- label1 ----
                 label1.setText("\u6ce8\u518c\u7528\u6237");
                 label1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
-                contentPanel.add(label1, "cell 2 0 3 1,alignx center,growx 0");
+                contentPanel.add(label1, "cell 2 2 3 1,alignx center,growx 0");
 
                 //---- label2 ----
                 label2.setText("\u59d3\u540d");
                 label2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label2, "cell 2 2");
+                contentPanel.add(label2, "cell 2 4");
 
                 //---- nameTextField ----
                 nameTextField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(nameTextField, "cell 4 2");
+                contentPanel.add(nameTextField, "cell 4 4");
 
                 //---- label3 ----
                 label3.setText("\u7528\u6237\u540d");
                 label3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label3, "cell 2 3");
+                contentPanel.add(label3, "cell 2 5");
 
                 //---- userNameTextField ----
                 userNameTextField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(userNameTextField, "cell 4 3");
+                contentPanel.add(userNameTextField, "cell 4 5");
 
                 //---- label9 ----
                 label9.setText("\u6240\u6709\u9662\u7cfb\u73ed\u7ea7");
                 label9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label9, "cell 2 4");
+                contentPanel.add(label9, "cell 2 6");
 
                 //---- gradeTextField ----
                 gradeTextField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(gradeTextField, "cell 4 4");
+                contentPanel.add(gradeTextField, "cell 4 6");
 
                 //---- label8 ----
                 label8.setText("\u6027\u522b");
                 label8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label8, "cell 2 5");
+                contentPanel.add(label8, "cell 2 7");
 
                 //---- serectRadioButton ----
                 serectRadioButton.setText("\u4fdd\u5bc6");
                 serectRadioButton.setSelected(true);
                 serectRadioButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                 serectRadioButton.addActionListener(e -> serectRadioButtonActionPerformed(e));
-                contentPanel.add(serectRadioButton, "cell 4 5,alignx center,growx 0");
+                contentPanel.add(serectRadioButton, "cell 4 7,alignx center,growx 0");
 
                 //---- manRadioButton ----
                 manRadioButton.setText("\u7537");
                 manRadioButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                 manRadioButton.addActionListener(e -> serectRadioButtonActionPerformed(e));
-                contentPanel.add(manRadioButton, "cell 4 5,alignx center,growx 0");
+                contentPanel.add(manRadioButton, "cell 4 7,alignx center,growx 0");
 
                 //---- womanRadioButton ----
                 womanRadioButton.setText("\u5973");
                 womanRadioButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                 womanRadioButton.addActionListener(e -> serectRadioButtonActionPerformed(e));
-                contentPanel.add(womanRadioButton, "cell 4 5,alignx center,growx 0");
+                contentPanel.add(womanRadioButton, "cell 4 7,alignx center,growx 0");
 
                 //---- label6 ----
                 label6.setText("\u5e74\u9f84");
                 label6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label6, "cell 2 6");
+                contentPanel.add(label6, "cell 2 8");
 
                 //---- ageComboBox ----
                 ageComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -228,28 +240,42 @@ public class Register extends JFrame {
                     "25",
                     "26"
                 }));
-                contentPanel.add(ageComboBox, "cell 4 6");
+                contentPanel.add(ageComboBox, "cell 4 8");
 
                 //---- label7 ----
                 label7.setText("\u624b\u673a\u53f7\u7801");
                 label7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label7, "cell 2 7");
+                contentPanel.add(label7, "cell 2 9");
 
                 //---- phoneTextField ----
                 phoneTextField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(phoneTextField, "cell 4 7");
+                contentPanel.add(phoneTextField, "cell 4 9");
 
                 //---- label4 ----
                 label4.setText("\u5bc6\u7801");
                 label4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label4, "cell 2 8");
-                contentPanel.add(passwordField, "cell 4 8");
+                contentPanel.add(label4, "cell 2 10");
+                contentPanel.add(passwordField, "cell 4 10");
 
                 //---- label5 ----
                 label5.setText("\u786e\u8ba4\u5bc6\u7801");
                 label5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                contentPanel.add(label5, "cell 2 9");
-                contentPanel.add(confirmPasswordField, "cell 4 9");
+                contentPanel.add(label5, "cell 2 11");
+                contentPanel.add(confirmPasswordField, "cell 4 11");
+
+                //---- label10 ----
+                label10.setText("\u4e2a\u6027\u7b7e\u540d");
+                label10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                contentPanel.add(label10, "cell 2 13");
+
+                //======== scrollPane1 ========
+                {
+
+                    //---- descriptionTextArea ----
+                    descriptionTextArea.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                    scrollPane1.setViewportView(descriptionTextArea);
+                }
+                contentPanel.add(scrollPane1, "cell 4 14,hmin 80");
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
@@ -288,7 +314,7 @@ public class Register extends JFrame {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(700, 500);
+        setSize(700, 600);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -316,6 +342,9 @@ public class Register extends JFrame {
     private JPasswordField passwordField;
     private JLabel label5;
     private JPasswordField confirmPasswordField;
+    private JLabel label10;
+    private JScrollPane scrollPane1;
+    private JTextArea descriptionTextArea;
     private JPanel buttonBar;
     private JButton okButton;
     private JButton returnButton;

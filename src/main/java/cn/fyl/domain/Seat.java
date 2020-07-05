@@ -18,6 +18,25 @@ public class Seat {
     private int m;
     private int n;
 
+    /**
+     * 座位表初始化
+     * @param floor
+     * @param no
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     * @param f
+     * @param g
+     * @param h
+     * @param i
+     * @param j
+     * @param k
+     * @param l
+     * @param m
+     * @param n
+     */
     public Seat(int floor, int no, int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n) {
         this.floor = floor;
         this.no = no;

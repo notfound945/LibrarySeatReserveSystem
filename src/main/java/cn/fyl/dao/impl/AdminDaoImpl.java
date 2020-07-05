@@ -1,7 +1,7 @@
 package cn.fyl.dao.impl;
 
 import cn.fyl.dao.AdminDao;
-import cn.fyl.domain.User;
+import cn.fyl.domain.Admin;
 import cn.fyl.utils.JDBCUtils;
 
 import java.sql.Connection;
@@ -19,9 +19,10 @@ public class AdminDaoImpl implements AdminDao {
         connection = JDBCUtils.getConnection();
     }
     private String sql;
-    private User user;
+    private Admin admin;
+
     @Override
-    public User queryByUserNameAndPassword(String userName, String password) {
+    public Admin queryByUserNameAndPassword(String userName, String password) {
         sql = "select * from admin where userName = ? and passwd = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -29,19 +30,17 @@ public class AdminDaoImpl implements AdminDao {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                userName = resultSet.getString(2);
-                String name = resultSet.getString(3);
-                int age = resultSet.getInt(4);
-                String sex = resultSet.getString(5);
+                userName = resultSet.getString("userName");
+                String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String sex = resultSet.getString("sex");
                 password = "没有密码";
-                String phone = resultSet.getString(7);
-                String grade = resultSet.getString(8);
-                user = new User(userName, name, age, sex, password, phone, grade);
+                String phone = resultSet.getString("phone");
+                admin = new Admin(userName, name, password, phone, sex, age);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return user;
+        return admin;
     }
 }

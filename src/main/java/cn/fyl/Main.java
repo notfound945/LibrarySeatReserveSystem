@@ -1,15 +1,14 @@
 package cn.fyl;
 
 import cn.fyl.controller.ControllerImpl;
-import cn.fyl.domain.User;
-import cn.fyl.view.mainview.MainView;
+import cn.fyl.view.mainview.admin.MainViewAdmin;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
 
 import javax.swing.*;
 
 /**
- * 入口
+ * 程序入口
  * @author phl
  */
 public class Main {
@@ -25,9 +24,9 @@ public class Main {
             e.printStackTrace ();
         }
         // 程序入口
-//        ControllerImpl controllerImpl = new ControllerImpl();
-//        controllerImpl.start();
-        new MainView(new User()).setVisible(true);
+        ControllerImpl controllerImpl = new ControllerImpl();
+        controllerImpl.start();
+//        new MainViewAdmin().setVisible(true);
     }
 }
 

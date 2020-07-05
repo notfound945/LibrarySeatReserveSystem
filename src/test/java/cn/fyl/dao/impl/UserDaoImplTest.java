@@ -18,11 +18,15 @@ public class UserDaoImplTest {
         assertNotNull(user);
     }
 
+    /**
+     * 添加用户测试
+     */
     @Test
     public void addUser() {
         int insertNumber = 0;
         for (int i = 30; i < 20030; i++) {
-            User user = new User("符玉涟" + String.valueOf(i), "fyl" + String.valueOf(i), 18, "女", "123456", "15873321992", "18级5班");
+            User user = new User("符玉涟" + String.valueOf(i), "fyl" + String.valueOf(i), 18, "女", "123456", "15873321992", "18级5班", "常与同好争天下，\n" +
+                    "不共傻瓜论长短。");
             boolean isSuccess = userDaoImpl.addUser(user);
             if (isSuccess) {
                 insertNumber++;
@@ -31,15 +35,23 @@ public class UserDaoImplTest {
         System.out.println("成功添加了 " + insertNumber + " 条数据 ");
     }
 
+    /**
+     * 通过用户名和密码登录测试
+     */
     @Test
     public void testQueryByUserNameAndPassword() {
+        User queryByUserNameAndPassword = userDaoImpl.queryByUserNameAndPassword("fyl", "123456");
+        assertNotNull(queryByUserNameAndPassword);
     }
 
+    /**
+     * 根据用户名删除用户
+     */
     @Test
     public void deleteUser() {
         int deleteNumber = 0;
         for (int i = 30; i < 10030; i++) {
-            boolean isSuccess = userDaoImpl.deleteUser(i);
+            boolean isSuccess = userDaoImpl.deleteUser("符玉涟" + i);
             if (isSuccess) {
                 deleteNumber++;
             }
@@ -53,5 +65,11 @@ public class UserDaoImplTest {
         for (User item : allUser.values()) {
             System.out.println(item);
         }
+    }
+
+    @Test
+    public void queryByUserName() {
+        User user = userDaoImpl.queryByUserName("fyl");
+        assertNotNull(user);
     }
 }

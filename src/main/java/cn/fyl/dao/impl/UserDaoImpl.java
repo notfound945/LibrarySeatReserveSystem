@@ -46,7 +46,8 @@ public class UserDaoImpl implements UserDao {
                 String password = resultSet.getString("passwd");
                 String phone = resultSet.getString("phone");
                 String grade = resultSet.getString("grade");
-                User user = new User(name, userName, age, sex, password, phone, grade);
+                String description = resultSet.getString("description");
+                User user = new User(name, userName, age, sex, password, phone, grade, description);
                 hashMap.put(no, user);
                 no++;
             }
@@ -60,15 +61,31 @@ public class UserDaoImpl implements UserDao {
     /**
      * 根据 id 查找用户
      *
-     * @param id
+     * @param userName
      * @return
      */
     @Override
-    public User queryByID(int id) {
-        sql = "select * from user where id = ?";
+    public User queryByUserName(String userName) {
+        sql = "select * from user where username = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                userName = resultSet.getString("userName");
+                String name = resultSet.getString("name");
+                String sex = resultSet.getString("sex");
+                int age = resultSet.getInt("age");
+                String phone = resultSet.getString("phone");
+                String password = "无密码";
+                String grade = resultSet.getString("grade");
+                String description = resultSet.getString("description");
+                User user = new User(id, userName, name, age, sex, password, phone, grade, description);
+                return user;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -83,23 +100,27 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public boolean addUser(User user) {
-        sql = "insert into user(userName, name, age, sex, passwd, phone, grade) values(?, ?, ?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, String.valueOf(user.getAge()));
-            preparedStatement.setString(4, user.getSex());
-            preparedStatement.setString(5, user.getPasswd());
-            preparedStatement.setString(6, user.getPhone());
-            preparedStatement.setString(7, user.getGrade());
-            int insertNumber = preparedStatement.executeUpdate();
-            if (insertNumber > 0) {
-                return true;
+        // 判断是否存在同名用户
+        if (queryByUserName(user.getUserName()) == null) {
+            sql = "insert into user(userName, name, age, sex, passwd, phone, grade, description) values(?, ?, ?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, user.getUserName());
+                preparedStatement.setString(2, user.getName());
+                preparedStatement.setString(3, String.valueOf(user.getAge()));
+                preparedStatement.setString(4, user.getSex());
+                preparedStatement.setString(5, user.getPasswd());
+                preparedStatement.setString(6, user.getPhone());
+                preparedStatement.setString(7, user.getGrade());
+                preparedStatement.setString(8, user.getDescription());
+                int insertNumber = preparedStatement.executeUpdate();
+                if (insertNumber > 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
         }
         return false;
     }
@@ -139,7 +160,8 @@ public class UserDaoImpl implements UserDao {
                 password = "没有密码";
                 String phone = resultSet.getString(7);
                 String grade = resultSet.getString(8);
-                user = new User(id, userName, name, age, sex, password, phone, grade);
+                String description = resultSet.getString(9);
+                user = new User(id, userName, name, age, sex, password, phone, grade, description);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -154,8 +176,9 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public boolean modifyUserInfo(User user) {
+        // 判断是否需要修改密码
         if (user.getPasswd().equals("")) {
-            sql = "update user set name=?,age=?,sex=?,phone=?,grade=? where id = ?";
+            sql = "update user set name=?,age=?,sex=?,phone=?,grade=?,description=? where id = ?";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, user.getName());
@@ -163,7 +186,8 @@ public class UserDaoImpl implements UserDao {
                 preparedStatement.setString(3, user.getSex());
                 preparedStatement.setString(4, user.getPhone());
                 preparedStatement.setString(5, user.getGrade());
-                preparedStatement.setString(6, String.valueOf(user.getId()));
+                preparedStatement.setString(6, user.getDescription());
+                preparedStatement.setString(7, String.valueOf(user.getId()));
                 int modifyNumber = preparedStatement.executeUpdate();
                 if (modifyNumber > 0) {
                     return true;
@@ -173,7 +197,7 @@ public class UserDaoImpl implements UserDao {
                 return false;
             }
         } else {
-            sql = "update user set name=?,age=?,sex=?,phone=?,passwd=?,grade=? where id = ?";
+            sql = "update user set name=?,age=?,sex=?,phone=?,passwd=?,grade=?,description=? where id = ?";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, user.getName());
@@ -182,7 +206,8 @@ public class UserDaoImpl implements UserDao {
                 preparedStatement.setString(4, user.getPhone());
                 preparedStatement.setString(5, user.getPasswd());
                 preparedStatement.setString(6, user.getGrade());
-                preparedStatement.setString(7, String.valueOf(user.getId()));
+                preparedStatement.setString(7, user.getDescription());
+                preparedStatement.setString(8, String.valueOf(user.getId()));
                 int modifyNumber = preparedStatement.executeUpdate();
                 if (modifyNumber > 0) {
                     return true;
@@ -202,11 +227,11 @@ public class UserDaoImpl implements UserDao {
      * @return
      */
     @Override
-    public boolean deleteUser(int id) {
-        sql = "delete from user where id = ?";
+    public boolean deleteUser(String userName) {
+        sql = "delete from user where userName = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setString(1, userName);
             int deleteNumber = preparedStatement.executeUpdate();
             if (deleteNumber > 0) {
                 return true;

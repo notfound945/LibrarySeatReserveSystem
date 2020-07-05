@@ -1,6 +1,6 @@
 package cn.fyl.dao;
 
-import cn.fyl.domain.User;
+import cn.fyl.domain.Admin;
 
 import java.sql.SQLException;
 
@@ -12,5 +12,5 @@ public interface AdminDao {
      * @return User User实体
      * @throws SQLException 数据库异常
      */
-    User queryByUserNameAndPassword(String userName, String password);
+    Admin queryByUserNameAndPassword(String userName, String password);
 }

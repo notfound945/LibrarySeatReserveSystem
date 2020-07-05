@@ -1469,7 +1469,7 @@ new FormModel {
 										"value": "cell 0 7,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
-										name: "description"
+										name: "descriptionText"
 										"text": "常与同好争天下，\n不共傻瓜论长短。"
 										"font": #Font2
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
@@ -1481,7 +1481,7 @@ new FormModel {
 								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 									"$layoutConstraints": "fill,hidemode 3"
 									"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill]"
-									"$rowConstraints": "[][][][][][][][][][][][]"
+									"$rowConstraints": "[][][][][][][][][][][][][][]"
 								} ) {
 									name: "panel12"
 									add( new FormComponent( "javax.swing.JLabel" ) {
@@ -1489,7 +1489,7 @@ new FormModel {
 										"text": "用户名："
 										"font": &Font3 new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 1,alignx center,growx 0"
+										"value": "cell 0 2,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JTextField" ) {
 										name: "modifyUserName"
@@ -1498,14 +1498,14 @@ new FormModel {
 										"text": "Unknown"
 										"font": &Font4 new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 1 2 1"
+										"value": "cell 1 2 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label64"
 										"text": "性别："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 1,alignx center,growx 0"
+										"value": "cell 4 2,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "modifySexSerect"
@@ -1513,45 +1513,48 @@ new FormModel {
 										"$buttonGroup": new FormReference( "sexButtonGroup" )
 										"selected": true
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "modifySexManActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 1"
+										"value": "cell 5 2"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "modifySexMan"
 										"text": "男"
 										"$buttonGroup": new FormReference( "sexButtonGroup" )
 										"font": #Font4
+										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "modifySexManActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 1"
+										"value": "cell 5 2"
 									} )
 									add( new FormComponent( "javax.swing.JRadioButton" ) {
 										name: "modifySexWoman"
 										"text": "女"
 										"$buttonGroup": new FormReference( "sexButtonGroup" )
 										"font": #Font4
+										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "modifySexManActionPerformed", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 1"
+										"value": "cell 5 2"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label63"
 										"text": "姓名："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 3,alignx center,growx 0"
+										"value": "cell 0 4,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JTextField" ) {
 										name: "modifyName"
 										"font": #Font4
 										"text": "默认姓名"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 3 2 1"
+										"value": "cell 1 4 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label65"
 										"text": "年龄："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 3,alignx center,growx 0"
+										"value": "cell 4 4,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JComboBox" ) {
 										name: "modifyAge"
@@ -1572,60 +1575,60 @@ new FormModel {
 										"font": #Font4
 										"selectedIndex": 4
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 3"
+										"value": "cell 5 4"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label68"
 										"text": "班级："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 5,alignx center,growx 0"
+										"value": "cell 0 6,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JTextField" ) {
 										name: "modifyGrade"
 										"font": #Font4
 										"text": "18级五班"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 5 2 1"
+										"value": "cell 1 6 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label55"
 										"text": "联系手机："
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 5,alignx center,growx 0"
+										"value": "cell 4 6,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JTextField" ) {
 										name: "modifyPhone"
 										"text": "15874432398"
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 5"
+										"value": "cell 5 6"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label66"
 										"text": "新的密码："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 7,alignx center,growx 0"
+										"value": "cell 0 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JPasswordField" ) {
 										name: "modifyPassword"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 7 2 1"
+										"value": "cell 1 8 2 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label67"
 										"text": "密码确认："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 4 7,alignx center,growx 0"
+										"value": "cell 4 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JPasswordField" ) {
 										name: "modifyConfirmPassword"
 										"font": new java.awt.Font( "Microsoft JhengHei UI", 1, 14 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 5 7"
+										"value": "cell 5 8"
 									} )
 									add( new FormComponent( "javax.swing.JButton" ) {
 										name: "checkPasswordButton"
@@ -1633,14 +1636,14 @@ new FormModel {
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "checkPasswordButtonMouseReleased", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 6 7,alignx center,growx 0"
+										"value": "cell 6 8,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label69"
 										"text": "修改签名："
 										"font": #Font3
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 9,alignx center,growx 0"
+										"value": "cell 0 10,alignx center,growx 0"
 									} )
 									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 										name: "scrollPane6"
@@ -1648,19 +1651,18 @@ new FormModel {
 											name: "modifyDescription"
 										} )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 9 6 3,hmin 100"
+										"value": "cell 1 10 6 3,hmin 100"
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "confirmModifyButton"
+										"text": "修改信息"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "confirmModifyButtonMouseReleased", true ) )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 6 13"
 									} )
 								}, new FormLayoutConstraints( null ) {
 									"title": "修改信息"
-								} )
-								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-									"$layoutConstraints": "hidemode 3"
-									"$columnConstraints": "[fill][fill]"
-									"$rowConstraints": "[][][]"
-								} ) {
-									name: "adminPanel"
-								}, new FormLayoutConstraints( null ) {
-									"title": "查看用户（管理员）"
 								} )
 							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 								"value": "cell 0 0,dock center"
@@ -1863,7 +1865,6 @@ new FormModel {
 						name: "switchUserButton"
 						"text": "切换用户"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "switchUserButtonMouseReleased", true ) )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "switchUserButtonMouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 3 0"
