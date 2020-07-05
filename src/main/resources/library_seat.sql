@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 03/07/2020 16:45:54
+ Date: 05/07/2020 09:05:06
 */
 
 SET NAMES utf8mb4;
@@ -57,14 +57,36 @@ CREATE TABLE `seat`  (
 -- ----------------------------
 -- Records of seat
 -- ----------------------------
-INSERT INTO `seat` VALUES (1, 1, 0, 1, 1, 1, 0, 2, 0, 0, 1, 2, 1, 1, 0, 1);
-INSERT INTO `seat` VALUES (1, 3, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 2, 2, 2, 1);
-INSERT INTO `seat` VALUES (2, 1, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 0, 0, 0);
+INSERT INTO `seat` VALUES (4, 10, 2, 0, 1, 1, 1, 0, 1, 1, 2, 0, 1, 1, 0, 0);
+INSERT INTO `seat` VALUES (1, 7, 1, 1, 1, 1, 0, 2, 0, 0, 1, 2, 1, 1, 0, 1);
+INSERT INTO `seat` VALUES (1, 3, 1, 1, 1, 1, 1, 2, 0, 1, 0, 0, 2, 2, 2, 1);
+INSERT INTO `seat` VALUES (2, 1, 0, 1, 1, 1, 1, 1, 1, 2, 2, 0, 2, 0, 0, 0);
 INSERT INTO `seat` VALUES (2, 2, 2, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0);
-INSERT INTO `seat` VALUES (1, 9, 0, 0, 0, 1, 2, 0, 2, 2, 1, 1, 1, 1, 1, 0);
-INSERT INTO `seat` VALUES (5, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 1);
-INSERT INTO `seat` VALUES (3, 2, 0, 1, 1, 2, 3, 3, 2, 0, 0, 0, 2, 1, 0, 1);
-INSERT INTO `seat` VALUES (4, 10, 2, 1, 1, 0, 1, 0, 0, 1, 2, 0, 1, 1, 0, 0);
+INSERT INTO `seat` VALUES (1, 9, 1, 1, 0, 1, 2, 0, 2, 2, 1, 1, 1, 1, 1, 0);
+INSERT INTO `seat` VALUES (5, 2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 1);
+INSERT INTO `seat` VALUES (3, 2, 0, 1, 1, 2, 3, 3, 2, 0, 1, 0, 2, 1, 0, 1);
+
+-- ----------------------------
+-- Table structure for table_log
+-- ----------------------------
+DROP TABLE IF EXISTS `table_log`;
+CREATE TABLE `table_log`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_id` int(0) NULL DEFAULT NULL,
+  `date` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `time` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `message` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of table_log
+-- ----------------------------
+INSERT INTO `table_log` VALUES (4, 1, '2020-07-04', '17:58:51', 'INFO', '你成功预定了 1 楼 H3 号座位');
+INSERT INTO `table_log` VALUES (5, 1, '2020-07-04', '17:58:57', 'ERROR', '预定 1 楼 H3 号座位时失败');
+INSERT INTO `table_log` VALUES (6, 1, '2020-07-04', '18:01:53', 'INFO', '你成功预定了 3 楼 I2 号座位');
+INSERT INTO `table_log` VALUES (7, 1, '2020-07-04', '18:02:02', 'ERROR', '预定 3 楼 I2 号座位时失败');
 
 -- ----------------------------
 -- Table structure for user
@@ -86,6 +108,5 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (20, 'fyl', '符玉涟', 18, '女', '123456', '15874421108', '18级软件5班');
-INSERT INTO `user` VALUES (21, 'phl', '盘海林', 20, '男', '654321', '15873321994', '17级软件1班');
 
 SET FOREIGN_KEY_CHECKS = 1;
