@@ -7,6 +7,7 @@ import cn.fyl.domain.User;
 import cn.fyl.service.Service;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ServiceImpl implements Service {
 
     /**
      * 普通用户验证业务
+     * @param user 普通用户对象
      */
     @Override
     public User verify(User user) {
@@ -31,17 +33,18 @@ public class ServiceImpl implements Service {
         UserDaoImpl userDaoImplement = new UserDaoImpl();
         tempUser = userDaoImplement.queryByUserNameAndPassword(user.getUserName(), user.getPasswd());
         if (tempUser != null) {
-            System.out.println("登录成功");
             return tempUser;
         } else {
-            System.out.println("登录失败");
             return null;
         }
     }
 
     /**
-     *
+     *  验证管理员
+     * @param admin 管理员对象
+     * @return tempAdmin 管理员
      */
+    @Override
     public Admin verify(Admin admin) {
         Admin tempAdmin = new Admin();
         AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
@@ -53,12 +56,13 @@ public class ServiceImpl implements Service {
         }
     }
 
-
     /**
-     * 读入文件数据
-     * @param path
+     * 写入登录日志文件
+     * @param path 文件路径
+     * @param userName 用户名
      */
-    public void readFileByRandomAccess(String path, String userName) {
+    @Override
+    public void writeLogFile(String path, String userName) {
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
         String week = new SimpleDateFormat("EEEE").format(new Date());
@@ -66,13 +70,12 @@ public class ServiceImpl implements Service {
             File file = new File(path);
             String line;
             RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
-            System.out.println("登录日志：");
             while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
                 line = randomAccessFile.readLine();
                 System.out.println(line);
             }
-            randomAccessFile.writeBytes(System.lineSeparator());
-            String newLine = date + " - " + time  + " - " + week + " - " + userName;
+//            randomAccessFile.writeBytes(System.lineSeparator());
+            String newLine = "\n" + date + "\t" + time  + "\t" + week + "\t" + userName;
             randomAccessFile.writeUTF(newLine);
             randomAccessFile.close();
         } catch (Exception e) {
@@ -81,24 +84,45 @@ public class ServiceImpl implements Service {
     }
 
     /**
-     * 读入文件操作
-     * @param path
-     * @return
+     * 读入文件数据
+     * @param path 文件路径
+     */
+    public void readFileByRandomAccess(String path) {
+        try {
+            File file = new File(path);
+            String line;
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+            System.out.println("登录日志：");
+            while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
+                line = randomAccessFile.readLine();
+                String output = new String(line.getBytes("ISO-8859-1"), "UTF-8");
+                System.out.println(output);
+            }
+            randomAccessFile.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * 读取日志文件操作
+     * @param path 文件路径
+     * @return list List对象
      */
     @Override
-    public List<String[]> readFile(String path) {
+    public List<String[]> readLogFile(String path) {
         List<String[]> list = new ArrayList<String[]>();
         try {
-            String encoding = "GBK";
+            String encoding = "UTF-8";
             File file = new File(path);
             if (file.isFile() && file.exists()) {
                 InputStreamReader read = new InputStreamReader(
                         new FileInputStream(file), encoding);
                 BufferedReader bufferedReader = new BufferedReader(read);
                 String lineTxt = null;
-
                 while ((lineTxt = bufferedReader.readLine()) != null) {
-                    String[] temp = lineTxt.split("/t");
+                    System.out.println(lineTxt);
+                    String[] temp = lineTxt.split("\t");
                     list.add(temp);
                 }
                 bufferedReader.close();

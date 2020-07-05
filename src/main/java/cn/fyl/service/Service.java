@@ -18,18 +18,30 @@ public abstract interface Service {
      */
     User verify(User user);
 
+    /**
+     * 管理员验证业务
+     * @param admin 管理员对象
+     * @return 管理员对象
+     */
     Admin verify(Admin admin);
 
     /**
-     * 读入文件操作
+     * 读取日志文件操作
      * @param path 文件路径
      * @return List 数据
      */
-    List<String[]> readFile(String path);
+    List<String[]> readLogFile(String path);
 
     /**
      * 读入文件
      * @param path
      */
-    void readFileByRandomAccess(String path, String userName);
+    void readFileByRandomAccess(String path);
+
+    /**
+     * 写入日志文件
+     * @param path
+     * @param userName
+     */
+    void writeLogFile(String path, String userName);
 }

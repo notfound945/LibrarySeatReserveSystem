@@ -1310,6 +1310,14 @@ new FormModel {
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 0 0"
 									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "refreshLogButton"
+										"text": "刷新日志"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshLogButtonMouseReleased", true ) )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 1"
+									} )
 									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 										name: "scrollPane4"
 										add( new FormComponent( "javax.swing.JList" ) {
@@ -1344,7 +1352,7 @@ new FormModel {
 									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 										name: "scrollPane5"
 										add( new FormComponent( "javax.swing.JTextArea" ) {
-											name: "textArea4"
+											name: "logTextArea"
 											"text": "请在上方选择日志，此处将会对应展示。"
 											"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 											"editable": false

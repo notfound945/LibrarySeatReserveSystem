@@ -34,6 +34,7 @@ public class MainViewStudent extends JFrame {
     private LogDaoImpl logDaoImpl = new LogDaoImpl();
     private ButtonGroup seatButtonGroup = new ButtonGroup();
     private ServiceImpl serviceImpl = new ServiceImpl();
+    private ArrayList<Log> userLogArrayList = new ArrayList<>();
     private String selectSeat;
     private int floor = 1;
     private Timer time;
@@ -47,7 +48,6 @@ public class MainViewStudent extends JFrame {
         this.user = user;
         // 初始化界面标签
         init();
-        System.out.println("MainView user" + user);
     }
 
     /**
@@ -57,8 +57,8 @@ public class MainViewStudent extends JFrame {
         initSeat(this.floor);
         loadTime();
         loadUserInfo();
-        getLogList();
-        serviceImpl.readFileByRandomAccess("src/main/resources/loginLog.txt", this.user.getUserName());
+        loadLogList();
+        serviceImpl.writeLogFile("src/main/resources/loginLog.txt", this.user.getUserName());
     }
 
     /**
@@ -209,14 +209,22 @@ public class MainViewStudent extends JFrame {
     }
 
     /**
-     * 获取用户日志
+     * 加载用户日志
      */
-    private void getLogList() {
-        ArrayList<Log> userLog = this.logDaoImpl.getUserLog(this.user.getId());
-        System.out.println("用户日志输出: ");
-        for (Iterator it = userLog.iterator(); it.hasNext(); ) {
-            System.out.println(it.next());
+    private void loadLogList() {
+        userLogArrayList.clear();
+        userLogArrayList = this.logDaoImpl.getUserLog(this.user.getId());
+        String[] data = new String[userLogArrayList.size()];
+        for (int i = 0; i < userLogArrayList.size(); i++) {
+            data[i] = userLogArrayList.get(i).getMessage();
         }
+        this.logList.setModel(new AbstractListModel<String>() {
+            String[] values = data;
+            @Override
+            public int getSize() { return values.length; }
+            @Override
+            public String getElementAt(int i) { return values[i]; }
+        });
     }
 
     /**
@@ -409,7 +417,13 @@ public class MainViewStudent extends JFrame {
      */
     private void list1ValueChanged(ListSelectionEvent e) {
         int index = logList.getSelectedIndex();
-        System.out.println("选择了 " + index);
+        if (index >= 0) {
+            String msg = "日志等级: " + userLogArrayList.get(index).getType() +
+                    "\n日期:\t " + userLogArrayList.get(index).getDate() +
+                    "\n时间: \t " + userLogArrayList.get(index).getTime() +
+                    "\n内容: \n" + userLogArrayList.get(index).getMessage();
+            this.logTextArea.setText(msg);
+        }
     }
 
     /**
@@ -493,14 +507,18 @@ public class MainViewStudent extends JFrame {
         this.modifySex = e.getActionCommand();
     }
 
-    private void importUserButtonMouseReleased(MouseEvent e) {
-        JFileChooser fc=new JFileChooser("C:\\");
-        int val=fc.showOpenDialog(null);
+    /**
+     * 刷新日志
+     * @param e
+     */
+    private void refreshLogButtonMouseReleased(MouseEvent e) {
+        loadLogList();
+        this.logTextArea.setText("请在上方选择日志，此处将会对应展示。");
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - notfound
+        // Generated using JFormDesigner Evaluation license - phl
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         tabbedPane1 = new JTabbedPane();
@@ -690,11 +708,12 @@ public class MainViewStudent extends JFrame {
         label40 = new JLabel();
         panel8 = new JPanel();
         label16 = new JLabel();
+        refreshLogButton = new JButton();
         scrollPane4 = new JScrollPane();
         logList = new JList<>();
         label19 = new JLabel();
         scrollPane5 = new JScrollPane();
-        textArea4 = new JTextArea();
+        logTextArea = new JTextArea();
         panel3 = new JPanel();
         panel9 = new JTabbedPane();
         panel10 = new JPanel();
@@ -773,13 +792,11 @@ public class MainViewStudent extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-            swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border
-            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog"
-            ,java.awt.Font.BOLD,12),java.awt.Color.red),dialogPane. getBorder
-            ()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-            .beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException
-            ();}});
+            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+            0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+            . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+            red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+            beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -1833,6 +1850,17 @@ public class MainViewStudent extends JFrame {
                                 label16.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
                                 panel8.add(label16, "cell 0 0");
 
+                                //---- refreshLogButton ----
+                                refreshLogButton.setText("\u5237\u65b0\u65e5\u5fd7");
+                                refreshLogButton.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+                                refreshLogButton.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent e) {
+                                        refreshLogButtonMouseReleased(e);
+                                    }
+                                });
+                                panel8.add(refreshLogButton, "cell 1 1");
+
                                 //======== scrollPane4 ========
                                 {
 
@@ -1871,11 +1899,11 @@ public class MainViewStudent extends JFrame {
                                 //======== scrollPane5 ========
                                 {
 
-                                    //---- textArea4 ----
-                                    textArea4.setText("\u8bf7\u5728\u4e0a\u65b9\u9009\u62e9\u65e5\u5fd7\uff0c\u6b64\u5904\u5c06\u4f1a\u5bf9\u5e94\u5c55\u793a\u3002");
-                                    textArea4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                    textArea4.setEditable(false);
-                                    scrollPane5.setViewportView(textArea4);
+                                    //---- logTextArea ----
+                                    logTextArea.setText("\u8bf7\u5728\u4e0a\u65b9\u9009\u62e9\u65e5\u5fd7\uff0c\u6b64\u5904\u5c06\u4f1a\u5bf9\u5e94\u5c55\u793a\u3002");
+                                    logTextArea.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                    logTextArea.setEditable(false);
+                                    scrollPane5.setViewportView(logTextArea);
                                 }
                                 panel8.add(scrollPane5, "cell 0 4 3 1,dock center");
                             }
@@ -2436,7 +2464,7 @@ public class MainViewStudent extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - notfound
+    // Generated using JFormDesigner Evaluation license - phl
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JTabbedPane tabbedPane1;
@@ -2626,11 +2654,12 @@ public class MainViewStudent extends JFrame {
     private JLabel label40;
     private JPanel panel8;
     private JLabel label16;
+    private JButton refreshLogButton;
     private JScrollPane scrollPane4;
     private JList<String> logList;
     private JLabel label19;
     private JScrollPane scrollPane5;
-    private JTextArea textArea4;
+    private JTextArea logTextArea;
     private JPanel panel3;
     private JTabbedPane panel9;
     private JPanel panel10;

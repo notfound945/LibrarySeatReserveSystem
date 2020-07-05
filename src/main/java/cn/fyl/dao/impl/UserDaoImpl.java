@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
                 String phone = resultSet.getString("phone");
                 String grade = resultSet.getString("grade");
                 String description = resultSet.getString("description");
-                User user = new User(name, userName, age, sex, password, phone, grade, description);
+                User user = new User(id, userName, name, age, sex, password, phone, grade, description);
                 hashMap.put(no, user);
                 no++;
             }
@@ -152,15 +152,15 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                userName = resultSet.getString(2);
-                String name = resultSet.getString(3);
-                int age = resultSet.getInt(4);
-                String sex = resultSet.getString(5);
+                int id = resultSet.getInt("id");
+                userName = resultSet.getString("userName");
+                String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String sex = resultSet.getString("sex");
                 password = "没有密码";
-                String phone = resultSet.getString(7);
-                String grade = resultSet.getString(8);
-                String description = resultSet.getString(9);
+                String phone = resultSet.getString("phone");
+                String grade = resultSet.getString("grade");
+                String description = resultSet.getString("description");
                 user = new User(id, userName, name, age, sex, password, phone, grade, description);
             }
         } catch (SQLException throwables) {
@@ -221,10 +221,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * 删除用户
+     * 根据用户名删除用户
      *
-     * @param id
-     * @return
+     * @param userName 用户名
+     * @return isSuccess 是否成功
      */
     @Override
     public boolean deleteUser(String userName) {

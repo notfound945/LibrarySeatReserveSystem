@@ -24,8 +24,8 @@ public class UserDaoImplTest {
     @Test
     public void addUser() {
         int insertNumber = 0;
-        for (int i = 30; i < 20030; i++) {
-            User user = new User("符玉涟" + String.valueOf(i), "fyl" + String.valueOf(i), 18, "女", "123456", "15873321992", "18级5班", "常与同好争天下，\n" +
+        for (int i = 30; i < 230; i++) {
+            User user = new User( "fyl" + String.valueOf(i),"符玉涟" + String.valueOf(i), 18, "女", "123456", "15873321992", "18级5班", "常与同好争天下，\n" +
                     "不共傻瓜论长短。");
             boolean isSuccess = userDaoImpl.addUser(user);
             if (isSuccess) {
@@ -50,7 +50,7 @@ public class UserDaoImplTest {
     @Test
     public void deleteUser() {
         int deleteNumber = 0;
-        for (int i = 30; i < 10030; i++) {
+        for (int i = 31; i < 10030; i++) {
             boolean isSuccess = userDaoImpl.deleteUser("符玉涟" + i);
             if (isSuccess) {
                 deleteNumber++;
@@ -65,6 +65,7 @@ public class UserDaoImplTest {
         for (User item : allUser.values()) {
             System.out.println(item);
         }
+        assertNotNull(allUser);
     }
 
     @Test

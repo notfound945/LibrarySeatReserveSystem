@@ -1,7 +1,10 @@
 package cn.fyl;
 
 import cn.fyl.controller.ControllerImpl;
+import cn.fyl.domain.Admin;
+import cn.fyl.domain.User;
 import cn.fyl.view.mainview.admin.MainViewAdmin;
+import cn.fyl.view.mainview.student.MainViewStudent;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
 
@@ -26,7 +29,8 @@ public class Main {
         // 程序入口
         ControllerImpl controllerImpl = new ControllerImpl();
         controllerImpl.start();
-//        new MainViewAdmin().setVisible(true);
+//        new MainViewStudent(new User()).setVisible(true);
+//        new MainViewAdmin(new Admin()).setVisible(true);
     }
 }
 

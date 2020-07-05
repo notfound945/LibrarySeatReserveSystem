@@ -40,7 +40,6 @@ public class LoginView extends JFrame {
     private void button2MouseReleased(MouseEvent e) {
         this.dispose();
         new Register().setVisible(true);
-        // TODO add your code here
     }
 
     /**
@@ -94,7 +93,6 @@ public class LoginView extends JFrame {
 
     private void loginButtonMouseReleased(MouseEvent e) {
         Login();
-        // TODO add your code here
     }
 
     /**

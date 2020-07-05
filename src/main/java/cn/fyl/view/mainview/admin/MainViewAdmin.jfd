@@ -30,25 +30,44 @@ new FormModel {
 								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 									"$layoutConstraints": "hidemode 3"
-									"$columnConstraints": "[fill][fill]"
-									"$rowConstraints": "[][][][]"
+									"$columnConstraints": "[fill][fill][fill][fill]"
+									"$rowConstraints": "[][][][][]"
 								} ) {
 									name: "panel2"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "titleLabel"
+										"text": "用户ID    -    用户名    -     姓名    -    性别    -    年龄"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 0"
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "deleteButton"
+										"text": "删除用户"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "deleteButtonMouseReleased", true ) )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 1 0"
+									} )
 									add( new FormComponent( "javax.swing.JButton" ) {
 										name: "refresh"
 										"text": "刷新"
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshMouseReleased", true ) )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 0"
+										"value": "cell 3 0"
 									} )
 									add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 										name: "scrollPane1"
 										add( new FormComponent( "javax.swing.JList" ) {
 											name: "userList"
 											"model": new javax.swing.DefaultListModel {
+												addElement( "符玉涟20031" )
 												addElement( "fyl" )
-												addElement( "符玉涟20029" )
-												addElement( "符玉涟20030" )
+												addElement( "符玉涟20032" )
+												addElement( "符玉涟20054" )
+												addElement( "符玉涟20034" )
+												addElement( "符玉涟200245" )
 												addElement( "符玉涟20031" )
 												addElement( "符玉涟20032" )
 												addElement( "符玉涟20054" )
@@ -56,9 +75,17 @@ new FormModel {
 												addElement( "符玉涟200245" )
 											}
 											"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+											addEvent( new FormEvent( "javax.swing.event.ListSelectionListener", "valueChanged", "userListValueChanged", true ) )
 										} )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 1,dock center"
+										"value": "cell 0 2 4 1,dock center"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "totalNumber"
+										"text": "共有 100 名用户"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 0 4"
 									} )
 								}, new FormLayoutConstraints( null ) {
 									"title": "所有用户"
@@ -75,26 +102,6 @@ new FormModel {
 							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 								"value": "cell 0 0,dock center"
 							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label1"
-								"text": "用户名："
-								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
-							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-								"value": "cell 0 6"
-							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "userNameTextField"
-							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-								"value": "cell 0 6"
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "deleteButton"
-								"text": "删除用户"
-								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
-								addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "deleteButtonMouseReleased", true ) )
-							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-								"value": "cell 0 6"
-							} )
 						}, new FormLayoutConstraints( null ) {
 							"title": "用户管理"
 						} )
@@ -106,24 +113,25 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 					"$layoutConstraints": "insets dialog,alignx right"
-					"$columnConstraints": "[button,fill][button,fill]"
+					"$columnConstraints": "[fill][button,fill][button,fill]"
 					"$rowSpecs": "[fill]"
 				} ) {
 					name: "buttonBar"
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "okButton"
+						name: "switchUserButton"
 						"text": "切换用户"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "switchUserButtonMouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 0 0"
+						"value": "cell 1 0"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "cancelButton"
+						name: "exitButton"
 						"text": "退出"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "cancelButtonMouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-						"value": "cell 1 0"
+						"value": "cell 2 0"
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "South"

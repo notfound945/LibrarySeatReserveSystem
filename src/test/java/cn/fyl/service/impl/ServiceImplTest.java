@@ -13,17 +13,16 @@ public class ServiceImplTest {
      * 测试读取文件
      */
     @Test
-    public void readFile() {
-        List<String[]> list = serviceImpl.readFile("src/main/resources/loginLog.txt");
-        System.out.println(list);
-        assertNotNull(list);
+    public void readFileByRandomAccess() {
+        serviceImpl.readFileByRandomAccess("src/main/resources/loginLog.txt");
     }
 
     /**
-     * 测试读取文件
+     * 测试读取日志文件
      */
     @Test
-    public void readFileByRandomAccess() {
-        serviceImpl.readFileByRandomAccess("src/main/resources/loginLog.txt", "admin");
+    public void readLogFile() {
+        List<String[]> logFile = serviceImpl.readLogFile("src/main/resources/loginLog.txt");
+        assertNotNull(logFile);
     }
 }
