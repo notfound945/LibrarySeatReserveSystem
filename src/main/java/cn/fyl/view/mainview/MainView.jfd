@@ -1368,7 +1368,7 @@ new FormModel {
 						} ) {
 							name: "panel3"
 							add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
-								name: "tabbedPane4"
+								name: "panel9"
 								"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 									"$layoutConstraints": "fill,hidemode 3,align center center"
@@ -1652,6 +1652,15 @@ new FormModel {
 									} )
 								}, new FormLayoutConstraints( null ) {
 									"title": "修改信息"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+									"$layoutConstraints": "hidemode 3"
+									"$columnConstraints": "[fill][fill]"
+									"$rowConstraints": "[][][]"
+								} ) {
+									name: "adminPanel"
+								}, new FormLayoutConstraints( null ) {
+									"title": "查看用户（管理员）"
 								} )
 							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 								"value": "cell 0 0,dock center"

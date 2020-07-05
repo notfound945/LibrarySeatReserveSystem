@@ -2,13 +2,11 @@ package cn.fyl;
 
 import cn.fyl.controller.ControllerImpl;
 import cn.fyl.domain.User;
-import cn.fyl.view.mainview.student.MainViewStu;
+import cn.fyl.view.mainview.MainView;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
 
 import javax.swing.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 
 /**
  * 入口
@@ -29,7 +27,7 @@ public class Main {
         // 程序入口
 //        ControllerImpl controllerImpl = new ControllerImpl();
 //        controllerImpl.start();
-        new MainViewStu(new User()).setVisible(true);
+        new MainView(new User()).setVisible(true);
     }
 }
 

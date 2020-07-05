@@ -8,8 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * @author fyl
@@ -17,19 +16,45 @@ import java.util.Map;
  */
 public class UserDaoImpl implements UserDao {
     private static Connection connection;
+
     static {
         connection = JDBCUtils.getConnection();
     }
+
     private String sql;
     private User user;
+
     /**
      * 查询所有 User
      *
      * @return
      */
     @Override
-    public List<Map<String, Object>> findAll() {
-        return null;
+    public HashMap<Integer, User> getAll() {
+        HashMap<Integer, User> hashMap = new HashMap<>();
+        sql = "select * from user ";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int no = 0;
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String userName = resultSet.getString("userName");
+                int age = resultSet.getInt("age");
+                String sex = resultSet.getString("sex");
+                String password = resultSet.getString("passwd");
+                String phone = resultSet.getString("phone");
+                String grade = resultSet.getString("grade");
+                User user = new User(name, userName, age, sex, password, phone, grade);
+                hashMap.put(no, user);
+                no++;
+            }
+            return hashMap;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -41,7 +66,42 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User queryByID(int id) {
         sql = "select * from user where id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUserName());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return null;
+    }
+
+    /**
+     * 添加用户数据
+     *
+     * @param user 添加的用户
+     * @return
+     */
+    @Override
+    public boolean addUser(User user) {
+        sql = "insert into user(userName, name, age, sex, passwd, phone, grade) values(?, ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, String.valueOf(user.getAge()));
+            preparedStatement.setString(4, user.getSex());
+            preparedStatement.setString(5, user.getPasswd());
+            preparedStatement.setString(6, user.getPhone());
+            preparedStatement.setString(7, user.getGrade());
+            int insertNumber = preparedStatement.executeUpdate();
+            if (insertNumber > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return false;
     }
 
     /**
@@ -93,8 +153,46 @@ public class UserDaoImpl implements UserDao {
      * @param user
      */
     @Override
-    public void modifyInfo(User user) {
-
+    public boolean modifyUserInfo(User user) {
+        if (user.getPasswd().equals("")) {
+            sql = "update user set name=?,age=?,sex=?,phone=?,grade=? where id = ?";
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, user.getName());
+                preparedStatement.setString(2, String.valueOf(user.getAge()));
+                preparedStatement.setString(3, user.getSex());
+                preparedStatement.setString(4, user.getPhone());
+                preparedStatement.setString(5, user.getGrade());
+                preparedStatement.setString(6, String.valueOf(user.getId()));
+                int modifyNumber = preparedStatement.executeUpdate();
+                if (modifyNumber > 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+        } else {
+            sql = "update user set name=?,age=?,sex=?,phone=?,passwd=?,grade=? where id = ?";
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, user.getName());
+                preparedStatement.setString(2, String.valueOf(user.getAge()));
+                preparedStatement.setString(3, user.getSex());
+                preparedStatement.setString(4, user.getPhone());
+                preparedStatement.setString(5, user.getPasswd());
+                preparedStatement.setString(6, user.getGrade());
+                preparedStatement.setString(7, String.valueOf(user.getId()));
+                int modifyNumber = preparedStatement.executeUpdate();
+                if (modifyNumber > 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,6 +203,18 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public boolean deleteUser(int id) {
+        sql = "delete from user where id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, String.valueOf(id));
+            int deleteNumber = preparedStatement.executeUpdate();
+            if (deleteNumber > 0) {
+                return true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
         return false;
     }
 }

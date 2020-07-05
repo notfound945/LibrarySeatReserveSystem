@@ -36,6 +36,16 @@ public class User {
         this.grade = grade;
     }
 
+    public User(String userName, String name, int age, String sex, String passwd, String phone, String grade) {
+        this.userName = userName;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.passwd = passwd;
+        this.phone = phone;
+        this.grade = grade;
+    }
+
     public int getId() {
         return id;
     }

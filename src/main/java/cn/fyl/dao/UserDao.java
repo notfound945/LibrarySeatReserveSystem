@@ -3,6 +3,8 @@ package cn.fyl.dao;
 import cn.fyl.domain.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +17,7 @@ public interface UserDao {
      * 查询所有 User
      * @return 键值对List对象
      */
-    List<Map<String, Object>> findAll();
+    HashMap<Integer, User> getAll();
 
     /**
      * 根据 id 查找用户
@@ -23,6 +25,13 @@ public interface UserDao {
      * @return User用户对象
      */
     User queryByID(int id);
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    boolean addUser(User user);
 
     /**
      * 根据姓名查找用户
@@ -44,7 +53,7 @@ public interface UserDao {
      * 修改用户
      * @param user User 对象
      */
-    void modifyInfo(User user);
+    boolean modifyUserInfo(User user);
 
     /**
      * 删除用户

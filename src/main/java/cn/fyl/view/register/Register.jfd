@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			"title": "注册用户"
 			"$sizePolicy": 1
+			"defaultCloseOperation": 2
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "dialogPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
@@ -30,7 +31,7 @@ new FormModel {
 						"value": "cell 2 2"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
+						name: "nameTextField"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 2"
@@ -43,7 +44,7 @@ new FormModel {
 						"value": "cell 2 3"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField2"
+						name: "userNameTextField"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 3"
@@ -56,7 +57,7 @@ new FormModel {
 						"value": "cell 2 4"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField4"
+						name: "gradeTextField"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 4"
@@ -69,27 +70,27 @@ new FormModel {
 						"value": "cell 2 5"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton1"
+						name: "serectRadioButton"
 						"text": "保密"
 						"selected": true
-						"$buttonGroup": new FormReference( "sexButtonGroup" )
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "serectRadioButtonActionPerformed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 5,alignx center,growx 0"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton3"
+						name: "manRadioButton"
 						"text": "男"
-						"$buttonGroup": new FormReference( "sexButtonGroup" )
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "serectRadioButtonActionPerformed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 5,alignx center,growx 0"
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
-						name: "radioButton2"
+						name: "womanRadioButton"
 						"text": "女"
-						"$buttonGroup": new FormReference( "sexButtonGroup" )
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "serectRadioButtonActionPerformed", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 5,alignx center,growx 0"
 					} )
@@ -101,7 +102,7 @@ new FormModel {
 						"value": "cell 2 6"
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "ageComboBox"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "16"
 							addElement( "16" )
@@ -127,7 +128,7 @@ new FormModel {
 						"value": "cell 2 7"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField3"
+						name: "phoneTextField"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 7"
@@ -140,7 +141,7 @@ new FormModel {
 						"value": "cell 2 8"
 					} )
 					add( new FormComponent( "javax.swing.JPasswordField" ) {
-						name: "passwordField2"
+						name: "passwordField"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 8"
 					} )
@@ -152,7 +153,7 @@ new FormModel {
 						"value": "cell 2 9"
 					} )
 					add( new FormComponent( "javax.swing.JPasswordField" ) {
-						name: "passwordField1"
+						name: "confirmPasswordField"
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 4 9"
 					} )
@@ -169,6 +170,7 @@ new FormModel {
 						name: "okButton"
 						"text": "注册"
 						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "okButtonMouseReleased", true ) )
 					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 						"value": "cell 0 0"
 					} )
@@ -189,11 +191,6 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 700, 500 )
-		} )
-		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
-			name: "sexButtonGroup"
-		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 516 )
 		} )
 	}
 }

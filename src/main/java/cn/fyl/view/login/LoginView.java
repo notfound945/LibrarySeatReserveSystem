@@ -8,7 +8,7 @@ import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.dialog.ProcessLoading;
 import cn.fyl.view.dialog.ProxyOkDialog;
-import cn.fyl.view.mainview.student.MainViewStu;
+import cn.fyl.view.mainview.MainView;
 import cn.fyl.view.register.Register;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.beansbinding.BindingGroup;
@@ -87,7 +87,7 @@ public class LoginView extends JFrame {
         if (verify()) {
             new ProxyOkDialog(this, "认证通过", "登录成功", "欢迎 " + this.user.getName(), "").setVisible(true);
             this.dispose();
-            new MainViewStu(user).setVisible(true);
+            new MainView(user).setVisible(true);
         }
         processLoading.dispose();
     }
