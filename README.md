@@ -72,3 +72,32 @@
         </dependency>
 
 ```
+
++ maven Repositories
+
+```xml
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+```
+
++ maven 镜像源
+
+```xml
+	<mirror>
+		<id>alimaven</id>
+		<name>aliyun maven</name>
+		<mirrorOf>central</mirrorOf>
+		<url>http://maven.aliyun.com/nexue/content/groups/public/</url>
+	</mirror>
+  </mirrors>
+```

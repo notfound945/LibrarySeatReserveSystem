@@ -1,7 +1,6 @@
 package cn.fyl.dao.impl;
 
-import cn.fyl.dao.SeatDAO;
-import cn.fyl.domain.Seat;
+import cn.fyl.dao.SeatDao;
 import cn.fyl.utils.JDBCUtils;
 
 import java.sql.Connection;
@@ -14,7 +13,7 @@ import java.util.HashMap;
 /**
  * @author phl
  */
-public class SeatDaoImpl implements SeatDAO {
+public class SeatDaoImpl implements SeatDao {
     private static Connection connection;
     private PreparedStatement preparedStatement;
     private HashMap<Integer, ArrayList<Integer>> seatMap = new HashMap<>();
@@ -69,5 +68,24 @@ public class SeatDaoImpl implements SeatDAO {
             System.out.println(e.getMessage());
         }
         return seatMap;
+    }
+
+    @Override
+    public boolean selectSeat(int floor, String seatNo, int id) {
+        String column = seatNo.substring(0, 1);
+        String row = seatNo.substring(1);
+        int changeNumber = 0;
+        sql = "update seat set " + column + " = ? where floor = ? and no = ? and " + column + " = 0";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setString(2, String.valueOf(floor));
+            preparedStatement.setString(3, row);
+            changeNumber = preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println("修改条数 " + changeNumber);
+        return changeNumber != 0;
     }
 }

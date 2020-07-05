@@ -1090,6 +1090,25 @@ new FormModel {
 										"value": "cell 4 0,alignx center,growx 0"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label57"
+										"text": "预定日期"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 0 3 1"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "dateComboBox"
+										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+										"model": new javax.swing.DefaultComboBoxModel {
+											selectedItem: "明天"
+											addElement( "明天" )
+											addElement( "后一天" )
+											addElement( "后二天" )
+										}
+									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+										"value": "cell 10 0 3 1"
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label46"
 										"text": "当前时间："
 										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
@@ -1102,25 +1121,6 @@ new FormModel {
 										"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 16 0 4 1"
-									} )
-									add( new FormComponent( "javax.swing.JLabel" ) {
-										name: "label57"
-										"text": "预定日期"
-										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
-									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 0 1"
-									} )
-									add( new FormComponent( "javax.swing.JComboBox" ) {
-										name: "comboBox1"
-										"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
-										"model": new javax.swing.DefaultComboBoxModel {
-											selectedItem: "明天"
-											addElement( "明天" )
-											addElement( "后一天" )
-											addElement( "后二天" )
-										}
-									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-										"value": "cell 1 1"
 									} )
 									add( new FormComponent( "javax.swing.JLabel" ) {
 										name: "label18"

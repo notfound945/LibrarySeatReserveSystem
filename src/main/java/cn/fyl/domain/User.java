@@ -15,10 +15,10 @@ public class User {
     private String grade;
 
     public User() {
-        this.id = 0;
+        this.id = 1;
         this.name = "init";
         this.userName = "init";
-        this.age = 0;
+        this.age = 16;
         this.grade = "init";
         this.passwd = "init";
         this.sex = "保密";

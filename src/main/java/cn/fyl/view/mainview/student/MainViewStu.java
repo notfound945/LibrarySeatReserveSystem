@@ -5,7 +5,10 @@
 package cn.fyl.view.mainview.student;
 
 import javax.swing.event.*;
+
+import cn.fyl.dao.impl.LogDaoImpl;
 import cn.fyl.dao.impl.SeatDaoImpl;
+import cn.fyl.domain.Log;
 import cn.fyl.domain.User;
 import cn.fyl.service.impl.ServiceImpl;
 import cn.fyl.view.dialog.ProxyOkCancelDialog;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * @author fyl
@@ -27,6 +31,7 @@ import java.util.HashMap;
 public class MainViewStu extends JFrame {
     private ServiceImpl serviceImpl = new ServiceImpl();
     private SeatDaoImpl seatDaoImpl = new SeatDaoImpl();
+    private LogDaoImpl logDaoImpl = new LogDaoImpl();
     private ButtonGroup seatButtonGroup = new ButtonGroup();
     private String selectSeat;
     private long selectTime;
@@ -51,6 +56,7 @@ public class MainViewStu extends JFrame {
         initSeat(this.floor);
         loadTime();
         loadUserInfo();
+        getLogList();
     }
 
     /**
@@ -201,6 +207,19 @@ public class MainViewStu extends JFrame {
     }
 
     /**
+     * 获取用户日志
+     */
+    private void getLogList() {
+        ArrayList<Log> userLog = this.logDaoImpl.getUserLog(this.user.getId());
+        for (Iterator it = userLog.iterator(); it.hasNext(); ) {
+            System.out.println(it.next());
+        }
+        ListModel<String> listModel = new ListModel<String>() {
+
+        }
+    }
+
+    /**
      * 根据楼层加载座位
      */
     private void initSeat(int f) {
@@ -312,6 +331,7 @@ public class MainViewStu extends JFrame {
 
     /**
      * 楼层选择
+     *
      * @param e 鼠标事件
      */
     private void floorComboBoxItemStateChanged(ItemEvent e) {
@@ -346,8 +366,8 @@ public class MainViewStu extends JFrame {
     }
 
     /**
-     *
      * 检查密码
+     *
      * @param e
      */
     private void checkPasswordButtonMouseReleased(MouseEvent e) {
@@ -366,15 +386,16 @@ public class MainViewStu extends JFrame {
 
     /**
      * 选择座位事件
+     *
      * @param e
      */
     private void seatButtonActionPerformed(ActionEvent e) {
         this.selectSeat = e.getActionCommand();
-        this.selectTime = e.getWhen();
     }
 
     /**
      * 监听日志列表
+     *
      * @param e
      */
     private void list1ValueChanged(ListSelectionEvent e) {
@@ -382,13 +403,43 @@ public class MainViewStu extends JFrame {
         System.out.println("选择了 " + index);
     }
 
+    /**
+     * 确认预定座位
+     *
+     * @param e
+     */
     private void reserveButtonMouseReleased(MouseEvent e) {
+        String[] title = new String[]{
+                "预定成功",
+                "预定失败"
+        };
+        String[] contentTitle = new String[]{
+                "座位预定成功",
+                "座位预定失败"
+        };
+        String[] content1 = new String[]{
+                "你成功预定了 " + this.floor + " 楼 " + this.selectSeat + " 号座位",
+                "预定 " + this.floor + " 楼 " + this.selectSeat + " 号座位时失败"
+        };
+        String[] content2 = new String[]{
+                "",
+                "座位可能已被预定，请刷新后重新预定。"
+        };
         if (this.seatButtonGroup.getSelection() != null) {
             ProxyOkCancelDialog confirm = new ProxyOkCancelDialog(this, "确认预定", "确认操作", "你正在预定 " + this.floor + " 楼 " + this.selectSeat + " 号座位", "是否确认预定");
             confirm.setVisible(true);
             boolean result = confirm.getResult();
             if (result) {
-                System.out.println("确认");
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                boolean isSuccess = seatDaoImpl.selectSeat(this.floor, this.selectSeat, this.user.getId());
+                if (isSuccess) {
+                    new ProxyOkDialog(this, title[0], contentTitle[0], content1[0], content2[0]).setVisible(true);
+                    this.logDaoImpl.setUserLog(new Log(1, this.user.getId(), date, time, "INFO", content1[0]));
+                } else {
+                    new ProxyOkDialog(this, title[1], contentTitle[1], content1[1], content2[1]).setVisible(true);
+                    this.logDaoImpl.setUserLog(new Log(1, this.user.getId(), date, time, "ERROR", content1[1]));
+                }
             } else {
                 System.out.println("取消");
             }
@@ -555,10 +606,10 @@ public class MainViewStu extends JFrame {
         floorComboBox = new JComboBox<>();
         refreshButton = new JButton();
         reserveButton = new JButton();
+        label57 = new JLabel();
+        dateComboBox = new JComboBox<>();
         label46 = new JLabel();
         timeLabel = new JLabel();
-        label57 = new JLabel();
-        comboBox1 = new JComboBox<>();
         label18 = new JLabel();
         totalNumber = new JLabel();
         label20 = new JLabel();
@@ -671,21 +722,28 @@ public class MainViewStu extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
-            0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
-            . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
-            red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
-            beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+                    (0, 0, 0, 0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax.swing.border.TitledBorder.CENTER, javax.swing.border
+                    .TitledBorder.BOTTOM, new java.awt.Font("D\u0069al\u006fg", java.awt.Font.BOLD, 12), java.awt
+                    .Color.red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                @Override
+                public void
+                propertyChange(java.beans.PropertyChangeEvent e) {
+                    if ("\u0062or\u0064er".equals(e.getPropertyName())) throw new RuntimeException()
+                            ;
+                }
+            });
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
                 contentPanel.setLayout(new MigLayout(
-                    "fillx,insets dialog,hidemode 3",
-                    // columns
-                    "[fill]",
-                    // rows
-                    "[]"));
+                        "fillx,insets dialog,hidemode 3",
+                        // columns
+                        "[fill]",
+                        // rows
+                        "[]"));
 
                 //======== tabbedPane1 ========
                 {
@@ -694,51 +752,51 @@ public class MainViewStu extends JFrame {
                     //======== panel1 ========
                     {
                         panel1.setLayout(new MigLayout(
-                            "fillx,hidemode 3",
-                            // columns
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]" +
-                            "[fill]",
-                            // rows
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]"));
+                                "fillx,hidemode 3",
+                                // columns
+                                "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]" +
+                                        "[fill]",
+                                // rows
+                                "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]"));
 
                         //---- label49 ----
                         label49.setText("\u672c\u9986\u516c\u793a");
@@ -766,11 +824,11 @@ public class MainViewStu extends JFrame {
                     //======== panel2 ========
                     {
                         panel2.setLayout(new MigLayout(
-                            "fillx,hidemode 3",
-                            // columns
-                            "[fill]",
-                            // rows
-                            "[]"));
+                                "fillx,hidemode 3",
+                                // columns
+                                "[fill]",
+                                // rows
+                                "[]"));
 
                         //======== tabbedPane3 ========
                         {
@@ -779,50 +837,50 @@ public class MainViewStu extends JFrame {
                             //======== viewSeat ========
                             {
                                 viewSeat.setLayout(new MigLayout(
-                                    "fill,hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "fill,hidemode 3",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- radioButton1 ----
                                 radioButton1.setEnabled(false);
@@ -1531,12 +1589,12 @@ public class MainViewStu extends JFrame {
                                 viewSeat.add(label17, "cell 0 0 2 1");
 
                                 //---- floorComboBox ----
-                                floorComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
-                                    "\u56fe\u4e66\u9986\u4e00\u697c",
-                                    "\u56fe\u4e66\u9986\u4e8c\u697c",
-                                    "\u56fe\u4e66\u9986\u4e09\u697c",
-                                    "\u56fe\u4e66\u9986\u56db\u697c",
-                                    "\u56fe\u4e66\u9986\u4e94\u697c"
+                                floorComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
+                                        "\u56fe\u4e66\u9986\u4e00\u697c",
+                                        "\u56fe\u4e66\u9986\u4e8c\u697c",
+                                        "\u56fe\u4e66\u9986\u4e09\u697c",
+                                        "\u56fe\u4e66\u9986\u56db\u697c",
+                                        "\u56fe\u4e66\u9986\u4e94\u697c"
                                 }));
                                 floorComboBox.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 floorComboBox.setMaximumRowCount(5);
@@ -1566,6 +1624,20 @@ public class MainViewStu extends JFrame {
                                 });
                                 viewSeat.add(reserveButton, "cell 4 0,alignx center,growx 0");
 
+                                //---- label57 ----
+                                label57.setText("\u9884\u5b9a\u65e5\u671f");
+                                label57.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                viewSeat.add(label57, "cell 10 0 3 1");
+
+                                //---- dateComboBox ----
+                                dateComboBox.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                                dateComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
+                                        "\u660e\u5929",
+                                        "\u540e\u4e00\u5929",
+                                        "\u540e\u4e8c\u5929"
+                                }));
+                                viewSeat.add(dateComboBox, "cell 10 0 3 1");
+
                                 //---- label46 ----
                                 label46.setText("\u5f53\u524d\u65f6\u95f4\uff1a");
                                 label46.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
@@ -1575,20 +1647,6 @@ public class MainViewStu extends JFrame {
                                 timeLabel.setText("yyyy-MM-dd hh:mm:ss EEEE");
                                 timeLabel.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
                                 viewSeat.add(timeLabel, "cell 16 0 4 1");
-
-                                //---- label57 ----
-                                label57.setText("\u9884\u5b9a\u65e5\u671f");
-                                label57.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                viewSeat.add(label57, "cell 0 1");
-
-                                //---- comboBox1 ----
-                                comboBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-                                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
-                                    "\u660e\u5929",
-                                    "\u540e\u4e00\u5929",
-                                    "\u540e\u4e8c\u5929"
-                                }));
-                                viewSeat.add(comboBox1, "cell 1 1");
 
                                 //---- label18 ----
                                 label18.setText("\u5ea7\u4f4d\u603b\u6570");
@@ -1711,18 +1769,18 @@ public class MainViewStu extends JFrame {
                             //======== panel8 ========
                             {
                                 panel8.setLayout(new MigLayout(
-                                    "fill,hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "fill,hidemode 3",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- label16 ----
                                 label16.setText("\u9884\u5b9a\u65e5\u5fd7\uff1a");
@@ -1735,23 +1793,29 @@ public class MainViewStu extends JFrame {
                                     //---- logList ----
                                     logList.setModel(new AbstractListModel<String>() {
                                         String[] values = {
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
-                                            "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
-                                            "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d"
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e00\u697c A2 \u53f7\u5ea7\u4f4d",
+                                                "\u4f60\u5df2\u53d6\u6d88\u9884\u5b9a \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d\uff01",
+                                                "\u4f60\u5df2\u6210\u529f\u9884\u5b9a\u4e86 \u56fe\u4e66\u9986\u4e8c\u697c D9 \u53f7\u5ea7\u4f4d"
                                         };
+
                                         @Override
-                                        public int getSize() { return values.length; }
+                                        public int getSize() {
+                                            return values.length;
+                                        }
+
                                         @Override
-                                        public String getElementAt(int i) { return values[i]; }
+                                        public String getElementAt(int i) {
+                                            return values[i];
+                                        }
                                     });
                                     logList.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                     logList.addListSelectionListener(e -> list1ValueChanged(e));
@@ -1784,11 +1848,11 @@ public class MainViewStu extends JFrame {
                     //======== panel3 ========
                     {
                         panel3.setLayout(new MigLayout(
-                            "hidemode 3",
-                            // columns
-                            "[fill]",
-                            // rows
-                            "[]"));
+                                "hidemode 3",
+                                // columns
+                                "[fill]",
+                                // rows
+                                "[]"));
 
                         //======== tabbedPane4 ========
                         {
@@ -1798,26 +1862,26 @@ public class MainViewStu extends JFrame {
                             {
                                 panel10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 panel10.setLayout(new MigLayout(
-                                    "fill,hidemode 3,align center center",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "fill,hidemode 3,align center center",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- label21 ----
                                 label21.setText("\u7528\u6237\u540d\uff1a");
@@ -1894,29 +1958,29 @@ public class MainViewStu extends JFrame {
                             //======== panel12 ========
                             {
                                 panel12.setLayout(new MigLayout(
-                                    "fill,hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "fill,hidemode 3",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- label62 ----
                                 label62.setText("\u7528\u6237\u540d\uff1a");
@@ -1967,18 +2031,18 @@ public class MainViewStu extends JFrame {
                                 panel12.add(label65, "cell 4 3,alignx center,growx 0");
 
                                 //---- modifyAge ----
-                                modifyAge.setModel(new DefaultComboBoxModel<>(new String[] {
-                                    "16",
-                                    "17",
-                                    "18",
-                                    "19",
-                                    "20",
-                                    "21",
-                                    "22",
-                                    "23",
-                                    "24",
-                                    "25",
-                                    "26"
+                                modifyAge.setModel(new DefaultComboBoxModel<>(new String[]{
+                                        "16",
+                                        "17",
+                                        "18",
+                                        "19",
+                                        "20",
+                                        "21",
+                                        "22",
+                                        "23",
+                                        "24",
+                                        "25",
+                                        "26"
                                 }));
                                 modifyAge.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                 modifyAge.setSelectedIndex(4);
@@ -2052,11 +2116,11 @@ public class MainViewStu extends JFrame {
                     //======== panel4 ========
                     {
                         panel4.setLayout(new MigLayout(
-                            "hidemode 3",
-                            // columns
-                            "[fill]",
-                            // rows
-                            "[]"));
+                                "hidemode 3",
+                                // columns
+                                "[fill]",
+                                // rows
+                                "[]"));
 
                         //======== tabbedPane2 ========
                         {
@@ -2065,55 +2129,55 @@ public class MainViewStu extends JFrame {
                             //======== panel5 ========
                             {
                                 panel5.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "hidemode 3",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- label11 ----
                                 label11.setText("\u7a0b\u5e8f\u7248\u672c\uff1a");
@@ -2158,20 +2222,20 @@ public class MainViewStu extends JFrame {
                             //======== panel6 ========
                             {
                                 panel6.setLayout(new MigLayout(
-                                    "fill,hidemode 3,align right bottom",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "fill,hidemode 3,align right bottom",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- label1 ----
                                 label1.setText("\u5f00\u53d1\u8005\uff1a");
@@ -2228,14 +2292,14 @@ public class MainViewStu extends JFrame {
                             //======== panel7 ========
                             {
                                 panel7.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[fill]"));
+                                        "hidemode 3",
+                                        // columns
+                                        "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[fill]"));
 
                                 //---- label56 ----
                                 label56.setText("MIT License");
@@ -2267,17 +2331,17 @@ public class MainViewStu extends JFrame {
             //======== buttonBar ========
             {
                 buttonBar.setLayout(new MigLayout(
-                    "insets dialog,alignx right",
-                    // columns
-                    "[fill]" +
-                    "[fill]" +
-                    "[fill]" +
-                    "[61,fill]" +
-                    "[fill]" +
-                    "[fill]" +
-                    "[button,fill]",
-                    // rows
-                    null));
+                        "insets dialog,alignx right",
+                        // columns
+                        "[fill]" +
+                                "[fill]" +
+                                "[fill]" +
+                                "[61,fill]" +
+                                "[fill]" +
+                                "[fill]" +
+                                "[button,fill]",
+                        // rows
+                        null));
 
                 //---- switchUserButton ----
                 switchUserButton.setText("\u5207\u6362\u7528\u6237");
@@ -2473,10 +2537,10 @@ public class MainViewStu extends JFrame {
     private JComboBox<String> floorComboBox;
     private JButton refreshButton;
     private JButton reserveButton;
+    private JLabel label57;
+    private JComboBox<String> dateComboBox;
     private JLabel label46;
     private JLabel timeLabel;
-    private JLabel label57;
-    private JComboBox<String> comboBox1;
     private JLabel label18;
     private JLabel totalNumber;
     private JLabel label20;
