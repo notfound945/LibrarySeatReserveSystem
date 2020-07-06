@@ -1102,8 +1102,6 @@ new FormModel {
 										"model": new javax.swing.DefaultComboBoxModel {
 											selectedItem: "明天"
 											addElement( "明天" )
-											addElement( "后一天" )
-											addElement( "后二天" )
 										}
 									}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 										"value": "cell 10 0 3 1"

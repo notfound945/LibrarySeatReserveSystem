@@ -17,11 +17,12 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author notfound
+ * @author fyl
  */
 public class MainViewAdmin extends JFrame {
     private UserDaoImpl userDaoImpl = new UserDaoImpl();
@@ -42,14 +43,15 @@ public class MainViewAdmin extends JFrame {
     private void init() {
         serviceImpl.writeLogFile("src/main/resources/loginLog.txt", this.admin.getUserName());
         loadAllUser();
+        loadLoginLog();
     }
 
     /**
      * 从本地文件中获取登录日志
      */
     private void loadLoginLog() {
+        System.out.println("处理日志文件 ");
         List<String[]> logFile = serviceImpl.readLogFile("src/main/resources/loginLog.txt");
-        System.out.println("日志文件 " + logFile);
     }
 
     /**
@@ -82,6 +84,7 @@ public class MainViewAdmin extends JFrame {
 
     /**
      * 删除用户
+     *
      * @param e
      */
     private void deleteButtonMouseReleased(MouseEvent e) {
@@ -117,9 +120,21 @@ public class MainViewAdmin extends JFrame {
         loadAllUser();
     }
 
+    private void clearLogFileMouseReleased(MouseEvent e) {
+        File logFile = new File("src/main/resources/loginLog.txt");
+        File fylFile = new File("src/main/resources/fyl_log.txt");
+        if (logFile.isFile() || fylFile.isFile()) {
+            logFile.delete();
+            fylFile.delete();
+            new ProxyOkDialog(this, "日志删除成功", "日志清除成功", "日志文件清除成功", "").setVisible(true);
+        } else {
+            new ProxyOkDialog(this, "日志删除失败", "日志清除失败", "日志文件清除失败", "日志文件不存在，可能已被删除。").setVisible(true);
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - phl
+        // Generated using JFormDesigner Evaluation license - notfound
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         tabbedPane1 = new JTabbedPane();
@@ -132,8 +147,8 @@ public class MainViewAdmin extends JFrame {
         scrollPane1 = new JScrollPane();
         userList = new JList<>();
         totalNumber = new JLabel();
-        panel3 = new JPanel();
         buttonBar = new JPanel();
+        clearLogFile = new JButton();
         switchUserButton = new JButton();
         exitButton = new JButton();
 
@@ -145,22 +160,29 @@ public class MainViewAdmin extends JFrame {
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
-            (0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border
-            .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-            .Color.red),dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
-            propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-            ;}});
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+                    swing.border.EmptyBorder(0, 0, 0, 0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax.swing.border
+                    .TitledBorder.CENTER, javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dia\u006cog"
+                    , java.awt.Font.BOLD, 12), java.awt.Color.red), dialogPane.getBorder
+                    ()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                @Override
+                public void propertyChange(java
+                                                   .beans.PropertyChangeEvent e) {
+                    if ("bord\u0065r".equals(e.getPropertyName())) throw new RuntimeException
+                            ();
+                }
+            });
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
                 contentPanel.setLayout(new MigLayout(
-                    "fill,insets dialog,hidemode 3",
-                    // columns
-                    "[fill]",
-                    // rows
-                    "[]"));
+                        "fill,insets dialog,hidemode 3",
+                        // columns
+                        "[fill]",
+                        // rows
+                        "[]"));
 
                 //======== tabbedPane1 ========
                 {
@@ -169,18 +191,18 @@ public class MainViewAdmin extends JFrame {
                     //======== panel1 ========
                     {
                         panel1.setLayout(new MigLayout(
-                            "fill,hidemode 3",
-                            // columns
-                            "[fill]" +
-                            "[fill]",
-                            // rows
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]" +
-                            "[]"));
+                                "fill,hidemode 3",
+                                // columns
+                                "[fill]" +
+                                        "[fill]",
+                                // rows
+                                "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]" +
+                                        "[]"));
 
                         //======== tabbedPane2 ========
                         {
@@ -189,18 +211,18 @@ public class MainViewAdmin extends JFrame {
                             //======== panel2 ========
                             {
                                 panel2.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
+                                        "hidemode 3",
+                                        // columns
+                                        "[fill]" +
+                                                "[fill]" +
+                                                "[fill]" +
+                                                "[fill]",
+                                        // rows
+                                        "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]" +
+                                                "[]"));
 
                                 //---- titleLabel ----
                                 titleLabel.setText("\u7528\u6237ID    -    \u7528\u6237\u540d    -     \u59d3\u540d    -    \u6027\u522b    -    \u5e74\u9f84");
@@ -235,22 +257,28 @@ public class MainViewAdmin extends JFrame {
                                     //---- userList ----
                                     userList.setModel(new AbstractListModel<String>() {
                                         String[] values = {
-                                            "\u7b26\u7389\u6d9f20031",
-                                            "fyl",
-                                            "\u7b26\u7389\u6d9f20032",
-                                            "\u7b26\u7389\u6d9f20054",
-                                            "\u7b26\u7389\u6d9f20034",
-                                            "\u7b26\u7389\u6d9f200245",
-                                            "\u7b26\u7389\u6d9f20031",
-                                            "\u7b26\u7389\u6d9f20032",
-                                            "\u7b26\u7389\u6d9f20054",
-                                            "\u7b26\u7389\u6d9f20034",
-                                            "\u7b26\u7389\u6d9f200245"
+                                                "\u7b26\u7389\u6d9f20031",
+                                                "fyl",
+                                                "\u7b26\u7389\u6d9f20032",
+                                                "\u7b26\u7389\u6d9f20054",
+                                                "\u7b26\u7389\u6d9f20034",
+                                                "\u7b26\u7389\u6d9f200245",
+                                                "\u7b26\u7389\u6d9f20031",
+                                                "\u7b26\u7389\u6d9f20032",
+                                                "\u7b26\u7389\u6d9f20054",
+                                                "\u7b26\u7389\u6d9f20034",
+                                                "\u7b26\u7389\u6d9f200245"
                                         };
+
                                         @Override
-                                        public int getSize() { return values.length; }
+                                        public int getSize() {
+                                            return values.length;
+                                        }
+
                                         @Override
-                                        public String getElementAt(int i) { return values[i]; }
+                                        public String getElementAt(int i) {
+                                            return values[i];
+                                        }
                                     });
                                     userList.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                                     userList.addListSelectionListener(e -> userListValueChanged(e));
@@ -264,20 +292,6 @@ public class MainViewAdmin extends JFrame {
                                 panel2.add(totalNumber, "cell 0 4");
                             }
                             tabbedPane2.addTab("\u6240\u6709\u7528\u6237", panel2);
-
-                            //======== panel3 ========
-                            {
-                                panel3.setLayout(new MigLayout(
-                                    "hidemode 3",
-                                    // columns
-                                    "[fill]" +
-                                    "[fill]",
-                                    // rows
-                                    "[]" +
-                                    "[]" +
-                                    "[]"));
-                            }
-                            tabbedPane2.addTab("\u65e5\u5fd7\u7ba1\u7406", panel3);
                         }
                         panel1.add(tabbedPane2, "cell 0 0,dock center");
                     }
@@ -290,13 +304,24 @@ public class MainViewAdmin extends JFrame {
             //======== buttonBar ========
             {
                 buttonBar.setLayout(new MigLayout(
-                    "insets dialog,alignx right",
-                    // columns
-                    "[fill]" +
-                    "[button,fill]" +
-                    "[button,fill]",
-                    // rows
-                    null));
+                        "insets dialog,alignx right",
+                        // columns
+                        "[fill]" +
+                                "[button,fill]" +
+                                "[button,fill]",
+                        // rows
+                        null));
+
+                //---- clearLogFile ----
+                clearLogFile.setText("\u6e05\u9664\u65e5\u5fd7");
+                clearLogFile.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                clearLogFile.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        clearLogFileMouseReleased(e);
+                    }
+                });
+                buttonBar.add(clearLogFile, "cell 0 0");
 
                 //---- switchUserButton ----
                 switchUserButton.setText("\u5207\u6362\u7528\u6237");
@@ -329,7 +354,7 @@ public class MainViewAdmin extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - phl
+    // Generated using JFormDesigner Evaluation license - notfound
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JTabbedPane tabbedPane1;
@@ -342,8 +367,8 @@ public class MainViewAdmin extends JFrame {
     private JScrollPane scrollPane1;
     private JList<String> userList;
     private JLabel totalNumber;
-    private JPanel panel3;
     private JPanel buttonBar;
+    private JButton clearLogFile;
     private JButton switchUserButton;
     private JButton exitButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

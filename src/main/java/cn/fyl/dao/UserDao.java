@@ -16,6 +16,7 @@ public interface UserDao {
     /**
      * 查询所有 User
      * @return 键值对HashMap对象
+     *
      */
     HashMap<Integer, ? extends User> getAll();
 

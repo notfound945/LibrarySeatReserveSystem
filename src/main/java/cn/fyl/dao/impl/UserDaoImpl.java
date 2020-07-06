@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * 根据 id 查找用户
+     * 根据 userName 查找用户
      *
      * @param userName
      * @return

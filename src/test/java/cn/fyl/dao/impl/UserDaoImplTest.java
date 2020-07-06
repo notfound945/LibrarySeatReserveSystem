@@ -25,7 +25,7 @@ public class UserDaoImplTest {
     public void addUser() {
         int insertNumber = 0;
         for (int i = 30; i < 230; i++) {
-            User user = new User( "fyl" + String.valueOf(i),"符玉涟" + String.valueOf(i), 18, "女", "123456", "15873321992", "18级5班", "常与同好争天下，\n" +
+            User user = new User( "jsu" + String.valueOf(i),"吉首大学" + String.valueOf(i), 20, "女", "123456", "15873321992", "18级5班", "常与同好争天下，\n" +
                     "不共傻瓜论长短。");
             boolean isSuccess = userDaoImpl.addUser(user);
             if (isSuccess) {

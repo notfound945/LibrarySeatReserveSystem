@@ -72,7 +72,6 @@ public class ServiceImpl implements Service {
             RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
             while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
                 line = randomAccessFile.readLine();
-                System.out.println(line);
             }
 //            randomAccessFile.writeBytes(System.lineSeparator());
             String newLine = "\n" + date + "\t" + time  + "\t" + week + "\t" + userName;
@@ -105,7 +104,7 @@ public class ServiceImpl implements Service {
     }
 
     /**
-     * 读取日志文件操作
+     * 读取并处理日志文件操作
      * @param path 文件路径
      * @return list List对象
      */
@@ -120,11 +119,30 @@ public class ServiceImpl implements Service {
                         new FileInputStream(file), encoding);
                 BufferedReader bufferedReader = new BufferedReader(read);
                 String lineTxt = null;
+
+                File tempFile = new File("src/main/resources/fyl_log.txt");
+                RandomAccessFile randomAccessFile = new RandomAccessFile(tempFile, "rw");
+                // 清空已存在文件的内容
+                randomAccessFile.setLength(0);
+                while (randomAccessFile.getFilePointer() < randomAccessFile.length()) {
+                    String line = randomAccessFile.readLine();
+                    System.out.println(line);
+                }
+                // 根据字段判断 输出到新的分类文件
                 while ((lineTxt = bufferedReader.readLine()) != null) {
                     System.out.println(lineTxt);
                     String[] temp = lineTxt.split("\t");
                     list.add(temp);
+                    if (temp.length == 4) {
+                        // 将登录用户名包含为 fyl 的登录日志提取出来
+                        if (temp[3].indexOf("fyl") >= 0) {
+                            randomAccessFile.writeBytes(System.lineSeparator());
+                            String outLine = temp[3] + " \t " + temp[2] + "\t" + temp[1] + "\t" + temp[0];
+                            randomAccessFile.writeBytes(outLine);
+                        }
+                    }
                 }
+                randomAccessFile.close();
                 bufferedReader.close();
                 read.close();
             } else {

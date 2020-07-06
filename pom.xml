@@ -12,6 +12,7 @@
   <name>A Camel Route</name>
 
   <properties>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <log4j2-version>2.13.3</log4j2-version>
@@ -38,6 +39,7 @@
       <version>1.1.1_pre-release_6.1</version>
     </dependency>
 
+<!--    Swing miglayout布局依赖-->
     <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout -->
     <dependency>
       <groupId>com.miglayout</groupId>
@@ -45,6 +47,7 @@
       <version>3.7.4</version>
     </dependency>
 
+<!--    Swing布局相关-->
     <!-- https://mvnrepository.com/artifact/org.jdesktop/beansbinding -->
     <dependency>
       <groupId>org.jdesktop</groupId>
@@ -52,6 +55,7 @@
       <version>1.2.1</version>
     </dependency>
 
+<!--    mysql连接驱动-->
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -59,6 +63,7 @@
       <version>8.0.19</version>
     </dependency>
 
+<!--    阿里druid数据库连接池-->
     <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
     <dependency>
       <groupId>com.alibaba</groupId>
@@ -66,6 +71,7 @@
       <version>1.1.22</version>
     </dependency>
 
+<!--    camel 项目模板-->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
